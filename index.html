@@ -404,7 +404,7 @@ section {
 /* ─── KEY FIGURE ─── */
 .key-figures {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2px;
   margin-bottom: 60px;
 }
@@ -434,9 +434,14 @@ section {
   z-index: 2;
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.05);
-  padding: 36px 28px;
+  padding: 24px 16px;
   text-align: center;
   transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .key-figure.active-fig .kf-face {
   background: rgba(255,107,0,0.08);
@@ -600,7 +605,7 @@ section {
 .tl-date {
   font-size: 11px;
   color: rgba(255,255,255,0.35);
-  margin-top: 12px;
+  margin-top: 24px;
   white-space: nowrap;
 }
 /* Construction row (above timeline) */
@@ -608,7 +613,10 @@ section {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   padding: 0 30px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+}
+.roadmap-row-label.comm {
+  margin-top: 36px !important;
 }
 .roadmap-row-label {
   font-size: 11px;
@@ -769,6 +777,18 @@ section {
 }
 
 /* ─── CHALLENGE ─── */
+#challenge {
+  background: #d9d3cb;
+}
+#challenge .section-label {
+  color: #FF6B00;
+}
+#challenge .section-title {
+  color: #111;
+}
+#challenge .section-divider {
+  background: #FF6B00;
+}
 .challenge-block {
   max-width: 800px;
   margin: 0 auto;
@@ -780,8 +800,8 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(255,107,0,0.12);
-  background: rgba(255,107,0,0.02);
+  border: 1px solid rgba(255,107,0,0.2);
+  background: rgba(255,107,0,0.04);
 }
 .challenge-block .challenge-text {
   position: relative;
@@ -790,7 +810,7 @@ section {
   font-weight: 700;
   font-size: clamp(20px, 3vw, 28px);
   line-height: 1.5;
-  color: #fff;
+  color: #111;
 }
 .challenge-block .challenge-text em {
   color: #FF6B00;
@@ -1048,6 +1068,7 @@ section {
   .goals-grid { grid-template-columns: 1fr; }
   .comm-goals-list { grid-template-columns: 1fr; }
   .key-figures { grid-template-columns: repeat(2, 1fr); }
+  .kf-face { aspect-ratio: 1; }
   .footer { padding: 30px 24px; flex-direction: column; text-align: center; }
   .stage-card { min-width: 220px; }
   .hero-text-parallax { padding: 0 20px; }
@@ -1313,7 +1334,7 @@ section {
 
       <!-- СТРОИТЕЛЬСТВО row -->
       <div class="roadmap-row-label build">Строительство</div>
-      <div class="roadmap-row" style="margin-bottom:28px;">
+      <div class="roadmap-row" style="margin-bottom:40px;">
         <div class="rm-cell"><p>Старт работ по треку, тест асфальта, подготовка решений по инженерии</p></div>
         <div class="rm-cell"><p>Появляется трек для тестов, полноценный тест трека, март 2027 — отопление южной части</p></div>
         <div class="rm-cell"><p>Технический запуск трека без гостей, здания готовы, стройка парка и парковок</p></div>
@@ -1352,7 +1373,7 @@ section {
       </div>
 
       <!-- КОММУНИКАЦИЯ row -->
-      <div class="roadmap-row-label comm" style="margin-top:28px;">Коммуникация</div>
+      <div class="roadmap-row-label comm" style="margin-top:40px;">Коммуникация</div>
       <div class="roadmap-row">
         <div class="rm-cell"><h4>Формирование клуба и базы ожидания</h4></div>
         <div class="rm-cell"><h4>Закрытые тесты и снятие скепсиса сцены</h4></div>
