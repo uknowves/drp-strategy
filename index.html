@@ -514,35 +514,32 @@ section {
 .pillars-grid {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
 }
 .pillar-card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 42% 1fr;
   gap: 0;
   background: rgba(255,255,255,0.45);
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   transition: 0.4s;
   cursor: default;
 }
-.pillar-card:nth-child(even) {
-  direction: rtl;
-}
-.pillar-card:nth-child(even) > * {
-  direction: ltr;
-}
 .pillar-card:hover {
-  background: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.55);
 }
 .pillar-img {
-  background: #c4bfb7 url('pillar-photo.jpg') center/cover no-repeat;
-  min-height: 320px;
-  border-radius: 12px;
-  margin: 16px;
+  background: #c4bfb7 url('pillar-photo.png') center/cover no-repeat;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  margin: 12px;
 }
 .pillar-content {
-  padding: 48px 40px;
+  padding: 40px 36px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -550,15 +547,15 @@ section {
 .pillar-card h3 {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.3;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   color: #111;
 }
 .pillar-card .pillar-what {
   font-size: 15px;
   line-height: 1.7;
-  color: rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.55);
   margin-bottom: 24px;
 }
 .pillar-card .pillar-why {
@@ -1095,10 +1092,12 @@ section {
   .nav { padding: 12px 20px; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
-  .pillar-card { grid-template-columns: 1fr; }
-  .pillar-card:nth-child(even) { direction: ltr; }
-  .pillar-img { min-height: 220px; }
-  .pillar-content { padding: 28px 24px; }
+  .pillar-card { grid-template-columns: 40% 1fr; }
+  .pillar-img { aspect-ratio: 3 / 4; }
+  .pillar-content { padding: 20px 16px; }
+  .pillar-card h3 { font-size: 16px; margin-bottom: 10px; }
+  .pillar-card .pillar-what { font-size: 13px; margin-bottom: 14px; }
+  .pillar-card .pillar-why { font-size: 11px; }
   .goals-grid { grid-template-columns: 1fr; }
   .comm-goals-list { grid-template-columns: 1fr; }
   .key-figures { grid-template-columns: repeat(2, 1fr); }
