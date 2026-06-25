@@ -499,45 +499,76 @@ section {
 }
 
 /* ─── PILLARS ─── */
+#pillars {
+  background: #d9d3cb;
+}
+#pillars .section-label {
+  color: #FF6B00;
+}
+#pillars .section-title {
+  color: #111;
+}
+#pillars .section-divider {
+  background: #FF6B00;
+}
 .pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 .pillar-card {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: rgba(255,255,255,0.45);
+  border-radius: 16px;
+  overflow: hidden;
   transition: 0.4s;
   cursor: default;
 }
+.pillar-card:nth-child(even) {
+  direction: rtl;
+}
+.pillar-card:nth-child(even) > * {
+  direction: ltr;
+}
 .pillar-card:hover {
-  background: rgba(255,107,0,0.03);
-  border-color: rgba(255,107,0,0.12);
+  background: rgba(255,255,255,0.6);
+}
+.pillar-img {
+  background: #c4bfb7 url('pillar-photo.jpg') center/cover no-repeat;
+  min-height: 320px;
+  border-radius: 12px;
+  margin: 16px;
+}
+.pillar-content {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .pillar-card h3 {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 14px;
-  color: #FF6B00;
+  font-size: 22px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  color: #111;
 }
 .pillar-card .pillar-what {
-  font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 16px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(0,0,0,0.6);
+  margin-bottom: 24px;
 }
 .pillar-card .pillar-why {
   font-size: 13px;
-  color: rgba(255,255,255,0.4);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding-top: 12px;
+  color: rgba(0,0,0,0.4);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 16px;
 }
 .pillar-card .pillar-why strong {
-  color: rgba(255,255,255,0.6);
+  color: rgba(0,0,0,0.6);
 }
 
 /* ─── TIMELINE / ROADMAP ─── */
@@ -1064,7 +1095,10 @@ section {
   .nav { padding: 12px 20px; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
-  .pillars-grid { grid-template-columns: 1fr; }
+  .pillar-card { grid-template-columns: 1fr; }
+  .pillar-card:nth-child(even) { direction: ltr; }
+  .pillar-img { min-height: 220px; }
+  .pillar-content { padding: 28px 24px; }
   .goals-grid { grid-template-columns: 1fr; }
   .comm-goals-list { grid-template-columns: 1fr; }
   .key-figures { grid-template-columns: repeat(2, 1fr); }
@@ -1288,34 +1322,52 @@ section {
 
   <div class="pillars-grid reveal">
     <div class="pillar-card">
-      <h3>Честная база спорта</h3>
-      <div class="pillar-what">По-настоящему лучшая трасса, честная база без компромиссов, трасса спроектирована под дрифт, реальный спорт, мировой уровень / глобальные референсы.</div>
-      <div class="pillar-why"><strong>Зачем нужен:</strong> авторитет, доверие профи/энтузиастов, донесение мирового уровня.</div>
+      <div class="pillar-img" id="pillar-img-1"></div>
+      <div class="pillar-content">
+        <h3>Честная база спорта</h3>
+        <div class="pillar-what">По-настоящему лучшая трасса, честная база без компромиссов, трасса спроектирована под дрифт, реальный спорт, мировой уровень / глобальные референсы.</div>
+        <div class="pillar-why"><strong>Зачем нужен:</strong> авторитет, доверие профи/энтузиастов, донесение мирового уровня.</div>
+      </div>
     </div>
     <div class="pillar-card">
-      <h3>Точка притяжения высокого класса</h3>
-      <div class="pillar-what">DRP где P=Park, «третье место», комплексный досуг, парковые зоны, DIY, музей/зал славы, фото-инсталляции, F&B, феномен культуры города, формирование СПБ как столицы дрифта и экстрима.</div>
-      <div class="pillar-why"><strong>Зачем нужен:</strong> массовый спрос/частота визитов/туризм.</div>
+      <div class="pillar-img" id="pillar-img-2"></div>
+      <div class="pillar-content">
+        <h3>Точка притяжения высокого класса</h3>
+        <div class="pillar-what">DRP где P=Park, «третье место», комплексный досуг, парковые зоны, DIY, музей/зал славы, фото-инсталляции, F&B, феномен культуры города, формирование СПБ как столицы дрифта и экстрима.</div>
+        <div class="pillar-why"><strong>Зачем нужен:</strong> массовый спрос/частота визитов/туризм.</div>
+      </div>
     </div>
     <div class="pillar-card">
-      <h3>Качество сервиса</h3>
-      <div class="pillar-what">Удобная запись/расписание, обучение админов/операционки, сервисность, динамическое ценообразование / слоты / короткие форматы / value-пакеты, доп-услуги.</div>
-      <div class="pillar-why"><strong>Зачем нужен:</strong> конверсия новичков/массы, без стопперов, повторяемость, монетизация, снижение барьеров.</div>
+      <div class="pillar-img" id="pillar-img-3"></div>
+      <div class="pillar-content">
+        <h3>Качество сервиса</h3>
+        <div class="pillar-what">Удобная запись/расписание, обучение админов/операционки, сервисность, динамическое ценообразование / слоты / короткие форматы / value-пакеты, доп-услуги.</div>
+        <div class="pillar-why"><strong>Зачем нужен:</strong> конверсия новичков/массы, без стопперов, повторяемость, монетизация, снижение барьеров.</div>
+      </div>
     </div>
     <div class="pillar-card">
-      <h3>Полное погружение</h3>
-      <div class="pillar-what">Иммерсивный опыт гонщика (ядро платформы), TV-level контент / продакшн-центр, POV трансляции, переключаемые ракурсы, QR-доступ, экраны на объекте.</div>
-      <div class="pillar-why"><strong>Зачем нужен:</strong> дифференциация DRP как нового поколения и создание иммерсивного опыта для аудитории.</div>
+      <div class="pillar-img" id="pillar-img-4"></div>
+      <div class="pillar-content">
+        <h3>Полное погружение</h3>
+        <div class="pillar-what">Иммерсивный опыт гонщика (ядро платформы), TV-level контент / продакшн-центр, POV трансляции, переключаемые ракурсы, QR-доступ, экраны на объекте.</div>
+        <div class="pillar-why"><strong>Зачем нужен:</strong> дифференциация DRP как нового поколения и создание иммерсивного опыта для аудитории.</div>
+      </div>
     </div>
     <div class="pillar-card">
-      <h3>Сообщество и признание</h3>
-      <div class="pillar-what">Причастность к культуре дрифта, кумиры/звёзды, федерации, большие мероприятия как социальное доказательство, статус в сообществе, вклад в общее дело, клубность/уровни/артефакты.</div>
-      <div class="pillar-why"><strong>Зачем нужен:</strong> удержание и комьюнити-эффект.</div>
+      <div class="pillar-img" id="pillar-img-5"></div>
+      <div class="pillar-content">
+        <h3>Сообщество и признание</h3>
+        <div class="pillar-what">Причастность к культуре дрифта, кумиры/звёзды, федерации, большие мероприятия как социальное доказательство, статус в сообществе, вклад в общее дело, клубность/уровни/артефакты.</div>
+        <div class="pillar-why"><strong>Зачем нужен:</strong> удержание и комьюнити-эффект.</div>
+      </div>
     </div>
     <div class="pillar-card">
-      <h3>Свобода и драйв</h3>
-      <div class="pillar-what">Можно то, что запрещено на дорогах, мы не в ТРЦ, шум, скорость и свобода, дерзкий смелый вайб, альтернатива банальному досугу.</div>
-      <div class="pillar-why"><strong>Зачем нужен:</strong> эмоциональный магнит для молодёжи/массовой аудитории и ядро дерзкого позиционирования.</div>
+      <div class="pillar-img" id="pillar-img-6"></div>
+      <div class="pillar-content">
+        <h3>Свобода и драйв</h3>
+        <div class="pillar-what">Можно то, что запрещено на дорогах, мы не в ТРЦ, шум, скорость и свобода, дерзкий смелый вайб, альтернатива банальному досугу.</div>
+        <div class="pillar-why"><strong>Зачем нужен:</strong> эмоциональный магнит для молодёжи/массовой аудитории и ядро дерзкого позиционирования.</div>
+      </div>
     </div>
   </div>
 </section>
