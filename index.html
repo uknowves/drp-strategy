@@ -831,44 +831,83 @@ section {
 }
 
 /* ─── CHALLENGE ─── */
-#challenge {
-  background: #d9d3cb;
-}
-#challenge .section-label {
-  color: #FF6B00;
-}
-#challenge .section-title {
-  color: #111;
-}
-#challenge .section-divider {
-  background: #FF6B00;
-}
-.challenge-block {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 80px 40px;
+.challenge-wrap {
+  height: 400vh;
   position: relative;
 }
-.challenge-block::before {
-  content: '';
+.challenge-sticky {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+}
+.challenge-sticky video {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(255,107,0,0.2);
-  background: rgba(255,107,0,0.04);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.challenge-block .challenge-text {
-  position: relative;
+.challenge-dim {
+  position: absolute;
+  inset: 0;
+  background: #0a0a0a;
+  opacity: 0;
   z-index: 1;
+}
+.challenge-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 60px;
+}
+.ch-label {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
-  font-size: clamp(20px, 3vw, 28px);
-  line-height: 1.5;
-  color: #111;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.challenge-block .challenge-text em {
+.ch-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, 6vw, 72px);
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.ch-line1, .ch-line2, .ch-line3 {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 2.8vw, 28px);
+  line-height: 1.5;
+  color: #fff;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.ch-line2 em, .ch-line3 em {
   color: #FF6B00;
   font-style: normal;
+}
+.ch-label.visible, .ch-title.visible,
+.ch-line1.visible, .ch-line2.visible, .ch-line3.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ─── COMM GOALS ─── */
@@ -1569,19 +1608,21 @@ section {
 </section>
 
 <!-- CHALLENGE -->
-<section id="challenge">
-  <div class="reveal">
-    <div class="section-label">05 / Коммуникационный челлендж</div>
-    <div class="section-title">Главный вызов</div>
-    <div class="section-divider"></div>
+<div class="challenge-wrap" id="challenge">
+  <div class="challenge-sticky">
+    <video id="challengeVideo" muted playsinline preload="auto">
+      <source src="challenge_video.mp4" type="video/mp4">
+    </video>
+    <div class="challenge-dim" id="challengeDim"></div>
+    <div class="challenge-content">
+      <div class="ch-label" id="chLabel">05 / Коммуникационный челлендж</div>
+      <div class="ch-title" id="chTitle">Главный вызов</div>
+      <div class="ch-line1" id="chLine1">Поэтапно сформировать у ключевых аудиторий знание о&nbsp;DRP,</div>
+      <div class="ch-line2" id="chLine2"><em>превратив его из неизвестного строящегося объекта</em></div>
+      <div class="ch-line3" id="chLine3"><em>— в понятную, желанную и привычную часть жизни города.</em></div>
+    </div>
   </div>
-
-  <div class="challenge-block reveal">
-    <p class="challenge-text">
-      Поэтапно сформировать у ключевых аудиторий знание о DRP, превратив его из <em>неизвестного строящегося объекта</em> — в <em>понятную, желанную и привычную часть жизни города.</em>
-    </p>
-  </div>
-</section>
+</div>
 
 <!-- COMMUNICATION GOALS -->
 <section id="comm-goals" style="background: rgba(255,255,255,0.01);">
@@ -1954,6 +1995,65 @@ function handleHeroScroll() {
 
 window.addEventListener('scroll', handleHeroScroll, { passive: true });
 handleHeroScroll();
+
+// ─── CHALLENGE SCROLL-DRIVEN ───
+const challengeWrap = document.querySelector('.challenge-wrap');
+const challengeVideo = document.getElementById('challengeVideo');
+const challengeDim = document.getElementById('challengeDim');
+const chLabel = document.getElementById('chLabel');
+const chTitle = document.getElementById('chTitle');
+const chLine1 = document.getElementById('chLine1');
+const chLine2 = document.getElementById('chLine2');
+const chLine3 = document.getElementById('chLine3');
+
+if (challengeVideo) {
+  challengeVideo.pause();
+  challengeVideo.currentTime = 0;
+  challengeVideo.preload = 'auto';
+}
+
+function handleChallengeScroll() {
+  if (!challengeWrap) return;
+  const rect = challengeWrap.getBoundingClientRect();
+  const wrapHeight = challengeWrap.offsetHeight;
+  const viewH = window.innerHeight;
+  const scrolled = -rect.top;
+  const progress = Math.max(0, Math.min(1, scrolled / (wrapHeight - viewH)));
+
+  // Scrub video
+  if (challengeVideo && challengeVideo.readyState >= 2 && challengeVideo.duration) {
+    challengeVideo.currentTime = progress * challengeVideo.duration;
+  }
+
+  // Dim
+  if (challengeDim) {
+    const dimP = Math.max(0, (progress - 0.05) / 0.3);
+    challengeDim.style.opacity = Math.min(0.7, dimP);
+  }
+
+  // Label at 15%
+  if (progress > 0.15) { chLabel.classList.add('visible'); }
+  else { chLabel.classList.remove('visible'); }
+
+  // Title at 35%
+  if (progress > 0.35) { chTitle.classList.add('visible'); }
+  else { chTitle.classList.remove('visible'); }
+
+  // Line 1 at 55%
+  if (progress > 0.55) { chLine1.classList.add('visible'); }
+  else { chLine1.classList.remove('visible'); }
+
+  // Line 2 at 65%
+  if (progress > 0.65) { chLine2.classList.add('visible'); }
+  else { chLine2.classList.remove('visible'); }
+
+  // Line 3 at 75%
+  if (progress > 0.75) { chLine3.classList.add('visible'); }
+  else { chLine3.classList.remove('visible'); }
+}
+
+window.addEventListener('scroll', handleChallengeScroll, { passive: true });
+handleChallengeScroll();
 
 // ─── Timeline stage tooltip ───
 const stageTip = document.createElement('div');
