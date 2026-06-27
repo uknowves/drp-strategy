@@ -393,9 +393,9 @@ section {
 .metric-tag {
   background: rgba(255,107,0,0.08);
   border: 1px solid rgba(255,107,0,0.15);
-  padding: 4px 12px;
+  padding: 6px 16px;
   border-radius: 2px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #FF6B00;
   white-space: nowrap;
@@ -1127,9 +1127,9 @@ section {
 }
 .mg-item {
   display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 20px;
-  padding: 32px 0;
+  grid-template-columns: 100px 1fr;
+  gap: 60px;
+  padding: 48px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
   align-items: start;
 }
@@ -1137,22 +1137,22 @@ section {
 .mg-num {
   font-family: 'Korataki', sans-serif;
   font-weight: 800;
-  font-size: 32px;
-  color: rgba(255,107,0,0.2);
+  font-size: 56px;
+  color: rgba(255,107,0,0.25);
   line-height: 1;
 }
 .mg-content h3 {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.5;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   color: rgba(255,255,255,0.9);
 }
 .mg-content .mg-metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 /* ─── RESPONSIVE ─── */
@@ -1255,9 +1255,33 @@ section {
     </p>
   </div>
 
+  <div class="goals-grid reveal">
+    <div class="goal-card">
+      <div class="goal-card-number">01</div>
+      <h3>Операционная самоокупаемость</h3>
+      <p>Обеспечить операционную самоокупаемость DRP за счёт стабильной загрузки ключевых продуктов.</p>
+      <div class="metrics">
+        <span class="metric-tag">150+ / будни</span>
+        <span class="metric-tag">400+ / выходные</span>
+        <span class="metric-tag">3 тыс. частых</span>
+        <span class="metric-tag">40 тыс. случайных</span>
+      </div>
+    </div>
+    <div class="goal-card">
+      <div class="goal-card-number">02</div>
+      <h3>Диверсификация дохода</h3>
+      <p>Диверсифицировать источники дохода за счёт развития ивент- и партнёрского направления.</p>
+      <div class="metrics">
+        <span class="metric-tag">A: 4 / B: 12 / C: 23</span>
+        <span class="metric-tag">40 млн — 16 млн — 8 млн</span>
+        <span class="metric-tag">8 тыс. ₽ средний чек</span>
+      </div>
+    </div>
+  </div>
+
   <!-- KEY FIGURES -->
   <div class="reveal">
-    <p style="font-size:12px; text-transform:uppercase; letter-spacing:3px; color:rgba(255,255,255,0.3); margin-bottom: 20px;">Ключевые метрики</p>
+    <p style="font-size:12px; text-transform:uppercase; letter-spacing:3px; color:rgba(255,255,255,0.3); margin-bottom: 20px; margin-top: 60px;">Ключевые метрики</p>
   </div>
   <div class="key-figures reveal" id="key-figures-grid">
     <div class="key-figure">
@@ -1291,30 +1315,6 @@ section {
     <div class="key-figure">
       <div class="kf-smoke"><div class="kf-smoke-wisp"></div><div class="kf-smoke-wisp"></div><div class="kf-smoke-wisp"></div></div>
       <div class="kf-face"><div class="key-figure-value">50%</div><div class="key-figure-label">Доля ивент-выручки</div></div>
-    </div>
-  </div>
-
-  <div class="goals-grid reveal">
-    <div class="goal-card">
-      <div class="goal-card-number">01</div>
-      <h3>Операционная самоокупаемость</h3>
-      <p>Обеспечить операционную самоокупаемость DRP за счёт стабильной загрузки ключевых продуктов.</p>
-      <div class="metrics">
-        <span class="metric-tag">150+ / будни</span>
-        <span class="metric-tag">400+ / выходные</span>
-        <span class="metric-tag">3 тыс. частых</span>
-        <span class="metric-tag">40 тыс. случайных</span>
-      </div>
-    </div>
-    <div class="goal-card">
-      <div class="goal-card-number">02</div>
-      <h3>Диверсификация дохода</h3>
-      <p>Диверсифицировать источники дохода за счёт развития ивент- и партнёрского направления.</p>
-      <div class="metrics">
-        <span class="metric-tag">A: 4 / B: 12 / C: 23</span>
-        <span class="metric-tag">40 млн — 16 млн — 8 млн</span>
-        <span class="metric-tag">8 тыс. ₽ средний чек</span>
-      </div>
     </div>
   </div>
 </section>
