@@ -753,6 +753,7 @@ section {
   border-radius: 2px;
   width: 100%;
   position: relative;
+  cursor: default;
 }
 /* Bar colors by block */
 .bar-a { background: rgba(255,107,0,0.35); border-left: 2px solid #FF6B00; }
@@ -1924,15 +1925,15 @@ function handleHeroScroll() {
   // Tire marks appear with background
   heroTireMarks.style.opacity = bgOpacity * 0.5;
 
-  // Staggered text: label at 0.4, title at 0.55, subtitle at 0.65
-  if (progress > 0.4) {
+  // Staggered text: label at 0.2, title at 0.35, subtitle at 0.65
+  if (progress > 0.2) {
     heroText.classList.add('visible');
     heroLabel.classList.add('visible');
   } else {
     heroLabel.classList.remove('visible');
   }
 
-  if (progress > 0.55) {
+  if (progress > 0.35) {
     heroTitle.classList.add('visible');
   } else {
     heroTitle.classList.remove('visible');
@@ -1968,6 +1969,25 @@ document.querySelectorAll('.tl-point[data-stage]').forEach(point => {
     stageTip.style.top = (e.clientY - 30) + 'px';
   });
   point.addEventListener('mouseleave', () => {
+    stageTip.style.opacity = '0';
+  });
+});
+
+// ─── Gantt bar tooltip ───
+document.querySelectorAll('.gantt-bar').forEach(bar => {
+  bar.addEventListener('mouseenter', () => {
+    const cell = bar.closest('.gantt-cell');
+    const row = cell.parentElement;
+    const cells = Array.from(row.querySelectorAll('.gantt-cell'));
+    const idx = cells.indexOf(cell) + 1;
+    stageTip.textContent = idx + ' ЭТАП';
+    stageTip.style.opacity = '1';
+  });
+  bar.addEventListener('mousemove', (e) => {
+    stageTip.style.left = (e.clientX + 14) + 'px';
+    stageTip.style.top = (e.clientY - 30) + 'px';
+  });
+  bar.addEventListener('mouseleave', () => {
     stageTip.style.opacity = '0';
   });
 });
