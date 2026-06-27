@@ -132,7 +132,7 @@ body {
 
 /* ─── HERO ─── */
 .hero-wrap {
-  height: 300vh;
+  height: 200vh;
   position: relative;
 }
 .hero {
@@ -1911,33 +1911,34 @@ function handleHeroScroll() {
     heroVideo.currentTime = progress * heroVideo.duration;
   }
 
-  // Dim video on scroll
+  // Dim video on scroll — starts at 25% progress, reaches max at ~70%
   if (heroVideoDim) {
-    heroVideoDim.style.opacity = Math.min(0.85, progress * 1.5);
+    const dimProgress = Math.max(0, (progress - 0.25) / 0.45);
+    heroVideoDim.style.opacity = Math.min(0.85, dimProgress);
   }
 
-  // Background: fade in from progress 0.1
-  const bgOpacity = Math.max(0, Math.min(1, (progress - 0.1) / 0.3));
+  // Background: fade in from progress 0.3 to 0.6
+  const bgOpacity = Math.max(0, Math.min(1, (progress - 0.3) / 0.3));
   heroBg.style.opacity = bgOpacity;
 
   // Tire marks appear with background
   heroTireMarks.style.opacity = bgOpacity * 0.5;
 
-  // Staggered text: label at 0.08, title at 0.15, subtitle at 0.22
-  if (progress > 0.08) {
+  // Staggered text: label at 0.4, title at 0.55, subtitle at 0.65
+  if (progress > 0.4) {
     heroText.classList.add('visible');
     heroLabel.classList.add('visible');
   } else {
     heroLabel.classList.remove('visible');
   }
 
-  if (progress > 0.15) {
+  if (progress > 0.55) {
     heroTitle.classList.add('visible');
   } else {
     heroTitle.classList.remove('visible');
   }
 
-  if (progress > 0.22) {
+  if (progress > 0.65) {
     heroSub.classList.add('visible');
   } else {
     heroSub.classList.remove('visible');
