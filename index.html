@@ -1136,7 +1136,7 @@ section {
   <section class="hero">
     <!-- Background video -->
     <div class="hero-video-wrap">
-      <video id="heroVideo" muted playsinline autoplay>
+      <video id="heroVideo" muted playsinline preload="auto">
         <source src="hero-bg.mp4" type="video/mp4">
       </video>
       <div class="hero-video-gradient"></div>
@@ -1841,35 +1841,12 @@ const heroSub = document.querySelector('.hero-text-sub');
 const heroVideo = document.getElementById('heroVideo');
 const heroVideoDim = document.getElementById('heroVideoDim');
 
-// ─── PING-PONG VIDEO LOOP ───
+// ─── SCROLL-DRIVEN VIDEO ───
 if (heroVideo) {
-  heroVideo.addEventListener('ended', () => {
-    heroVideo.playbackRate = -heroVideo.playbackRate || -1;
-    if (heroVideo.playbackRate < 0) {
-      // Reverse not supported natively — use a workaround
-      heroVideo.playbackRate = 1;
-    }
-    heroVideo.play();
-  });
-  // True ping-pong: reverse on end via currentTime stepping
-  let ppDirection = 1;
-  let ppRAF = null;
-  function pingPongLoop() {
-    if (!heroVideo.paused && heroVideo.readyState >= 2) {
-      if (ppDirection === 1 && heroVideo.currentTime >= heroVideo.duration - 0.05) {
-        ppDirection = -1;
-      } else if (ppDirection === -1 && heroVideo.currentTime <= 0.05) {
-        ppDirection = 1;
-      }
-      if (ppDirection === -1) {
-        heroVideo.currentTime = Math.max(0, heroVideo.currentTime - 0.034);
-      }
-    }
-    ppRAF = requestAnimationFrame(pingPongLoop);
-  }
-  heroVideo.addEventListener('play', () => { if (!ppRAF) pingPongLoop(); });
-  heroVideo.loop = false;
-  heroVideo.play().catch(() => {});
+  heroVideo.pause();
+  heroVideo.currentTime = 0;
+  // Preload video metadata so we know duration
+  heroVideo.preload = 'auto';
 }
 
 function handleHeroScroll() {
@@ -1878,6 +1855,11 @@ function handleHeroScroll() {
   const viewH = window.innerHeight;
   const scrolled = -rect.top;
   const progress = Math.max(0, Math.min(1, scrolled / (wrapHeight - viewH)));
+
+  // Scrub video with scroll
+  if (heroVideo && heroVideo.readyState >= 2 && heroVideo.duration) {
+    heroVideo.currentTime = progress * heroVideo.duration;
+  }
 
   // Dim video on scroll
   if (heroVideoDim) {
