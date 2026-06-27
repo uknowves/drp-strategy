@@ -635,6 +635,23 @@ section {
   transform: scale(1.3);
   box-shadow: 0 0 0 2px #FF6B00, 0 0 20px rgba(255,107,0,0.3);
 }
+.tl-stage-tip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #FF6B00;
+  background: rgba(10,10,10,0.9);
+  border: 1px solid rgba(255,107,0,0.3);
+  padding: 6px 14px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
 .tl-date {
   font-size: 11px;
   color: rgba(255,255,255,0.35);
@@ -1405,27 +1422,27 @@ section {
       <!-- TIMELINE -->
       <div class="timeline">
         <div class="timeline-line"></div>
-        <div class="tl-point">
+        <div class="tl-point" data-stage="1 ЭТАП">
           <div class="tl-dot"></div>
           <div class="tl-date">1: апрель 2026 –<br>ноябрь 2026</div>
         </div>
-        <div class="tl-point">
+        <div class="tl-point" data-stage="2 ЭТАП">
           <div class="tl-dot"></div>
           <div class="tl-date">2: декабрь 2026 –<br>июнь 2027</div>
         </div>
-        <div class="tl-point">
+        <div class="tl-point" data-stage="3 ЭТАП">
           <div class="tl-dot"></div>
           <div class="tl-date">3: июль 2027 –<br>сентябрь 2027</div>
         </div>
-        <div class="tl-point">
+        <div class="tl-point" data-stage="4 ЭТАП">
           <div class="tl-dot"></div>
           <div class="tl-date">4: октябрь 2027 –<br>декабрь 2027</div>
         </div>
-        <div class="tl-point">
+        <div class="tl-point" data-stage="5 ЭТАП">
           <div class="tl-dot"></div>
           <div class="tl-date">5: январь 2028 –<br>май 2028</div>
         </div>
-        <div class="tl-point">
+        <div class="tl-point" data-stage="6 ЭТАП">
           <div class="tl-dot"></div>
           <div class="tl-date">6: июнь 2028 –<br>сентябрь 2028</div>
         </div>
@@ -1448,7 +1465,8 @@ section {
   <!-- GANTT: Запуск продуктов по этапам -->
   <div class="gantt-section reveal" style="margin-top:80px;">
     <div class="section-label">Запуск продуктов</div>
-    <p style="font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:24px;">Продукты и сервисы, привязанные к этапам коммуникации</p>
+    <div class="section-title">Продукты и сервисы, привязанные к этапам коммуникации</div>
+    <div class="section-divider"></div>
 
     <div class="roadmap-container">
       <div>
@@ -1934,6 +1952,24 @@ function handleHeroScroll() {
 
 window.addEventListener('scroll', handleHeroScroll, { passive: true });
 handleHeroScroll();
+
+// ─── Timeline stage tooltip ───
+const stageTip = document.createElement('div');
+stageTip.className = 'tl-stage-tip';
+document.body.appendChild(stageTip);
+document.querySelectorAll('.tl-point[data-stage]').forEach(point => {
+  point.addEventListener('mouseenter', () => {
+    stageTip.textContent = point.dataset.stage;
+    stageTip.style.opacity = '1';
+  });
+  point.addEventListener('mousemove', (e) => {
+    stageTip.style.left = (e.clientX + 14) + 'px';
+    stageTip.style.top = (e.clientY - 30) + 'px';
+  });
+  point.addEventListener('mouseleave', () => {
+    stageTip.style.opacity = '0';
+  });
+});
 
 // ─── Scroll reveal ───
 const observer = new IntersectionObserver((entries) => {
