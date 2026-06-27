@@ -585,7 +585,6 @@ section {
 .roadmap-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
 .roadmap-container::-webkit-scrollbar-thumb { background: #FF6B00; border-radius: 2px; }
 .roadmap-inner {
-  min-width: 1100px;
   position: relative;
 }
 /* Timeline line */
@@ -685,7 +684,7 @@ section {
 }
 .gantt-header {
   display: grid;
-  grid-template-columns: 260px repeat(6, 1fr);
+  grid-template-columns: 280px repeat(6, 1fr);
   padding: 0 0 8px 0;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   position: sticky;
@@ -709,7 +708,7 @@ section {
 }
 .gantt-row {
   display: grid;
-  grid-template-columns: 260px repeat(6, 1fr);
+  grid-template-columns: 280px repeat(6, 1fr);
   align-items: center;
   min-height: 28px;
   border-bottom: 1px solid rgba(255,255,255,0.03);
@@ -719,7 +718,7 @@ section {
   background: rgba(255,255,255,0.02);
 }
 .gantt-label {
-  font-size: 12px;
+  font-size: 14px;
   color: rgba(255,255,255,0.6);
   padding-right: 12px;
   white-space: nowrap;
@@ -738,12 +737,15 @@ section {
   width: 100%;
   position: relative;
 }
-/* Bar colors by category */
-.bar-core { background: rgba(255,107,0,0.35); border-left: 2px solid #FF6B00; }
-.bar-partner { background: rgba(100,180,255,0.2); border-left: 2px solid rgba(100,180,255,0.5); }
-.bar-pilot { background: rgba(180,180,180,0.15); border-left: 2px solid rgba(180,180,180,0.3); }
-.bar-later { background: rgba(255,230,0,0.15); border-left: 2px solid rgba(255,230,0,0.35); }
-.bar-tenant { background: rgba(220,60,60,0.2); border-left: 2px solid rgba(220,60,60,0.4); }
+/* Bar colors by block */
+.bar-a { background: rgba(255,107,0,0.35); border-left: 2px solid #FF6B00; }
+.bar-b { background: rgba(100,180,255,0.25); border-left: 2px solid rgba(100,180,255,0.6); }
+.bar-c { background: rgba(80,200,160,0.25); border-left: 2px solid rgba(80,200,160,0.6); }
+.bar-d { background: rgba(255,220,50,0.25); border-left: 2px solid rgba(255,220,50,0.5); }
+.bar-e { background: rgba(240,100,120,0.25); border-left: 2px solid rgba(240,100,120,0.5); }
+.bar-f { background: rgba(0,210,210,0.2); border-left: 2px solid rgba(0,210,210,0.5); }
+.bar-g { background: rgba(180,130,255,0.25); border-left: 2px solid rgba(180,130,255,0.5); }
+.bar-h { background: rgba(255,150,200,0.25); border-left: 2px solid rgba(255,150,200,0.5); }
 /* Gantt tooltip */
 .gantt-tooltip {
   position: fixed;
@@ -1449,7 +1451,7 @@ section {
     <p style="font-size:14px; color:rgba(255,255,255,0.4); margin-bottom:24px;">Продукты и сервисы, привязанные к этапам коммуникации</p>
 
     <div class="roadmap-container">
-      <div style="min-width:1100px;">
+      <div>
 
         <!-- Gantt header -->
         <div class="gantt-header">
@@ -1457,60 +1459,90 @@ section {
           <span>Э1</span><span>Э2</span><span>Э3</span><span>Э4</span><span>Э5</span><span>Э6</span>
         </div>
 
-        <!-- Digital & Infrastructure -->
-        <div class="gantt-row"><div class="gantt-label">Digital MVP / бронирование / CRM</div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
+        <!-- A. Core Track & Sport -->
+        <div class="gantt-category">A. Core Track & Sport</div>
+        <div class="gantt-row"><div class="gantt-label">Индивидуальная трек-сессия</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Дрифт-такси</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Пакеты тренировок на треке</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Open Pit / безлимитная сессия</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Зимний / специальный дрифт</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Телеметрия и видеоанализ</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div><div class="gantt-cell"><div class="gantt-bar bar-a"></div></div></div>
 
-        <!-- Tenant / partner (start Э2) -->
-        <div class="gantt-row"><div class="gantt-label">Аренда боксов (шатры/будки/сервисные зоны)</div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Ресторан с видом на трек / F&B зона</div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div></div>
+        <!-- B. Школа и обучение -->
+        <div class="gantt-category">B. Школа и обучение — partner-led</div>
+        <div class="gantt-row"><div class="gantt-label">Симуляторы</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Школа дрифта для взрослых</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Детская / подростковая программа</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Контраварийное вождение</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Курсы судейства, механики, тюнинга</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Онлайн-курсы</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Автокинотеатр</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div><div class="gantt-cell"><div class="gantt-bar bar-b"></div></div></div>
 
-        <!-- Core track (start Э3) -->
-        <div class="gantt-category">Core Track & Sport — Этап 3+</div>
-        <div class="gantt-row"><div class="gantt-label">Индивидуальные трек-сессии</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Школа тренировок на треке</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-partner"></div></div><div class="gantt-cell"><div class="gantt-bar bar-partner"></div></div><div class="gantt-cell"><div class="gantt-bar bar-partner"></div></div><div class="gantt-cell"><div class="gantt-bar bar-partner"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Дрифт-такси</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Корпоративные программы</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Подростковые праздники / групповые программы</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Промо/шоу/авто/лайт</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Фото-зоны и инсталляции</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Система рейтинга пилотов</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Фото и видеоконтент</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Продуктовый / deli магазин</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div></div>
+        <!-- C. Guest Experience & Entertainment -->
+        <div class="gantt-category">C. Guest Experience & Entertainment</div>
+        <div class="gantt-row"><div class="gantt-label">Фото-зоны и инсталляции</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">RC-модели / трасса для радиоуправляемых</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Музей-lite / Hall of Fame + мерч-зона</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Квесты</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Полная аренда парка</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Контент и съёмка</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div><div class="gantt-cell"><div class="gantt-bar bar-c"></div></div></div>
 
-        <!-- Guest Experience (start Э4) -->
-        <div class="gantt-category">Guest Experience & Entertainment — Этап 4+</div>
-        <div class="gantt-row"><div class="gantt-label">Брендированные pop-up зоны</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Street food / pop-up</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Магазин экипировки</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Мерч / дилерство</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Монтаж / детейлинг</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div><div class="gantt-cell"><div class="gantt-bar bar-tenant"></div></div></div>
+        <!-- D. Events & B2B -->
+        <div class="gantt-category">D. Events & B2B</div>
+        <div class="gantt-row"><div class="gantt-label">Корпоративные программы</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Тимбилдинги</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Презентации авто / шин / масел</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Подростковые праздники / групповые программы</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Локальные фестивали</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Крупные соревнования</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div><div class="gantt-cell"><div class="gantt-bar bar-d"></div></div></div>
 
-        <!-- Scale & Expand (start Э5) -->
-        <div class="gantt-category">Масштабирование — Этап 5+</div>
-        <div class="gantt-row"><div class="gantt-label">Полная клубная система</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Музеи / Hall of Fame + мерч/сувениры</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Скейтпарк / трасса для RC-моделей</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Контраверсное вождение</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Детская / подростковая программа</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Элитный / специальный дрифт</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Киберспорт / видеоэмулирование</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div></div>
+        <!-- E. F&B и околоспортивный retail -->
+        <div class="gantt-category">E. F&B и околоспортивный retail</div>
+        <div class="gantt-row"><div class="gantt-label">Ресторан с видом на трек</div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Кафе</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Street food / pop-up</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Мерч + музей-выставка</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Магазин около-спортивной тематики</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div><div class="gantt-cell"><div class="gantt-bar bar-e"></div></div></div>
 
-        <!-- Full launch (Э6) -->
-        <div class="gantt-category">Публичный запуск — Этап 6</div>
-        <div class="gantt-row"><div class="gantt-label">Презентация продуктов</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Бренд-ивенты / работа с медиа</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Франшиза / GRP</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Туристические пакеты</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-later"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Подкаст / реалити-шоу</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-pilot"></div></div></div>
-        <div class="gantt-row"><div class="gantt-label">Крупные соревнования</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-core"></div></div></div>
+        <!-- F. Auto Services & Tenant Opportunities -->
+        <div class="gantt-category">F. Auto Services & Tenant Opportunities</div>
+        <div class="gantt-row"><div class="gantt-label">Аренда боксов</div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Шиномонтаж</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Мойка / детейлинг</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Хранение шин / авто</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Магазин экипировки</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Сервис / настройка авто</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">EV charging</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Брендированные pop-up зоны</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div><div class="gantt-cell"><div class="gantt-bar bar-f"></div></div></div>
+
+        <!-- G. Digital, Media & Community -->
+        <div class="gantt-category">G. Digital, Media & Community</div>
+        <div class="gantt-row"><div class="gantt-label">Digital MVP / бронирование / CRM</div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Система рейтинга пилотов</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Фото- и видеопакеты</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Подкаст / блог</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Медиатрансляции</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Онлайн-магазин мерча</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div><div class="gantt-cell"><div class="gantt-bar bar-g"></div></div></div>
+
+        <!-- H. Sponsorship & Partnerships -->
+        <div class="gantt-category">H. Sponsorship & Partnerships</div>
+        <div class="gantt-row"><div class="gantt-label">Нейминг поворотов / трибун / зон</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Туристические пакеты</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Франшиза DRP</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Презентации продуктов</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Партнёрские академии</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div></div>
+        <div class="gantt-row"><div class="gantt-label">Бренд-дни</div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"></div><div class="gantt-cell"><div class="gantt-bar bar-h"></div></div></div>
 
         <!-- Legend -->
         <div class="gantt-legend">
-          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(255,107,0,0.35); border-left:2px solid #FF6B00;"></div> DRP-owned / Core</div>
-          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(100,180,255,0.2); border-left:2px solid rgba(100,180,255,0.5);"></div> Partner-led</div>
-          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(220,60,60,0.2); border-left:2px solid rgba(220,60,60,0.4);"></div> Tenant / Арендатор</div>
-          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(180,180,180,0.15); border-left:2px solid rgba(180,180,180,0.3);"></div> Pilot / MVP</div>
-          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(255,230,0,0.15); border-left:2px solid rgba(255,230,0,0.35);"></div> Later / Backlog</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(255,107,0,0.35); border-left:2px solid #FF6B00;"></div> A. Core Track</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(100,180,255,0.25); border-left:2px solid rgba(100,180,255,0.6);"></div> B. Школа</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(80,200,160,0.25); border-left:2px solid rgba(80,200,160,0.6);"></div> C. Guest Exp.</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(255,220,50,0.25); border-left:2px solid rgba(255,220,50,0.5);"></div> D. Events</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(240,100,120,0.25); border-left:2px solid rgba(240,100,120,0.5);"></div> E. F&B</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(0,210,210,0.2); border-left:2px solid rgba(0,210,210,0.5);"></div> F. Auto / Tenant</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(180,130,255,0.25); border-left:2px solid rgba(180,130,255,0.5);"></div> G. Digital</div>
+          <div class="gantt-legend-item"><div class="gantt-legend-dot" style="background:rgba(255,150,200,0.25); border-left:2px solid rgba(255,150,200,0.5);"></div> H. Sponsorship</div>
         </div>
       </div>
     </div>
