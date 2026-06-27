@@ -445,26 +445,13 @@ section {
   object-fit: cover;
   display: block;
 }
-.key-goal-overlay {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 45%;
-  max-width: 280px;
-  background: rgba(10,10,10,0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 24px 28px;
-}
-.key-goal-overlay p {
-  font-family: 'Halvar Breit', sans-serif;
-  font-weight: 700;
-  font-size: clamp(14px, 1.8vw, 18px);
-  color: #fff;
-  line-height: 1.5;
+.key-goal-sub {
+  font-family: 'Geist', 'Halvar Breit', sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin-top: 20px;
 }
 
 /* ─── KEY FIGURE ─── */
@@ -1315,12 +1302,10 @@ section {
     <div class="key-goal-left">
       <p class="key-goal-label">Ключевая цель проекта</p>
       <h2 class="key-goal-title">Создать индустриальный прецедент мирового уровня в&nbsp;дрифтинге.</h2>
+      <p class="key-goal-sub">Превратить проект в культурную и туристическую точку притяжения.</p>
     </div>
     <div class="key-goal-right">
       <img src="goal.png" alt="" class="key-goal-img">
-      <div class="key-goal-overlay">
-        <p>Превратить проект в культурную и туристическую точку притяжения.</p>
-      </div>
     </div>
   </div>
 
