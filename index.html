@@ -914,7 +914,7 @@ section {
   justify-content: space-between;
   align-items: flex-start;
   padding: 60px;
-  padding-top: 50vh;
+  padding-top: 42vh;
 }
 .ch-left {
   max-width: 320px;
@@ -943,20 +943,23 @@ section {
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .ch-right {
-  max-width: 420px;
+  max-width: 630px;
   text-align: right;
+  margin-top: 28px;
 }
 .ch-line1, .ch-line2, .ch-line3 {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
   font-size: clamp(14px, 2vw, 20px);
   line-height: 1.5;
-  color: #fff;
+  color: rgba(255,255,255,0.2);
   text-align: right;
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease, color 0.5s ease;
 }
+.ch-line1.lit { color: #fff; }
+.ch-line2.lit, .ch-line3.lit { color: #FF6B00; }
 .ch-line2 em, .ch-line3 em {
   color: #FF6B00;
   font-style: normal;
@@ -2096,17 +2099,23 @@ function handleChallengeScroll() {
   if (progress > 0.35) { chTitle.classList.add('visible'); }
   else { chTitle.classList.remove('visible'); }
 
-  // Line 1 at 55%
-  if (progress > 0.55) { chLine1.classList.add('visible'); }
+  // Line 1 at 45% — semi-transparent, then white at 50%
+  if (progress > 0.45) { chLine1.classList.add('visible'); }
   else { chLine1.classList.remove('visible'); }
+  if (progress > 0.50) { chLine1.classList.add('lit'); }
+  else { chLine1.classList.remove('lit'); }
 
-  // Line 2 at 65%
-  if (progress > 0.65) { chLine2.classList.add('visible'); }
+  // Line 2 at 55% — semi-transparent, then orange at 60%
+  if (progress > 0.55) { chLine2.classList.add('visible'); }
   else { chLine2.classList.remove('visible'); }
+  if (progress > 0.60) { chLine2.classList.add('lit'); }
+  else { chLine2.classList.remove('lit'); }
 
-  // Line 3 at 75%
-  if (progress > 0.75) { chLine3.classList.add('visible'); }
+  // Line 3 at 65% — semi-transparent, then orange at 70%
+  if (progress > 0.65) { chLine3.classList.add('visible'); }
   else { chLine3.classList.remove('visible'); }
+  if (progress > 0.70) { chLine3.classList.add('lit'); }
+  else { chLine3.classList.remove('lit'); }
 }
 
 window.addEventListener('scroll', handleChallengeScroll, { passive: true });
