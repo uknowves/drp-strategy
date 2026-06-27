@@ -401,6 +401,72 @@ section {
   white-space: nowrap;
 }
 
+/* ─── KEY GOAL HERO ─── */
+.key-goal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 60px;
+  min-height: 33vh;
+  margin-left: -60px;
+  margin-right: -60px;
+  overflow: hidden;
+}
+.key-goal-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 56px;
+  background: #151515;
+}
+.key-goal-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 24px;
+}
+.key-goal-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 3.5vw, 40px);
+  color: #fff;
+  line-height: 1.25;
+}
+.key-goal-right {
+  position: relative;
+  overflow: hidden;
+}
+.key-goal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.key-goal-overlay {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  max-width: 280px;
+  background: rgba(10,10,10,0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+.key-goal-overlay p {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: clamp(14px, 1.8vw, 18px);
+  color: #fff;
+  line-height: 1.5;
+}
+
 /* ─── KEY FIGURE ─── */
 .key-figures {
   display: grid;
@@ -1245,13 +1311,16 @@ section {
     <div class="section-divider"></div>
   </div>
 
-  <div class="reveal" style="margin-bottom: 60px;">
-    <div style="border: 1px solid rgba(255,107,0,0.2); background: rgba(255,107,0,0.04); border-radius: 12px; padding: 40px 48px; max-width: 800px;">
-      <p style="font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: #FF6B00; margin-bottom: 16px;">Ключевая цель проекта</p>
-      <p style="font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: clamp(18px, 2.5vw, 24px); color: rgba(255,255,255,0.9); line-height: 1.6;">
-        Создать индустриальный прецедент мирового уровня в&nbsp;дрифтинге.<br>
-        Превратить проект в культурную и туристическую точку притяжения.
-      </p>
+  <div class="key-goal reveal">
+    <div class="key-goal-left">
+      <p class="key-goal-label">Ключевая цель проекта</p>
+      <h2 class="key-goal-title">Создать индустриальный прецедент мирового уровня в&nbsp;дрифтинге.</h2>
+    </div>
+    <div class="key-goal-right">
+      <img src="goal.png" alt="" class="key-goal-img">
+      <div class="key-goal-overlay">
+        <p>Превратить проект в культурную и туристическую точку притяжения.</p>
+      </div>
     </div>
   </div>
 
