@@ -852,28 +852,27 @@ section {
   height: 100%;
   object-fit: cover;
 }
-.challenge-dim {
-  position: absolute;
-  inset: 0;
-  background: #0a0a0a;
-  opacity: 0;
-  z-index: 1;
-}
 .challenge-content {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1100px;
-  padding: 0 60px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 60px;
+}
+.ch-left {
+  max-width: 320px;
 }
 .ch-label {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #FF6B00;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -881,18 +880,22 @@ section {
 .ch-title {
   font-family: 'Korataki', sans-serif;
   font-weight: 800;
-  font-size: clamp(36px, 6vw, 72px);
+  font-size: clamp(28px, 4vw, 48px);
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 40px;
+  line-height: 1.05;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+.ch-right {
+  max-width: 420px;
+  text-align: right;
+}
 .ch-line1, .ch-line2, .ch-line3 {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
-  font-size: clamp(18px, 2.8vw, 28px);
+  font-size: clamp(14px, 2vw, 20px);
   line-height: 1.5;
   color: #fff;
   text-align: right;
@@ -1613,13 +1616,16 @@ section {
     <video id="challengeVideo" muted playsinline preload="auto">
       <source src="challenge_video.mp4" type="video/mp4">
     </video>
-    <div class="challenge-dim" id="challengeDim"></div>
     <div class="challenge-content">
-      <div class="ch-label" id="chLabel">05 / Коммуникационный челлендж</div>
-      <div class="ch-title" id="chTitle">Главный вызов</div>
-      <div class="ch-line1" id="chLine1">Поэтапно сформировать у ключевых аудиторий знание о&nbsp;DRP,</div>
-      <div class="ch-line2" id="chLine2"><em>превратив его из неизвестного строящегося объекта</em></div>
-      <div class="ch-line3" id="chLine3"><em>— в понятную, желанную и привычную часть жизни города.</em></div>
+      <div class="ch-left">
+        <div class="ch-label" id="chLabel">05 / Коммуникационный челлендж</div>
+        <div class="ch-title" id="chTitle">Главный вызов</div>
+      </div>
+      <div class="ch-right">
+        <div class="ch-line1" id="chLine1">Поэтапно сформировать у ключевых аудиторий знание о&nbsp;DRP,</div>
+        <div class="ch-line2" id="chLine2"><em>превратив его из неизвестного строящегося объекта</em></div>
+        <div class="ch-line3" id="chLine3"><em>— в понятную, желанную и привычную часть жизни города.</em></div>
+      </div>
     </div>
   </div>
 </div>
@@ -1999,7 +2005,6 @@ handleHeroScroll();
 // ─── CHALLENGE SCROLL-DRIVEN ───
 const challengeWrap = document.querySelector('.challenge-wrap');
 const challengeVideo = document.getElementById('challengeVideo');
-const challengeDim = document.getElementById('challengeDim');
 const chLabel = document.getElementById('chLabel');
 const chTitle = document.getElementById('chTitle');
 const chLine1 = document.getElementById('chLine1');
@@ -2017,18 +2022,15 @@ function handleChallengeScroll() {
   const rect = challengeWrap.getBoundingClientRect();
   const wrapHeight = challengeWrap.offsetHeight;
   const viewH = window.innerHeight;
-  const scrolled = -rect.top;
-  const progress = Math.max(0, Math.min(1, scrolled / (wrapHeight - viewH)));
+  // Start video 1 viewport before the block reaches the top
+  const earlyStart = viewH;
+  const scrolled = -rect.top + earlyStart;
+  const totalScroll = wrapHeight - viewH + earlyStart;
+  const progress = Math.max(0, Math.min(1, scrolled / totalScroll));
 
   // Scrub video
   if (challengeVideo && challengeVideo.readyState >= 2 && challengeVideo.duration) {
     challengeVideo.currentTime = progress * challengeVideo.duration;
-  }
-
-  // Dim
-  if (challengeDim) {
-    const dimP = Math.max(0, (progress - 0.05) / 0.3);
-    challengeDim.style.opacity = Math.min(0.7, dimP);
   }
 
   // Label at 15%
