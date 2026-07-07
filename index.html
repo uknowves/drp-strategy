@@ -1209,9 +1209,13 @@ section {
 }
 .mg-content .mg-metrics {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: none;
 }
+.mg-content .mg-metrics::-webkit-scrollbar { display: none; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
@@ -1390,49 +1394,89 @@ section {
     <div class="mg-item">
       <div class="mg-num">01</div>
       <div class="mg-content">
-        <h3>Сделать DRP первым в сознании брендом при выборе дрифт-досуга и автоспортивных развлечений</h3>
+        <h3>Сформировать устойчивый спрос на DRP среди приоритетных аудиторий Санкт-Петербурга и России.</h3>
         <div class="mg-metrics">
-          <span class="metric-tag">поиск бренда</span>
-          <span class="metric-tag">прямые заходы</span>
-          <span class="metric-tag">брендовые упоминания</span>
-          <span class="metric-tag">сарафанное радио</span>
-          <span class="metric-tag">регулярные клиенты</span>
+          <span class="metric-tag" data-kpi="Узнаваемость бренда — доля аудитории, которая знает о DRP.">Brand Awareness</span>
+          <span class="metric-tag" data-kpi="Объём поисковых запросов по названию бренда в поисковиках.">Search Volume</span>
+          <span class="metric-tag" data-kpi="Пользователи, пришедшие на сайт напрямую, введя адрес вручную.">Direct Traffic</span>
+          <span class="metric-tag" data-kpi="Трафик из поисковых систем без платной рекламы.">Organic Traffic</span>
+          <span class="metric-tag" data-kpi="Доля брендовых поисков DRP среди всей категории.">Share of Search</span>
+          <span class="metric-tag" data-kpi="Процент целевых сегментов аудитории, которые видят контент DRP.">Охват целевых сегментов</span>
+          <span class="metric-tag" data-kpi="Количество людей в листе ожидания открытия.">Размер базы ожидания</span>
+          <span class="metric-tag" data-kpi="Стоимость привлечения одного лида (потенциального клиента).">CPL</span>
         </div>
       </div>
     </div>
     <div class="mg-item">
       <div class="mg-num">02</div>
       <div class="mg-content">
-        <h3>Сформировать устойчивую ассоциацию DRP как уникального городского досуга, альтернативного стандартным развлечениям</h3>
-        <p style="font-size:13px; color:rgba(255,255,255,0.4); margin-bottom:12px; margin-top: -4px;">DRP конкурирует не только с другими трассами, а с барами, клубами, ТЦ, кино, ивентами.</p>
+        <h3>Сделать DRP первым выбором при поиске дрифт-досуга, обучения и автомобильных впечатлений.</h3>
         <div class="mg-metrics">
-          <span class="metric-tag">органический трафик</span>
-          <span class="metric-tag">рост «первого визита»</span>
-          <span class="metric-tag">запросы «куда сходить»</span>
+          <span class="metric-tag" data-kpi="Первый бренд, который вспоминают при мысли о дрифт-досуге.">Top of Mind</span>
+          <span class="metric-tag" data-kpi="Доля аудитории, которая предпочитает DRP конкурентам.">Brand Preference</span>
+          <span class="metric-tag" data-kpi="Готовность аудитории рассматривать DRP при выборе досуга.">Brand Consideration</span>
+          <span class="metric-tag" data-kpi="Конверсия из посещения сайта или площадки в бронирование.">Visit → Booking</span>
+          <span class="metric-tag" data-kpi="Процент поисковых запросов, содержащих название DRP.">Доля брендового поиска</span>
+          <span class="metric-tag" data-kpi="Процент посетителей сайта, пришедших напрямую по URL.">Доля прямого трафика</span>
         </div>
       </div>
     </div>
     <div class="mg-item">
       <div class="mg-num">03</div>
       <div class="mg-content">
-        <h3>Закрепить DRP как городскую ивент-платформу для мероприятий, активаций и коллабораций</h3>
+        <h3>Обеспечить стабильную загрузку продуктовой экосистемы DRP.</h3>
         <div class="mg-metrics">
-          <span class="metric-tag">кол-во ивентов / мес.</span>
-          <span class="metric-tag">внешние партнёры / квартал</span>
-          <span class="metric-tag">медиа-охват</span>
-          <span class="metric-tag">доход от ивентов</span>
+          <span class="metric-tag" data-kpi="Процент заполненности трека, школы и мероприятий относительно максимальной вместимости.">Product Utilization</span>
+          <span class="metric-tag" data-kpi="Общее количество оформленных бронирований за период.">Количество бронирований</span>
+          <span class="metric-tag" data-kpi="Средняя стоимость привлечения одного платящего клиента.">CAC</span>
+          <span class="metric-tag" data-kpi="Окупаемость маркетинговых инвестиций: выручка / затраты на рекламу.">ROMI</span>
         </div>
       </div>
     </div>
     <div class="mg-item">
       <div class="mg-num">04</div>
       <div class="mg-content">
-        <h3>Привлечь пул якорных информационных и инвестиционных партнёров. Сделать DRP точкой притяжения для бренд-коллабораций</h3>
+        <h3>Сформировать устойчивую базу постоянных клиентов и участников сообщества DRP.</h3>
         <div class="mg-metrics">
-          <span class="metric-tag">бренд-коллаборации / год</span>
-          <span class="metric-tag">федеральные бренды</span>
-          <span class="metric-tag">повторные партнёрства</span>
-          <span class="metric-tag">co-branding</span>
+          <span class="metric-tag" data-kpi="Доля клиентов, которые вернулись повторно.">Repeat Rate</span>
+          <span class="metric-tag" data-kpi="Процент клиентов, остающихся активными за период.">Retention</span>
+          <span class="metric-tag" data-kpi="Количество уникальных активных пользователей за месяц.">MAU</span>
+          <span class="metric-tag" data-kpi="Количество уникальных активных пользователей за неделю.">WAU</span>
+          <span class="metric-tag" data-kpi="Общее число участников сообщества DRP во всех каналах.">Размер комьюнити</span>
+          <span class="metric-tag" data-kpi="Суммарная ценность клиента за всё время взаимодействия с DRP.">LTV</span>
+          <span class="metric-tag" data-kpi="Среднее количество визитов или покупок одного клиента за период.">Frequency</span>
+          <span class="metric-tag" data-kpi="Процент клиентов, прекративших взаимодействие с DRP.">Churn</span>
+        </div>
+      </div>
+    </div>
+    <div class="mg-item">
+      <div class="mg-num">05</div>
+      <div class="mg-content">
+        <h3>Сформировать устойчивую партнерскую экосистему вокруг DRP.</h3>
+        <div class="mg-metrics">
+          <span class="metric-tag" data-kpi="Количество активных партнёров, работающих с DRP.">Число партнёров</span>
+          <span class="metric-tag" data-kpi="Количество интеграций с внешними брендами за период.">Число бренд-интеграций</span>
+          <span class="metric-tag" data-kpi="Выручка, полученная через партнёрские соглашения.">Доход партнёрств</span>
+          <span class="metric-tag" data-kpi="Доля партнёров, заключивших повторные договоры.">Повторные партнёрства</span>
+          <span class="metric-tag" data-kpi="Количество мероприятий, реализованных совместно с партнёрами.">Количество мероприятий</span>
+          <span class="metric-tag" data-kpi="Суммарный охват аудитории через партнёрские каналы и медиа.">Медиа охват партнёрств</span>
+        </div>
+      </div>
+    </div>
+    <div class="mg-item">
+      <div class="mg-num">06</div>
+      <div class="mg-content">
+        <h3>Сформировать DRP как культурный символ современной автомобильной культуры России.</h3>
+        <div class="mg-metrics">
+          <span class="metric-tag" data-kpi="Охват аудитории через публикации и упоминания без платного продвижения.">Охват Earned медиа</span>
+          <span class="metric-tag" data-kpi="Количество упоминаний DRP в СМИ и медиа за период.">Media Mentions</span>
+          <span class="metric-tag" data-kpi="Контент, созданный пользователями о DRP — фото, видео, посты.">UGC</span>
+          <span class="metric-tag" data-kpi="Суммарный охват всех медиа-публикаций о DRP.">Media Reach</span>
+          <span class="metric-tag" data-kpi="Индекс лояльности: готовность клиентов рекомендовать DRP.">NPS</span>
+          <span class="metric-tag" data-kpi="Доля голоса DRP в медиапространстве относительно конкурентов.">Share of Voice</span>
+          <span class="metric-tag" data-kpi="Общее число публикаций о DRP во всех каналах за период.">Количество публикаций</span>
+          <span class="metric-tag" data-kpi="Количество новых клиентов, пришедших по рекомендации.">Referrals</span>
+          <span class="metric-tag" data-kpi="Суммарное число гостей на всех мероприятиях DRP.">Посещаемость мероприятий</span>
         </div>
       </div>
     </div>
@@ -2137,6 +2181,28 @@ document.querySelectorAll('.tl-point[data-stage]').forEach(point => {
     stageTip.style.top = (e.clientY - 30) + 'px';
   });
   point.addEventListener('mouseleave', () => {
+    stageTip.style.opacity = '0';
+  });
+});
+
+// ─── KPI tooltip ───
+document.querySelectorAll('.metric-tag[data-kpi]').forEach(tag => {
+  tag.addEventListener('mouseenter', () => {
+    stageTip.textContent = tag.dataset.kpi;
+    stageTip.style.opacity = '1';
+    stageTip.style.fontSize = '12px';
+    stageTip.style.letterSpacing = '0';
+    stageTip.style.maxWidth = '260px';
+    stageTip.style.whiteSpace = 'normal';
+    stageTip.style.color = '#fff';
+    stageTip.style.fontFamily = 'Geist, sans-serif';
+    stageTip.style.fontWeight = '400';
+  });
+  tag.addEventListener('mousemove', (e) => {
+    stageTip.style.left = (e.clientX + 14) + 'px';
+    stageTip.style.top = (e.clientY - 30) + 'px';
+  });
+  tag.addEventListener('mouseleave', () => {
     stageTip.style.opacity = '0';
   });
 });
