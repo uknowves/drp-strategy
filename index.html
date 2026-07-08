@@ -2851,6 +2851,336 @@ section {
   .smm-grid { grid-template-columns: 1fr; }
   .peso-grid { grid-template-columns: 1fr; }
 }
+
+/* ─── STAGES (09) ─── */
+.stages-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+.stage-tab {
+  flex: 1;
+  min-width: 130px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 20px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.stage-tab-num {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  color: rgba(255,107,0,0.25);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stage-tab-name {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.stage-tab:hover { background: rgba(255,107,0,0.05); border-color: rgba(255,107,0,0.2); }
+.stage-tab.active { background: rgba(255,107,0,0.07); border-color: rgba(255,107,0,0.35); }
+.stage-tab.active .stage-tab-num { color: #FF6B00; }
+.stage-tab.active .stage-tab-name { color: #fff; }
+.stage-tab.disabled { cursor: default; opacity: 0.4; }
+.stage-tab.disabled:hover { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); }
+.stage-tab-soon {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-top: 6px;
+}
+
+.stage-panel { display: none; }
+.stage-panel.active { display: block; }
+
+.stage-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 80px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.stage-meta-col { padding: 40px 44px; }
+.stage-meta-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 20px;
+}
+.stage-meta-block + .stage-meta-block { margin-top: 36px; }
+.stage-dash-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stage-dash-list li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+  padding-left: 16px;
+  position: relative;
+}
+.stage-dash-list li::before { content: '–'; position: absolute; left: 0; color: rgba(255,107,0,0.5); }
+.stage-num-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stage-num-list li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+}
+.stage-num-list li::marker { color: #FF6B00; font-weight: 700; }
+
+.stage-func-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.stage-func-badge {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.2);
+  border-radius: 2px;
+}
+.stage-func-badge.active {
+  color: #FF6B00;
+  border-color: rgba(255,107,0,0.4);
+  background: rgba(255,107,0,0.06);
+}
+
+.stage-function { margin-bottom: 80px; }
+.stage-function:last-child { margin-bottom: 0; }
+.stage-function-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.3s;
+}
+.stage-function-head:hover { border-color: rgba(255,107,0,0.3); }
+.stage-function-head:hover .stage-function-name { color: #FF6B00; }
+.stage-function-num {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: rgba(255,107,0,0.25);
+  line-height: 1;
+}
+.stage-function-name {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+  transition: color 0.3s;
+}
+.stage-function-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  margin-left: auto;
+}
+.stage-function-toggle {
+  font-size: 22px;
+  line-height: 1;
+  color: rgba(255,255,255,0.3);
+  transition: transform 0.35s ease, color 0.3s;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.stage-function-head:hover .stage-function-toggle { color: #FF6B00; }
+.stage-function.collapsed .stage-function-toggle { transform: rotate(-90deg); }
+.stage-function-body {
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+.stage-function.collapsed .stage-function-head { margin-bottom: 0; }
+.stage-function.collapsed .stage-function-body { opacity: 0; max-height: 0; }
+
+.stage-collapse-all { margin-top: 60px; text-align: center; }
+.stage-collapse-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  background: none;
+  border: 1px solid rgba(255,107,0,0.4);
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.stage-collapse-all-btn:hover { background: rgba(255,107,0,0.08); border-color: #FF6B00; }
+
+.stage-simple-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+}
+
+.stage-content-count {
+  display: inline-block;
+  margin-top: 16px;
+  background: rgba(255,107,0,0.08);
+  border: 1px solid rgba(255,107,0,0.15);
+  padding: 6px 14px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #FF6B00;
+}
+
+.stage-perf-boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+.stage-perf-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 32px;
+}
+.stage-perf-box.tint { background: rgba(255,107,0,0.04); border-color: rgba(255,107,0,0.15); }
+.stage-perf-box-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #FF6B00;
+  margin-bottom: 4px;
+}
+.stage-perf-box-sub {
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 22px;
+}
+.stage-perf-box ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.stage-perf-box ul li { font-size:14px; line-height:1.6; color: rgba(255,255,255,0.6); padding-left:16px; position:relative; }
+.stage-perf-box ul li::before { content:'–'; position:absolute; left:0; color: rgba(255,107,0,0.5); }
+.stage-perf-box ul li.strong { font-weight:700; color: rgba(255,255,255,0.9); }
+.stage-perf-box-divider { border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0 0; padding-top: 24px; }
+.stage-perf-box-note { font-size: 12px; font-style: italic; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+
+.stage-table-wrap { overflow-x: auto; border: 1px solid rgba(255,255,255,0.08); margin-top: 24px; }
+.stage-table { width: 100%; min-width: 700px; border-collapse: collapse; }
+.stage-table th {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 14px 16px;
+  text-align: left;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  color: #FF6B00;
+}
+.stage-table td {
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.65);
+  vertical-align: top;
+}
+.stage-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+.stage-dist-item { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.stage-dist-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.stage-dist-name { font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: 15px; color: rgba(255,255,255,0.85); }
+.stage-dist-pct { font-size: 13px; color: rgba(255,255,255,0.45); margin-left: auto; }
+
+.stage-priority-item { border-left: 2px solid #FF6B00; padding-left: 18px; margin-bottom: 22px; }
+.stage-priority-item:last-child { margin-bottom: 0; }
+.stage-priority-name { font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 4px; }
+.stage-priority-desc { font-size: 13px; font-style: italic; color: rgba(255,255,255,0.45); }
+
+.stage-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 24px; }
+.stage-two-col-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 32px; }
+.stage-two-col-title { font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: 15px; color: #FF6B00; margin-bottom: 24px; }
+
+.stage-result-line {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.stage-callout {
+  background: rgba(255,107,0,0.05);
+  border-left: 3px solid #FF6B00;
+  padding: 24px 28px;
+  margin-bottom: 28px;
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+}
+
+.stage-goal-line { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+.stage-goal-line strong { color: rgba(255,255,255,0.85); }
+
+.stage-budget-box {
+  border: 1px dashed rgba(255,107,0,0.4);
+  background: rgba(255,107,0,0.05);
+  padding: 20px 22px;
+  margin-top: 22px;
+}
+.stage-budget-box-title { font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: #FF6B00; margin-bottom: 10px; }
+.stage-budget-box-value { font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: 22px; color: #fff; margin-bottom: 8px; }
+.stage-budget-box-desc { font-size: 12px; font-style: italic; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+.stage-events-link {
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  padding: 28px 32px;
+}
+.stage-events-link-title { font-family: 'Halvar Breit', sans-serif; font-weight: 700; font-size: 15px; color: #fff; margin-bottom: 10px; }
+.stage-events-link-desc { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 18px; line-height: 1.6; }
+.stage-events-link a { color: #FF6B00; font-size: 13px; font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(255,107,0,0.4); word-break: break-all; }
+.stage-events-link a:hover { border-color: #FF6B00; }
+
+@media (max-width: 900px) {
+  .stage-meta-grid { grid-template-columns: 1fr; }
+  .stage-perf-boxes { grid-template-columns: 1fr; }
+  .stage-two-col { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -2864,6 +3194,7 @@ section {
     <li><a href="#roadmap">Роадмап</a></li>
     <li><a href="#challenge">Челлендж</a></li>
     <li><a href="#comm-goals">Коммуникация</a></li>
+    <li><a href="#stages">Этапы</a></li>
   </ul>
   <button class="nav-burger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
     <span></span><span></span><span></span>
@@ -4212,13 +4543,11 @@ section {
       <div class="event-slide-img-wrap events-img active">
         <div class="event-slide-img">
           <img src="grand-opening.png" alt="Grand Opening Festival" onerror="this.style.display='none'"/>
-          <span class="event-slide-img-label">grand-opening.png</span>
         </div>
       </div>
       <div class="event-slide-img-wrap events-img">
         <div class="event-slide-img">
           <img src="drift-media-day.png" alt="Drift Media Day" onerror="this.style.display='none'"/>
-          <span class="event-slide-img-label">drift-media-day.png</span>
         </div>
       </div>
       <div class="event-slider-nav">
@@ -4256,25 +4585,21 @@ section {
       <div class="event-slide-img-wrap spec-img active">
         <div class="event-slide-img">
           <img src="brooklands-detailing.png" alt="Brooklands Detailing" onerror="this.style.display='none'"/>
-          <span class="event-slide-img-label">brooklands-detailing.png</span>
         </div>
       </div>
       <div class="event-slide-img-wrap spec-img">
         <div class="event-slide-img">
           <img src="art-garage.png" alt="DRP ART GARAGE" onerror="this.style.display='none'"/>
-          <span class="event-slide-img-label">art-garage.png</span>
         </div>
       </div>
       <div class="event-slide-img-wrap spec-img">
         <div class="event-slide-img">
           <img src="lica-drp.png" alt="Лица DRP" onerror="this.style.display='none'"/>
-          <span class="event-slide-img-label">lica-drp.png</span>
         </div>
       </div>
       <div class="event-slide-img-wrap spec-img">
         <div class="event-slide-img">
           <img src="drp-quest.png" alt="DRP Квест" onerror="this.style.display='none'"/>
-          <span class="event-slide-img-label">drp-quest.png</span>
         </div>
       </div>
       <div class="event-slider-nav">
@@ -4312,6 +4637,2338 @@ section {
         <p class="event-slide-body" style="margin-top:12px;">После прохождения всех точек участник становится финалистом и получает главный приз — <strong>бесплатный заезд на DRP</strong>.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- STAGES -->
+<section id="stages">
+  <div class="reveal">
+    <div class="section-label">09 / Реализация по этапам</div>
+    <div class="section-title">Коммуникационная стратегия по этапам</div>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="stages-tabs reveal">
+    <div class="stage-tab active" data-stage="1">
+      <div class="stage-tab-num">01</div>
+      <div class="stage-tab-name">Подготовка</div>
+    </div>
+    <div class="stage-tab" data-stage="2">
+      <div class="stage-tab-num">02</div>
+      <div class="stage-tab-name">Запуск коммуникации</div>
+    </div>
+    <div class="stage-tab" data-stage="3">
+      <div class="stage-tab-num">03</div>
+      <div class="stage-tab-name">Прогрев к запуску</div>
+    </div>
+    <div class="stage-tab" data-stage="4">
+      <div class="stage-tab-num">04</div>
+      <div class="stage-tab-name">Запуск работы объекта</div>
+    </div>
+    <div class="stage-tab" data-stage="5">
+      <div class="stage-tab-num">05</div>
+      <div class="stage-tab-name">Открытие</div>
+    </div>
+    <div class="stage-tab" data-stage="6">
+      <div class="stage-tab-num">06</div>
+      <div class="stage-tab-name">Системная коммуникация</div>
+    </div>
+  </div>
+
+  <!-- STAGE 1 -->
+  <div class="stage-panel active" data-stage="1">
+    <div class="stage-meta-grid reveal">
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">ЦА этапа</div>
+          <ul class="stage-dash-list"><li>Внутренний этап</li></ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Цели этапа</div>
+          <ol class="stage-num-list">
+            <li>Согласовать операционные задачи / оргструктуру</li>
+            <li>Сформировать команду / подрядчиков</li>
+            <li>Сформировать бюджеты / KPI</li>
+            <li>Подготовить каналы к запуску</li>
+          </ol>
+        </div>
+      </div>
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Продукты этапа</div>
+          <ul class="stage-dash-list"><li>Не запускается</li></ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Функции на этапе</div>
+          <div class="stage-func-badges">
+            <div class="stage-func-badge active">SMM</div>
+            <div class="stage-func-badge active">Performance</div>
+            <div class="stage-func-badge active">PR</div>
+            <div class="stage-func-badge">Мероприятия</div>
+            <div class="stage-func-badge">Спецпроекты</div>
+            <div class="stage-func-badge">Наружка и офлайн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">01</div>
+        <div class="stage-function-name">SMM</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-simple-title">Подготовка к контентным работам</div>
+      <ul class="stage-dash-list">
+        <li>Согласование бюджетов и KPI</li>
+        <li>Подписание документов</li>
+        <li>Брифинг SMM команды</li>
+        <li>Разработка контент-плана на 1 месяц работы</li>
+        <li>Упаковка профилей</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">02</div>
+        <div class="stage-function-name">Performance</div>
+        <div class="stage-function-sub">Согласование перформанс-плана</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-perf-boxes">
+        <div class="stage-perf-box tint">
+          <div class="stage-perf-box-title">Продукты в закупке</div>
+          <div class="stage-perf-box-sub">На этом этапе фокус на инфраструктуре</div>
+          <ul>
+            <li class="strong">Запусков продуктов не планируем</li>
+            <li class="strong">Только внутренняя подготовка перформанса</li>
+          </ul>
+        </div>
+        <div class="stage-perf-box">
+          <div class="stage-perf-box-title">Задачи периода</div>
+          <ul>
+            <li>Анализ рынка, аудитории</li>
+            <li>Создание рекламных кабинетов (Яндекс, VK, TG)</li>
+            <li>Согласование KPI и метрик успеха</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">03</div>
+        <div class="stage-function-name">PR</div>
+        <div class="stage-function-sub">Подготовка</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line"><strong>Цель:</strong> подготовить запуск работы по PR</div>
+      <ul class="stage-dash-list">
+        <li>Выбор варианта PR-стратегии</li>
+        <li>Выбор модели публичности</li>
+        <li>Разработка PR-политики</li>
+        <li>Найм команды PR</li>
+        <li>Подготовка информационных пакетов</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 2 -->
+  <div class="stage-panel" data-stage="2">
+    <div class="stage-meta-grid reveal">
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">ЦА этапа</div>
+          <ul class="stage-dash-list">
+            <li>Профессионалы, дрифт-энтузиасты, автолюбители</li>
+            <li>B2B</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Цели этапа</div>
+          <ol class="stage-num-list">
+            <li>Сформировать знание о запуске DRP и представить его как новый значимый проект для дрифт-сообщества.</li>
+            <li>Сформировать доверие к DRP как к реальному проекту мирового уровня, а не очередной концепции.</li>
+            <li>Завоевать авторитет среди дрифт-сообщества и превратить раннюю аудиторию в ядро будущего комьюнити.</li>
+            <li>Снять ключевой скепсис и барьеры вокруг проекта до открытия объекта.</li>
+            <li>Сформировать ожидание DRP как нового центра дрифт-культуры и будущей точки притяжения города.</li>
+            <li>Закрепить интерес аудитории к развитию проекта и мотивировать следить за его запуском.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Продукты этапа</div>
+          <ul class="stage-dash-list"><li>Не запускается</li></ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Функции на этапе</div>
+          <div class="stage-func-badges">
+            <div class="stage-func-badge active">SMM</div>
+            <div class="stage-func-badge active">Performance</div>
+            <div class="stage-func-badge active">PR</div>
+            <div class="stage-func-badge">Мероприятия</div>
+            <div class="stage-func-badge">Спецпроекты</div>
+            <div class="stage-func-badge">Наружка и офлайн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">01</div>
+        <div class="stage-function-name">SMM</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="smm-grid" style="margin-top:0;">
+        <div class="smm-card">
+          <div class="smm-card-name">Telegram</div>
+          <ul class="stage-dash-list" style="margin-top:12px;">
+            <li>Опросы, анонсы, видео со стройки</li>
+            <li>Новости проекта</li>
+            <li>Закулисье создания DRP</li>
+            <li>Прямое общение с аудиторией</li>
+          </ul>
+          <div class="stage-content-count">16 постов + 2 видео</div>
+        </div>
+        <div class="smm-card">
+          <div class="smm-card-name">VK</div>
+          <ul class="stage-dash-list" style="margin-top:12px;">
+            <li>Основная площадка массовой коммуникации</li>
+            <li>Новости</li>
+            <li>Визуальный контент</li>
+            <li>Вовлекающие механики</li>
+          </ul>
+          <div class="stage-content-count">12 постов</div>
+        </div>
+        <div class="smm-card">
+          <div class="smm-card-name">Instagram</div>
+          <ul class="stage-dash-list" style="margin-top:12px;">
+            <li>Формирование визуального образа бренда</li>
+            <li>Атмосфера проекта</li>
+            <li>Люди</li>
+            <li>Lifestyle</li>
+          </ul>
+          <div class="stage-content-count">12 постов / 8 рилс / 30 сторис</div>
+        </div>
+        <div class="smm-card">
+          <div class="smm-card-name">YouTube</div>
+          <ul class="stage-dash-list" style="margin-top:12px;">
+            <li>Документалистика стройки</li>
+            <li>Интервью</li>
+          </ul>
+          <div class="stage-content-count">2 ролика</div>
+        </div>
+      </div>
+
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Канал</th><th>Роль и фокус на этапе</th><th>Форматы контента / активности</th><th>Объём (ед./мес)</th><th>KPI канала</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Telegram</td><td>Ядро. Запуск коммуникации, закулисье, освещение теста трека и готовности северной части, формирование клуба</td><td>Посты-апдейты, цитаты пилотов, опросы, анонсы, видео теста трека</td><td>16 постов + 2 видео</td><td>Подписчики, охват, ER ≥ 6%, регистрации в клуб</td></tr>
+            <tr><td>ВКонтакте</td><td>Охват автосообществ, посевы, дискуссии</td><td>Адаптация контента, лонгриды, обсуждения, посевы</td><td>12 постов</td><td>Подписчики, охват, переходы на сайт</td></tr>
+            <tr><td>Instagram</td><td>Визуальный имидж проекта и сцены</td><td>Grid-посты, Reels с пилотами, Stories-голосования</td><td>12 постов / 8 Reels / 30 Stories</td><td>Охват, ER, прирост подписчиков</td></tr>
+            <tr><td>YouTube</td><td>Глубина и доверие</td><td>Документалистика, интервью пилотов, видео теста трека</td><td>2 ролика</td><td>Просмотры, удержание, подписчики</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stage-simple-title" style="margin-top:48px;">KPI</div>
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Метрика</th><th>Ед. изм.</th><th>Нижняя граница</th><th>Верхняя граница</th><th>Комментарий / фаза воронки</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Совокупный охват за этап</td><td>охваты</td><td>2 000 000</td><td>4 000 000</td><td>Awareness; суммарно по всем каналам (3 мес)</td></tr>
+            <tr><td>Прирост подписчиков (все каналы)</td><td>чел.</td><td>8 000</td><td>14 000</td><td>Interest; накопленный за этап</td></tr>
+            <tr><td>Регистрации в клуб / лист ожидания</td><td>рег.</td><td>800</td><td>1 500</td><td>Ключевой результат этапа</td></tr>
+            <tr><td>Вовлечённость (ER)</td><td>%</td><td>5,0%</td><td>7,0%</td><td>Среднее по соцсетям</td></tr>
+            <tr><td>Охват KOL-интеграций</td><td>охваты</td><td>1 500 000</td><td>3 000 000</td><td>Ключевой инструмент Э2</td></tr>
+            <tr><td>CPL регистрации</td><td>₽</td><td>60 ₽</td><td>150 ₽</td><td>Чем ниже — тем лучше</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">02</div>
+        <div class="stage-function-name">Performance</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line">авг — окт 2026 · 3 мес · Brand awareness. Формирование клуба через розыгрыш. Подготовка к 3-му этапу.</div>
+      <div class="stage-perf-boxes">
+        <div class="stage-perf-box tint">
+          <div class="stage-perf-box-title">Продукты в закупке</div>
+          <div class="stage-perf-box-sub">Первое касание с аудиторией</div>
+          <ul>
+            <li class="strong">Brand awareness DRP</li>
+            <li class="strong">Клуб ожидания</li>
+            <li class="strong">Розыгрыш участия в закрытых тестах</li>
+            <li class="strong">Скидки на сезонные абонементы (доп.)</li>
+          </ul>
+        </div>
+        <div class="stage-perf-box">
+          <div class="stage-perf-box-title">Задачи периода</div>
+          <ul>
+            <li>Медиапланирование</li>
+            <li>Brand awareness через VK / Яндекс / TG Ads</li>
+            <li>Узкий тематический таргетинг на нишевую аудиторию</li>
+            <li>Розыгрыш участия в закрытых тестах — сбор базы</li>
+            <li>Участие в CRM, работа с версткой, аккаунтинг</li>
+            <li>Коммуникация с SMM-отделом</li>
+          </ul>
+          <div class="stage-perf-box-divider">
+            <div class="stage-perf-box-note">Тест продуктов следующего этапа</div>
+            <ul>
+              <li>Тест лендингов и офферов для этапа 3</li>
+              <li>Поиск «горячей» узкоцелевой аудитории через альтернативные плейсменты</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-two-col">
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Распределение по каналам</div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#FF6B00;"></div><div class="stage-dist-name">Telegram Ads</div><div class="stage-dist-pct">45%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#c0392b;"></div><div class="stage-dist-name">Яндекс.Директ</div><div class="stage-dist-pct">40%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#3c50b4;"></div><div class="stage-dist-name">VK Ads</div><div class="stage-dist-pct">15%</div></div>
+        </div>
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Приоритетные каналы под продукты</div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Telegram</div><div class="stage-priority-desc">Клуб ожидания, нишевая аудитория автоспорта</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.РСЯ</div><div class="stage-priority-desc">Brand awareness DRP, охват</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">VK Look-alike</div><div class="stage-priority-desc">Расширение сегментов, тесты</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Альтернативные плейсменты</div><div class="stage-priority-desc">Поиск «горячих» сегментов (тест)</div></div>
+        </div>
+      </div>
+      <div class="stage-perf-box-note" style="margin-top:24px;">Тестовый бюджет на программатик появляется с этапа 3</div>
+      <div class="stage-result-line">Ожидаемый результат: brand awareness тематический — охват 3,5–4 миллиона</div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">03</div>
+        <div class="stage-function-name">PR</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line"><strong>Цель:</strong> впервые заявить о проекте, создать ожидание и интерес</div>
+      <div class="stage-callout">Первый анонс на крупном мероприятии. Мероприятие с заявлением, демонстрацией рендеров, макета, VR-тура, пресс-конференция или пр. Для комьюнити и медиа.</div>
+      <ul class="stage-dash-list">
+        <li>Первые пресс-релизы</li>
+        <li>Рендеры и фото</li>
+        <li>Истории о будущем проекта</li>
+        <li>Истории фаундеров, интервью</li>
+        <li>Контролируемые публикации о рождении новой институции</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 3 -->
+  <div class="stage-panel" data-stage="3">
+    <div class="stage-meta-grid reveal">
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">ЦА этапа</div>
+          <ul class="stage-dash-list">
+            <li>Профессионалы, дрифт-энтузиасты, автолюбители</li>
+            <li>B2B</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Цели этапа</div>
+          <ol class="stage-num-list">
+            <li>Подтвердить обещания DRP через демонстрацию реального прогресса строительства, тестов и инфраструктуры.</li>
+            <li>Усилить восприятие DRP как будущей базы мирового уровня для дрифта.</li>
+            <li>Доказать соответствие DRP ожиданиям профессионального сообщества по уровню трассы, инфраструктуры и безопасности.</li>
+            <li>Начать формировать образ DRP как новой городской точки притяжения с разнообразными сценариями посещения (пока для ядровой аудитории).</li>
+            <li>Показать возможности DRP через реальные тесты, первых пользователей и использование инфраструктуры.</li>
+            <li>Начать формировать спрос на ключевые продукты, обучение, мероприятия и B2B-возможности до официального открытия.</li>
+            <li>Перевести интерес аудитории в намерение посетить DRP после запуска.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Продукты этапа</div>
+          <ul class="stage-dash-list">
+            <li>Аренда боксов</li>
+            <li>Digital MVP</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Функции на этапе</div>
+          <div class="stage-func-badges">
+            <div class="stage-func-badge active">SMM</div>
+            <div class="stage-func-badge active">Performance</div>
+            <div class="stage-func-badge active">PR</div>
+            <div class="stage-func-badge">Мероприятия</div>
+            <div class="stage-func-badge">Спецпроекты</div>
+            <div class="stage-func-badge">Наружка и офлайн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">01</div>
+        <div class="stage-function-name">SMM</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Канал</th><th>Роль и фокус на этапе</th><th>Форматы контента / активности</th><th>Объём (ед./мес)</th><th>KPI канала</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Telegram</td><td>Прогрев: снятие скепсиса, апдейты стройки, демонстрация трека/тестов, тизеры мероприятий</td><td>Разборы решений, апдейты по milestone'ам стройки, демонстрация тестов, сценарии, анонсы</td><td>20 постов + 4 видео</td><td>ER ≥ 5%, репосты, регистрации интереса</td></tr>
+            <tr><td>ВКонтакте</td><td>Выход на массовую ЦА</td><td>Сценарии, экспертные посты, клипы тестов, обсуждения</td><td>16 постов + 6 клипов</td><td>Охват новой ЦА, подписки, репосты</td></tr>
+            <tr><td>Instagram</td><td>Демонстрация объекта, образ must-visit</td><td>Reels заездов/тестов, фотозоны, визуал стройки и трека</td><td>16 / 12 / 50</td><td>Охват, ER, сохранения</td></tr>
+            <tr><td>YouTube</td><td>Тесты, демонстрация, обучение</td><td>Тест-сессии, разбор конфигурации, демонстрация объекта, школа дрифта</td><td>4 ролика + 6 Shorts</td><td>Просмотры, удержание</td></tr>
+            <tr><td>Яндекс Дзен</td><td>Экспертные лонгриды и истории</td><td>Материалы о проекте, разборы, образование, путь пилота</td><td>4 материала</td><td>Дочитывания, охват</td></tr>
+            <tr><td>Яндекс Карты / 2ГИС</td><td>Геоприсутствие (старт после сдачи трека)</td><td>Создание и наполнение карточки, фото, маршруты</td><td>2 обновления</td><td>Показы карточки, маршруты, рейтинг</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stage-simple-title" style="margin-top:48px;">KPI</div>
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Метрика</th><th>Ед. изм.</th><th>Нижняя граница</th><th>Верхняя граница</th><th>Комментарий / фаза воронки</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Совокупный охват за этап</td><td>охваты</td><td>12 000 000</td><td>18 000 000</td><td>Consideration + масштаб ЦА (12 мес)</td></tr>
+            <tr><td>Прирост подписчиков</td><td>чел.</td><td>40 000</td><td>65 000</td><td>Накопленный за этап</td></tr>
+            <tr><td>Регистрации интереса (масс. + школа)</td><td>рег.</td><td>4 000</td><td>6 500</td><td>Consideration</td></tr>
+            <tr><td>Упоминания и репосты</td><td>шт.</td><td>300</td><td>500</td><td>Социальное доказательство</td></tr>
+            <tr><td>Вовлечённость (ER)</td><td>%</td><td>4,5%</td><td>6,0%</td><td>Среднее по соцсетям</td></tr>
+            <tr><td>Позитивная/нейтральная тональность</td><td>%</td><td>80%</td><td>90%</td><td>Снятие скепсиса</td></tr>
+            <tr><td>Рейтинг карточки (Карты / 2ГИС)</td><td>балл</td><td>4,5</td><td>4,8</td><td>К концу этапа</td></tr>
+            <tr><td>CPL регистрации интереса</td><td>₽</td><td>70 ₽</td><td>150 ₽</td><td>Чем ниже — тем лучше</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">02</div>
+        <div class="stage-function-name">Performance</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line">нояб 2026 — нояб 2027 · 12 мес · Ретаргетинг базы. Раннее бронирование. B2B: аренда боксов. Первый программатик-тест.</div>
+      <div class="stage-perf-boxes">
+        <div class="stage-perf-box tint">
+          <div class="stage-perf-box-title">Продукты в закупке</div>
+          <div class="stage-perf-box-sub">Первые платящие клиенты и B2B-контракты</div>
+          <ul>
+            <li class="strong">Раннее бронирование (отдельная кампания)</li>
+            <li class="strong">DRP как место для досуга (ресторан — доп.)</li>
+            <li class="strong">Освещение медийных персон на DRP</li>
+            <li class="strong">Расширение клуба ожидания</li>
+            <li class="strong">Скидки на сезонные абонементы (доп.)</li>
+          </ul>
+        </div>
+        <div class="stage-perf-box">
+          <div class="stage-perf-box-title">Задачи периода</div>
+          <ul>
+            <li>Brand awareness, ретаргетинг базы, гео-таргет</li>
+            <li>Отдельная кампания раннего бронирования (скидки, первые заезды)</li>
+            <li>Формирование клиентской базы под запуск</li>
+            <li>Медийные персоны на DRP — контент и охват</li>
+            <li>Расширение базы ожидания</li>
+            <li class="strong">Сторонний аудит компаний перед 4ым этапом</li>
+          </ul>
+          <div class="stage-perf-box-divider">
+            <div class="stage-perf-box-note">Тест продуктов следующего этапа</div>
+            <ul>
+              <li>Школа дрифта для взрослых — сбор заявок в первые группы</li>
+              <li>Контраварийное вождение — тест B2B (страховые, автошколы)</li>
+              <li>Корпоративные программы / Тимбилдинг — B2B-заявки</li>
+              <li>Пакеты тренировок на треке — для энтузиастов из клуба</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-simple-title" style="margin-top:40px;">Каналы и стратегия</div>
+      <div class="stage-two-col">
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Распределение по каналам</div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#FF6B00;"></div><div class="stage-dist-name">Яндекс.Директ</div><div class="stage-dist-pct">50%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#c0392b;"></div><div class="stage-dist-name">Telegram Ads</div><div class="stage-dist-pct">35%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#3c50b4;"></div><div class="stage-dist-name">VK Ads</div><div class="stage-dist-pct">15%</div></div>
+          <div class="stage-perf-box-note" style="margin-top:6px;">KPI + ожидаемый результат: brand awareness охват 12–15 млн, аудит и корректировка стратегии на следующие этапы, ретаргет тематической базы со 2го этапа</div>
+        </div>
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Приоритетные каналы под продукты</div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.Поиск</div><div class="stage-priority-desc">Раннее бронирование</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.РСЯ + ретаргет</div><div class="stage-priority-desc">Возврат базы, гео-таргет по регионам</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Telegram</div><div class="stage-priority-desc">Расширение клуба, освещение медийных персон</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">VK</div><div class="stage-priority-desc">Досуг (ресторан), lifestyle-контент</div></div>
+          <div class="stage-budget-box">
+            <div class="stage-budget-box-title">Тестовый бюджет: программатик / in-app</div>
+            <div class="stage-budget-box-value">10,1% от общего бюджета</div>
+            <div class="stage-budget-box-desc">Первый тест программатик / in-app — поиск премиум-аудитории вне Яндекс/VK/TG</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">03</div>
+        <div class="stage-function-name">PR</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line"><strong>Цель:</strong> создать ощущение рождения места на глазах у публики, привлечь внимание партнеров/инвесторов, показать масштаб</div>
+      <ul class="stage-dash-list">
+        <li>Публикация фото и видео процесса строительства/тестирования отдельных этапов</li>
+        <li>Публикация историй о строительстве (у себя на каналах и рассылка в медиа)</li>
+        <li>Пресс-туры/ивенты для СМИ и блогеров</li>
+        <li>Возможны контролируемые публикации</li>
+      </ul>
+      <div class="stage-goal-line" style="margin-top:20px;"><strong>Содержание:</strong> перспективы, инженерные решения, уникальные особенности, репортажи о процессе, возможно, истории преодоления сложностей.</div>
+      <div class="stage-simple-title" style="margin-top:32px;">KPI</div>
+      <ul class="stage-dash-list">
+        <li>1–2 инфоповода в месяц</li>
+        <li>50–100 публикаций за период строительства</li>
+        <li>2–3 пресс-тура</li>
+        <li>не менее 30 журналистов и блогеров посетили площадку</li>
+        <li>доля позитивных/нейтральных публикаций &gt;90%</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 4 -->
+  <div class="stage-panel" data-stage="4">
+    <div class="stage-meta-grid reveal">
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">ЦА этапа</div>
+          <ul class="stage-dash-list">
+            <li>Профессионалы, дрифт-энтузиасты, автолюбители</li>
+            <li>B2B</li>
+            <li>Широкие аудитории</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Цели этапа</div>
+          <ol class="stage-num-list">
+            <li>Подтвердить через реальные кейсы и опыт все обещания, данные на предыдущих этапах.</li>
+            <li>Закрепить образ DRP как полноценно работающей базы спорта, обучения, мероприятий и досуга.</li>
+            <li>Продемонстрировать и начать активно продвигать ключевые продукты, сервисы и сценарии посещения DRP.</li>
+            <li>Сформировать доверие к качеству продуктов, сервиса и мероприятий DRP.</li>
+            <li>Начать коммуникационный прогрев официального открытия и сформировать ожидание главного события запуска.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Продукты этапа</div>
+          <ul class="stage-dash-list">
+            <li>Трек и спорт</li>
+            <li>Кафе и F&amp;B</li>
+            <li>Аренда боксов</li>
+            <li>Мерч и околоспортивный retail</li>
+            <li>Арендаторы и автосервисы</li>
+            <li>Digital Sales Layer</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Функции на этапе</div>
+          <div class="stage-func-badges">
+            <div class="stage-func-badge active">SMM</div>
+            <div class="stage-func-badge active">Performance</div>
+            <div class="stage-func-badge active">PR</div>
+            <div class="stage-func-badge active">Мероприятия</div>
+            <div class="stage-func-badge active">Спецпроекты</div>
+            <div class="stage-func-badge active">Наружка и офлайн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">01</div>
+        <div class="stage-function-name">SMM</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Канал</th><th>Роль и фокус на этапе</th><th>Форматы контента / активности</th><th>Объём (ед./мес)</th><th>KPI канала</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Telegram</td><td>Запуск работы: первые визиты/брони, тест продуктов, кейсы, отзывы, B2B и аренда</td><td>Первые гости, «что доступно», тест продуктов, кейсы, отзывы, B2B/аренда</td><td>24 поста + 5 видео</td><td>Брони, переходы в Digital Sales, UGC, B2B-лиды</td></tr>
+            <tr><td>ВКонтакте</td><td>UGC и брони</td><td>Конкурсы UGC, репосты гостей, анонсы</td><td>18 постов + 8 клипов</td><td>UGC, охват, брони</td></tr>
+            <tr><td>Instagram</td><td>Контент первых гостей</td><td>Контент гостей, Reels заездов/дрифт-такси, Stories-брони</td><td>18 / 14 / 60</td><td>Охват, UGC, переходы</td></tr>
+            <tr><td>YouTube</td><td>Репортажи и обзоры продуктов</td><td>Репортажи с визитов, обзоры продуктов, отзывы</td><td>4 ролика + 8 Shorts</td><td>Просмотры, переходы</td></tr>
+            <tr><td>Яндекс Дзен</td><td>Истории опыта</td><td>Истории гостей, разборы опыта</td><td>4 материала</td><td>Дочитывания</td></tr>
+            <tr><td>Яндекс Карты / 2ГИС</td><td>Репутация и трафик</td><td>Работа с отзывами и рейтингом, фото гостей</td><td>3 обновления + работа с отзывами</td><td>Рейтинг ≥ 4.5, число отзывов, маршруты</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stage-simple-title" style="margin-top:48px;">KPI</div>
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Метрика</th><th>Ед. изм.</th><th>Нижняя граница</th><th>Верхняя граница</th><th>Комментарий / фаза воронки</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Совокупный охват за этап</td><td>охваты</td><td>8 000 000</td><td>12 000 000</td><td>Action; запуск работы объекта (6 мес)</td></tr>
+            <tr><td>Брони (трек / такси / кафе)</td><td>брони</td><td>1 200</td><td>2 000</td><td>Первые продажи</td></tr>
+            <tr><td>Визиты</td><td>визитов</td><td>2 500</td><td>4 000</td><td>Реальные посещения</td></tr>
+            <tr><td>UGC-единицы</td><td>ед.</td><td>400</td><td>700</td><td>Контент гостей</td></tr>
+            <tr><td>Конверсия бронь → визит</td><td>%</td><td>70%</td><td>85%</td><td>Качество воронки</td></tr>
+            <tr><td>B2B-лиды</td><td>лидов</td><td>40</td><td>70</td><td>Бренды и партнёры</td></tr>
+            <tr><td>Договоры аренды (боксы / резиденты)</td><td>шт.</td><td>15</td><td>35</td><td>Заполнение аренды</td></tr>
+            <tr><td>Рейтинг на Картах / 2ГИС</td><td>балл</td><td>4,5</td><td>4,8</td><td>Репутация</td></tr>
+            <tr><td>CPA брони</td><td>₽</td><td>1 000 ₽</td><td>2 500 ₽</td><td>Чем ниже — тем лучше</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">02</div>
+        <div class="stage-function-name">Performance</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line">нояб 2027 — весна 2028 · 6 мес · Ретаргет базы на пакеты тренировок. Обкатка ивентов. Brand awareness.</div>
+      <div class="stage-perf-boxes">
+        <div class="stage-perf-box tint">
+          <div class="stage-perf-box-title">Продукты в закупке</div>
+          <div class="stage-perf-box-sub">Основные продукты объекта в тестовом режиме</div>
+          <ul>
+            <li class="strong">Пакеты тренировок на треке (ретаргет базы)</li>
+            <li class="strong">Школа дрифта для взрослых</li>
+            <li class="strong">Контраварийное вождение</li>
+            <li class="strong">Дрифт-такси</li>
+            <li class="strong">Индивидуальная трек-сессия</li>
+            <li class="strong">Корпоративные программы / Тимбилдинги (B2B)</li>
+            <li class="strong">Brand awareness (продолжение)</li>
+          </ul>
+        </div>
+        <div class="stage-perf-box">
+          <div class="stage-perf-box-title">Задачи периода</div>
+          <ul>
+            <li>Ретаргетинг накопленной базы на выгодные пакеты тренировок</li>
+            <li>Brand awareness — продолжение массовых охватных кампаний</li>
+            <li>Обкатка тестовых ивентов и мероприятий</li>
+            <li>Тестирование воронки и оптимизация CPL по каналам</li>
+          </ul>
+          <div class="stage-perf-box-divider">
+            <div class="stage-perf-box-note">Тест продуктов следующего этапа</div>
+            <ul>
+              <li>Соревнования — сбор лидов на покупку билетов (для зрителей)</li>
+              <li>Онлайн-курсы — тест на аудитории школы дрифта</li>
+              <li>Магазин экипировки — тест e-commerce</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-simple-title" style="margin-top:40px;">Каналы и стратегия</div>
+      <div class="stage-two-col">
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Распределение по каналам</div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#FF6B00;"></div><div class="stage-dist-name">Яндекс.Директ</div><div class="stage-dist-pct">55%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#c0392b;"></div><div class="stage-dist-name">Telegram Ads</div><div class="stage-dist-pct">25%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#3c50b4;"></div><div class="stage-dist-name">VK Ads</div><div class="stage-dist-pct">20%</div></div>
+          <div class="stage-perf-box-note" style="margin-top:6px;">KPI охват 10–12 миллионов. Лид на пакет тренировок: 3 500–6 000 ₽ · B2B-лид: 10 000–17 000 ₽ · Билет на тест-ивент: 1000–1500 ₽</div>
+        </div>
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Приоритетные каналы под продукты</div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.Поиск</div><div class="stage-priority-desc">Тренировки, B2B (корпоративы, тимбилдинги)</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.РСЯ + ретаргет</div><div class="stage-priority-desc">Возврат базы на пакеты и абонементы</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Telegram</div><div class="stage-priority-desc">Энтузиасты трека, дрифт-такси, индивидуальные сессии</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">VK</div><div class="stage-priority-desc">Школа дрифта, ивенты, гео-таргет</div></div>
+          <div class="stage-budget-box">
+            <div class="stage-budget-box-title">Тестовый бюджет: программатик / in-app</div>
+            <div class="stage-budget-box-value">6,25% от общего бюджета</div>
+            <div class="stage-budget-box-desc">Программатик / in-app — масштабирование на премиум-аудиторию, ретаргет</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">03</div>
+        <div class="stage-function-name">PR</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line"><strong>Цель:</strong> создать ожидание от открытия, привлечь посетителей и пользователей, партнеров и инвесторов, медиа</div>
+      <ul class="stage-dash-list">
+        <li>Большие подконтрольные интервью</li>
+        <li>Пресс-релизы с будущим инфоповодом (возможно, мини предварительный повод, например, гонщик первым опробовал трассу)</li>
+        <li>Тизеры, фото, видео</li>
+        <li>Обратный отсчет</li>
+        <li>Закрытые предварительные мероприятия для медиа и блогеров</li>
+        <li>Тестовые заезды</li>
+      </ul>
+      <div class="stage-simple-title" style="margin-top:32px;">KPI</div>
+      <ul class="stage-dash-list">
+        <li>20–30 публикаций за 2–3 месяца</li>
+        <li>3–5 крупных интервью</li>
+        <li>охват материалов 5–20 млн контактов</li>
+        <li>рост подписчиков соцсетей на 30–50%</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">04</div>
+        <div class="stage-function-name">Мероприятия и спецпроекты</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div style="margin-bottom:40px;">
+      <style>
+      .drp-cal{
+        /* ——— dark tokens (matches site theme) ——— */
+        --bg:#121212; --panel:#1a1a1a; --panel-2:#202020;
+        --ink:#F5F2EC; --ink-2:rgba(245,242,236,0.58); --ink-3:rgba(245,242,236,0.36);
+        --line:rgba(255,255,255,0.10); --line-2:rgba(255,255,255,0.06);
+        --accent:#FF6B00;
+        --a:#FF6B00;   /* A — крупные фестивали */
+        --b:#8B98A3;   /* B — клубные события   */
+        --c:#D7A457;   /* C — регулярные форматы */
+        --font-sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+        --font-mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+
+        color:var(--ink);
+        background:
+          radial-gradient(120% 90% at 100% 0%, color-mix(in srgb,var(--accent) 8%,transparent), transparent 60%),
+          var(--bg);
+        border:1px solid rgba(255,255,255,0.08);
+        font-family:var(--font-sans);
+        -webkit-font-smoothing:antialiased;
+        line-height:1.5;
+        padding:clamp(18px,4vw,44px) clamp(14px,4vw,44px);
+        box-sizing:border-box;
+        border-radius:16px;
+      }
+      .drp-cal *,.drp-cal *::before,.drp-cal *::after{box-sizing:border-box;}
+
+      .drp-cal .wrap{max-width:1360px;margin:0 auto;}
+
+      /* ——— header ——— */
+      .drp-cal .head{
+        display:flex;flex-wrap:wrap;gap:24px 32px;align-items:flex-end;
+        justify-content:space-between;
+        padding-bottom:22px;border-bottom:1px solid var(--line);
+      }
+      .drp-cal .eyebrow{
+        display:inline-flex;align-items:center;gap:8px;
+        font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;
+        text-transform:uppercase;color:var(--ink-2);margin-bottom:14px;
+      }
+      .drp-cal .tick{width:9px;height:9px;background:var(--accent);display:inline-block;}
+      .drp-cal .title{
+        font-size:clamp(28px,5vw,46px);line-height:1.02;font-weight:800;
+        letter-spacing:-.025em;margin:0;text-wrap:balance;
+      }
+      .drp-cal .lede{
+        margin:14px 0 0;max-width:46ch;color:var(--ink-2);font-size:15px;
+      }
+      .drp-cal .legend{display:flex;flex-direction:column;gap:9px;}
+      .drp-cal .lg{
+        display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-2);
+      }
+      .drp-cal .lg b{color:var(--ink);font-family:var(--font-mono);font-weight:700;width:14px;}
+      .drp-cal .sw{width:13px;height:13px;border-radius:3px;flex:none;}
+      .drp-cal .sw.A{background:var(--a);}
+      .drp-cal .sw.B{background:var(--b);}
+      .drp-cal .sw.C{background:var(--c);}
+
+      /* ——— month tabs ——— */
+      .drp-cal .tabs{
+        display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 18px;
+      }
+      .drp-cal .tab{
+        appearance:none;border:1px solid var(--line);background:var(--panel);
+        color:var(--ink-2);font-family:var(--font-sans);font-size:13.5px;font-weight:600;
+        padding:9px 16px;border-radius:999px;cursor:pointer;
+        display:inline-flex;align-items:baseline;gap:8px;
+        transition:background .18s,color .18s,border-color .18s,transform .12s;
+      }
+      .drp-cal .tab .yr{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);}
+      .drp-cal .tab:hover{color:var(--ink);border-color:var(--ink-3);}
+      .drp-cal .tab[aria-selected="true"]{
+        background:var(--ink);color:var(--panel);border-color:var(--ink);
+      }
+      .drp-cal .tab[aria-selected="true"] .yr{color:color-mix(in srgb,var(--panel) 65%,transparent);}
+      .drp-cal .tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+      /* ——— layout ——— */
+      .drp-cal .body{
+        display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,360px);gap:20px;align-items:start;
+      }
+      @media (max-width:860px){ .drp-cal .body{grid-template-columns:1fr;} }
+
+      /* ——— calendar ——— */
+      .drp-cal .cal{
+        border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--line);min-width:0;
+      }
+      .drp-cal .dow{
+        display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:var(--line);
+      }
+      .drp-cal .dow span{
+        background:var(--panel-2);text-align:center;padding:10px 0;
+        font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;
+        text-transform:uppercase;color:var(--ink-3);
+      }
+      .drp-cal .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:var(--line);}
+      .drp-cal .cell{
+        background:var(--panel);min-height:110px;padding:9px 9px 10px;min-width:0;
+        display:flex;flex-direction:column;gap:6px;text-align:left;
+        border:0;font:inherit;color:inherit;cursor:pointer;position:relative;
+        transition:background .15s;
+      }
+      .drp-cal .cell.empty{background:var(--panel-2);cursor:default;}
+      .drp-cal .cell.weekend{background:color-mix(in srgb,var(--panel-2) 55%,var(--panel));}
+      .drp-cal .cell.has:hover{background:color-mix(in srgb,var(--accent) 8%,var(--panel));}
+      .drp-cal .cell:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;z-index:2;}
+      .drp-cal .cell .num{
+        font-family:var(--font-mono);font-size:13px;font-weight:600;
+        color:var(--ink-2);font-variant-numeric:tabular-nums;line-height:1;
+      }
+      .drp-cal .cell.weekend .num{color:var(--ink-3);}
+      .drp-cal .cell.has .num{color:var(--ink);}
+      .drp-cal .cell.flag{background:color-mix(in srgb,#FF6B00 12%,var(--panel));}
+      .drp-cal .cell.flag::after{
+        content:"";position:absolute;inset:0;border:2px solid #FF6B00;
+        border-radius:2px;pointer-events:none;
+        box-shadow:inset 0 0 0 1px rgba(255,107,0,.35),0 0 20px rgba(255,107,0,.28);
+      }
+      .drp-cal .cell.sel{background:color-mix(in srgb,var(--accent) 14%,var(--panel));}
+      .drp-cal .cell.sel .num{color:var(--accent);}
+
+      .drp-cal .chips{display:flex;flex-direction:column;gap:4px;margin-top:auto;min-width:0;}
+      .drp-cal .chip{
+        display:flex;align-items:center;gap:0;min-width:0;
+        border:1px solid;border-radius:5px;padding:3px 8px;
+        font-size:11.5px;font-weight:600;line-height:1.3;
+        max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+      }
+      .drp-cal .chip .txt{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+      .drp-cal .chip.A{background:var(--a);color:#fff;border-color:var(--a);}
+      .drp-cal .chip.B{background:color-mix(in srgb,var(--b) 13%,transparent);color:var(--b);border-color:color-mix(in srgb,var(--b) 38%,transparent);}
+      .drp-cal .chip.C{background:color-mix(in srgb,var(--c) 13%,transparent);color:var(--c);border-color:color-mix(in srgb,var(--c) 38%,transparent);}
+      .drp-cal .chip.go{
+        background:linear-gradient(180deg,#FF8A3D,#FF6B00);color:#fff;border-color:#FF8A3D;font-weight:700;
+        box-shadow:0 0 0 1px rgba(255,138,61,.40),0 5px 16px rgba(255,107,0,.50);
+      }
+      .drp-cal .chip.go .txt::before{content:"\2605\00a0";}
+
+      /* ——— detail panel ——— */
+      .drp-cal .panel{
+        position:sticky;top:16px;
+        border:1px solid var(--line);border-radius:12px;background:var(--panel);
+        padding:20px;min-height:220px;
+      }
+      .drp-cal .panel .p-eyebrow{
+        font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;
+        text-transform:uppercase;color:var(--ink-3);
+      }
+      .drp-cal .panel .p-date{
+        font-size:20px;font-weight:800;letter-spacing:-.02em;margin:6px 0 0;text-transform:capitalize;
+      }
+      .drp-cal .p-close{
+        appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink-2);
+        font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+        padding:6px 11px;border-radius:999px;cursor:pointer;transition:.15s;
+      }
+      .drp-cal .p-close:hover{color:var(--ink);border-color:var(--ink-3);}
+      .drp-cal .p-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+      .drp-cal .ev{border-top:1px solid var(--line);padding-top:16px;margin-top:16px;}
+      .drp-cal .ev:first-of-type{border-top:0;padding-top:0;margin-top:18px;}
+      .drp-cal .badge{
+        display:inline-flex;align-items:center;gap:6px;
+        font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;
+        text-transform:uppercase;padding:3px 8px;border-radius:5px;border:1px solid;
+      }
+      .drp-cal .badge.A{background:var(--a);color:#fff;border-color:var(--a);}
+      .drp-cal .badge.B{background:color-mix(in srgb,var(--b) 14%,transparent);color:var(--b);border-color:color-mix(in srgb,var(--b) 40%,transparent);}
+      .drp-cal .badge.C{background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c);border-color:color-mix(in srgb,var(--c) 40%,transparent);}
+      .drp-cal .badge.go{background:linear-gradient(180deg,#FF8A3D,#FF6B00);color:#fff;border-color:#FF8A3D;box-shadow:0 4px 14px rgba(255,107,0,.45);}
+      .drp-cal .ev-name{font-size:17px;font-weight:750;letter-spacing:-.015em;margin:10px 0 0;text-wrap:balance;}
+      .drp-cal .ev-note{color:var(--accent);font-weight:700;font-size:13px;}
+      .drp-cal .ev-meta{
+        display:flex;flex-wrap:wrap;gap:6px 14px;margin:9px 0 0;
+        font-family:var(--font-mono);font-size:11.5px;color:var(--ink-2);
+      }
+      .drp-cal .ev-meta b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;}
+      .drp-cal .ev-desc{margin:11px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.55;}
+      .drp-cal .ev-works{
+        list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px;
+      }
+      .drp-cal .ev-works li{
+        font-size:11.5px;color:var(--ink-2);background:var(--panel-2);
+        border:1px solid var(--line);border-radius:5px;padding:3px 8px;
+      }
+      .drp-cal .works-label{
+        font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+        color:var(--ink-3);margin:14px 0 0;
+      }
+
+      /* summary (default panel state) */
+      .drp-cal .sum-nums{display:flex;gap:8px;margin:16px 0 0;}
+      .drp-cal .stat{flex:1;border:1px solid var(--line);border-radius:9px;padding:12px 10px;background:var(--panel-2);}
+      .drp-cal .stat .n{font-family:var(--font-mono);font-size:26px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
+      .drp-cal .stat.A .n{color:var(--a);}
+      .drp-cal .stat.B .n{color:var(--b);}
+      .drp-cal .stat.C .n{color:var(--c);}
+      .drp-cal .stat .l{font-size:11px;color:var(--ink-2);margin-top:6px;line-height:1.3;}
+      .drp-cal .sum-note{margin:16px 0 0;font-size:13px;color:var(--ink-2);line-height:1.55;}
+      .drp-cal .sum-hint{
+        margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);
+        font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);
+      }
+      .drp-cal .p-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+
+      /* ——— hover tooltip ———
+         Note: this element is moved to <body> by the calendar script so that
+         position:fixed is relative to the viewport (an ancestor inside .drp-cal
+         uses "transform: translateY(0)" for scroll-reveal, which otherwise
+         becomes the fixed containing block). Because of that, these rules are
+         written against the #drpCal4Tip id — not ".drp-cal .tip" — and colors
+         are hardcoded rather than read from .drp-cal's custom properties. */
+      #drpCal4Tip{
+        position:fixed;z-index:9999;pointer-events:none;
+        background:#F5F2EC;color:#1a1a1a;
+        border-radius:8px;padding:9px 11px;max-width:240px;
+        box-shadow:0 10px 30px rgba(0,0,0,.45);
+        font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+        font-size:12px;line-height:1.4;
+        transform:translate(-50%,-100%);
+      }
+      #drpCal4Tip .tip-d{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:5px;}
+      #drpCal4Tip .tip-row{display:flex;align-items:center;gap:7px;margin-top:4px;}
+      #drpCal4Tip .tip-dot{width:7px;height:7px;border-radius:2px;flex:none;}
+      #drpCal4Tip .tip-dot.A{background:#FF6B00;}
+      #drpCal4Tip .tip-dot.B{background:#8B98A3;}
+      #drpCal4Tip .tip-dot.C{background:#D7A457;}
+      #drpCal4Tip[hidden]{display:none;}
+
+      @media (max-width:520px){
+        .drp-cal .cell{min-height:60px;padding:6px 5px;}
+        .drp-cal .chip{padding:0;width:8px;height:8px;border-radius:50%;justify-content:center;}
+        .drp-cal .chip .txt{display:none;}
+        .drp-cal .chips{flex-direction:row;flex-wrap:wrap;gap:4px;}
+        .drp-cal .legend{flex-direction:row;flex-wrap:wrap;gap:12px;}
+      }
+      @media (prefers-reduced-motion:reduce){
+        .drp-cal *{transition:none!important;}
+      }
+      </style>
+
+      <section class="drp-cal" id="drpCal4">
+        <div class="wrap">
+          <header class="head">
+            <div class="head-main">
+              <div class="eyebrow"><span class="tick"></span>DRP · Зима 2027–2028</div>
+              <h2 class="title">Календарь событий</h2>
+              <p class="lede">Зимний сезон Drift Racing Park — от запуска в ноябре 2027 до тёплого мая 2028: Морозный дрифт по выходным, зимние интенсивы и тематические праздники. Наведите курсор или нажмите на день, чтобы увидеть программу.</p>
+            </div>
+            <div class="legend" role="list" aria-label="Классы событий">
+              <span class="lg" role="listitem"><i class="sw A"></i><b>A</b> Крупные фестивали</span>
+              <span class="lg" role="listitem"><i class="sw B"></i><b>B</b> Клубные события</span>
+              <span class="lg" role="listitem"><i class="sw C"></i><b>C</b> Регулярные форматы</span>
+            </div>
+          </header>
+
+          <nav class="tabs" id="drpCal4Tabs" aria-label="Месяцы сезона"></nav>
+
+          <div class="body">
+            <div class="cal">
+              <div class="dow" id="drpCal4Dow"></div>
+              <div class="grid" id="drpCal4Grid" role="grid" aria-label="Календарь событий"></div>
+            </div>
+            <aside class="panel" id="drpCal4Panel" aria-live="polite"></aside>
+          </div>
+        </div>
+        <div class="tip" id="drpCal4Tip" role="tooltip" hidden></div>
+      </section>
+
+      <script>
+      (function(){
+        var TYPES = {
+          morozny_drift:{name:"Морозный Дрифт",cls:"B",g:"600–1 000",freq:"Еженедельно · зимние выходные (×20)",
+            desc:"Еженедельный зимний фестиваль выходного дня: любительские заезды, зрелищный дрифт и зимние развлечения. Гости могут наблюдать за заездами, попробовать себя за рулём на зимней трассе, прокатиться на дрифт-такси и провести день в атмосфере настоящего зимнего автоспорта.",
+            w:["Любительские заезды","Open Practice на снегу","Соревнование на лучший угол","Дрифт-такси","Зимний фуд-корт, горячие напитки","DJ, костровые зоны","Детская зимняя зона","Фотозоны","Тест-драйвы партнёров"]},
+          winter_camp:{name:"DRP Winter Camp",cls:"B",g:"300–500",freq:"Образовательный интенсив (×5)",
+            desc:"Однодневный образовательный интенсив для пилотов и энтузиастов, посвящённый зимнему дрифту и совершенствованию навыков управления. Практические тренировки, обучение у профессиональных пилотов и неформальное общение в атмосфере автомобильного лагеря.",
+            w:["Теория зимнего дрифта","Практические тренировки на трассе","Разбор телеметрии и видео","Мастер-классы от пилотов","Технические лекции по подготовке авто","Совместный обед","Afterparty с инструкторами"]},
+          cars_coffee:{name:"Cars & Coffee",cls:"B",g:"500–1 000",freq:"Ежемесячно (×5)",
+            desc:"Небольшая ежемесячная встреча автомобильного сообщества: кофе и неформальное общение. Формат закрепляет за DRP статус нового места встречи автокультуры Санкт-Петербурга.",
+            w:["Кофе-поинты","Навигация, фотозона","Партнёрские стенды","Фотограф"]},
+          ny_fair:{name:"Новогодняя DRP ярмарка",cls:"B",g:"500–1 000",star:"Новый год",freq:"Итог года",
+            desc:"Итог года строительства, планы следующего сезона и встреча сообщества в новогодней атмосфере.",
+            w:["Новогоднее оформление","Сцена, ведущий, DJ","Кейтеринг","Презентация сезона","Фото/видео","Сувениры"]},
+          drivers_day:{name:"DRP Drivers Day · 23 февраля",cls:"A",g:"1 500–3 000",star:"Главное событие",freq:"Главный зимний фестиваль",
+            desc:"Тематический зимний фестиваль, посвящённый автомобильному мастерству, характеру и культуре вождения. DRP объединяет пилотов, энтузиастов и автоклубы, предлагая насыщенную программу на трассе и вне её.",
+            w:["Любительские зимние заезды","Соревнование на лучший угол","Drift Taxi","Показательные выступления пилотов","Выставка спортивных и тюнинг-авто","Соревнования на симуляторах","Технические мастер-классы","Зимний BBQ и полевая кухня","Горячие напитки"]},
+          garage_picnic:{name:"Garage Picnic · 1 мая",cls:"A",g:"1 500–3 000",freq:"Открытие тёплого сезона",
+            desc:"Семейный пикник с автомобильной тематикой: барбекю, музыка, детская зона и выставка автомобилей участников.",
+            w:["BBQ-зона","Музыка","Семейные активности","Детская зона","Выставка автомобилей","Мягкая мебель, навигация","Фотограф, охрана"]},
+          track_test:{name:"Трек-Тест викенд",cls:"C",g:"300–500",freq:"Тестовые дни (×5)",
+            desc:"Регулярные тестовые дни для профессиональных пилотов, автомобильных журналистов, блогеров и партнёров. Проверка инфраструктуры и операционных процессов, источник экспертной обратной связи и первых медийных материалов о комплексе.",
+            w:["Медиа-съёмка","Пресс-зона","Кейтеринг","Трансферы (при необходимости)"]},
+          vecherniy_drift:{name:"Вечерний дрифт",cls:"C",g:"500–700",freq:"Регулярно (×10)",
+            desc:"Вечерние тренировочные заезды в атмосфере закатного и искусственного освещения. Проверка вечерней эксплуатации площадки и один из первых регулярных вечерних форматов комплекса.",
+            w:["Световое оборудование","DJ, ведущий","Фуд-зона","Охрана","Фото/видео","Вечернее оформление площадки"]},
+          hotdog:{name:"Хот-договый четверг",cls:"C",g:"150–300",freq:"Еженедельно · четверг (×10)",
+            desc:"Еженедельная механика: тренировочный день плюс гастрономический опыт. Все участники трек-дня получают фирменный хот-дог и напиток, превращая тренировку в регулярный ритуал сообщества.",
+            w:["Фуд-зона, выдача питания","Музыкальное сопровождение","Брендинг акции","Регистрация участников","Фотограф"]},
+          open_garage:{name:"Open Garage",cls:"C",g:"100–250",freq:"Регулярно (×5)",
+            desc:"День открытых технических боксов: посетители знакомятся с подготовкой автомобилей, работой инженеров и механиков. Формат раскрывает закулисье автоспорта и усиливает доверие к площадке.",
+            w:["Экскурсоводы","Подготовка боксов","Демонстрационные автомобили","Механики","Навигация, мерч-зона","Зона вопросов и ответов"]},
+          den_kontenta:{name:"День контента",cls:"C",g:"80–180",freq:"Регулярно (×5)",
+            desc:"Профессиональная фото- и видеосъёмка автомобилей и пилотов на территории комплекса. Участники получают качественный контент для соцсетей, а DRP — поток пользовательских публикаций и органических упоминаний.",
+            w:["Фото- и видеопродакшн","Съёмочные точки","Свет при необходимости","Фотозоны","Координация автомобилей","Монтаж экспресс-контента"]},
+          family_sunday:{name:"Семейное воскресенье",cls:"C",g:"250–500",freq:"Регулярно · воскресенья (×5)",
+            desc:"Семейный выходной с детскими активностями, экскурсиями по комплексу, симуляторами и безопасным знакомством с автоспортом. DRP как пространство для отдыха всей семьёй, а не только спортивная площадка.",
+            w:["Детская зона, аниматоры","Симуляторы","Мастер-классы","Экскурсии, ведущий","Фотограф, охрана","Медицинское сопровождение"]},
+          team_meet:{name:"Встреча с командой DRP",cls:"C",g:"150–300",freq:"Камерный формат (×3)",
+            desc:"Камерные встречи с командой DRP, инженерами, инструкторами и пилотами. Гости знакомятся с историей проекта, задают вопросы и первыми узнают о развитии комплекса.",
+            w:["Сцена / лекторий, звук","Презентационное оборудование","Модератор","Кейтеринг","Фото/видео","Экскурсия по объекту"]},
+          winter_garage:{name:"Winter Garage Day",cls:"C",g:"100–250",freq:"Клубный формат",
+            desc:"Закрытая встреча автомобильных клубов в тёплом гаражном формате: кофе, лекции, показ техники, экскурсии по комплексу.",
+            w:["Лекционная зона","Выставка автомобилей","Кофе-брейк","Экскурсии","DJ (фоновый)","Фотограф"]},
+          girls_day:{name:"Girls Drive Day · 8 марта",cls:"C",g:"500–700",star:"8 марта",freq:"Тематический день",
+            desc:"Бесплатные ознакомительные заезды для девушек, мастер-классы по контраварийному вождению, лекции и фотозоны.",
+            w:["Инструкторы","Ознакомительные заезды","Фотозоны","Мастер-классы","Подарки участницам","DJ, кейтеринг","Фотограф"]},
+          drift_lovers:{name:"Drift Lovers · 14 февраля",cls:"B",g:"600–1 000",star:"14 февраля",freq:"День всех влюблённых",
+            desc:"Тематический вечер ко Дню всех влюблённых: парные заезды и дрифт-такси для пар, романтическое световое оформление трассы, живая музыка, фотозоны и тёплый лаунж. Провести 14 февраля в атмосфере автоспорта.",
+            w:["Парные заезды и дрифт-такси","Романтическое световое оформление трассы","Живая музыка, DJ","Фотозоны для пар","Тёплый лаунж, горячие напитки","Фуд-корт","Фотограф, видеограф"]}
+        };
+
+        var SCHEDULE = {
+          "2027-11-06":[{k:"morozny_drift"}],
+          "2027-11-07":[{k:"family_sunday"}],
+          "2027-11-09":[{k:"track_test"}],
+          "2027-11-10":[{k:"open_garage"}],
+          "2027-11-11":[{k:"hotdog"}],
+          "2027-11-12":[{k:"vecherniy_drift"}],
+          "2027-11-13":[{k:"morozny_drift"}],
+          "2027-11-17":[{k:"den_kontenta"}],
+          "2027-11-20":[{k:"morozny_drift"}],
+          "2027-11-21":[{k:"cars_coffee"}],
+          "2027-11-25":[{k:"hotdog"}],
+          "2027-11-26":[{k:"vecherniy_drift"}],
+          "2027-11-27":[{k:"morozny_drift"}],
+          "2027-11-30":[{k:"team_meet"}],
+          "2027-12-04":[{k:"morozny_drift"}],
+          "2027-12-05":[{k:"winter_camp"}],
+          "2027-12-08":[{k:"open_garage"}],
+          "2027-12-09":[{k:"hotdog"}],
+          "2027-12-10":[{k:"vecherniy_drift"}],
+          "2027-12-11":[{k:"morozny_drift"}],
+          "2027-12-14":[{k:"track_test"}],
+          "2027-12-15":[{k:"den_kontenta"}],
+          "2027-12-18":[{k:"morozny_drift"}],
+          "2027-12-19":[{k:"cars_coffee"}],
+          "2027-12-23":[{k:"hotdog"}],
+          "2027-12-25":[{k:"morozny_drift"}],
+          "2027-12-27":[{k:"ny_fair",n:"27–31 декабря"}],
+          "2027-12-28":[{k:"ny_fair",n:"27–31 декабря"}],
+          "2027-12-29":[{k:"ny_fair",n:"27–31 декабря"}],
+          "2027-12-30":[{k:"ny_fair",n:"27–31 декабря"}],
+          "2027-12-31":[{k:"ny_fair",n:"27–31 декабря"}],
+          "2028-01-08":[{k:"morozny_drift"}],
+          "2028-01-09":[{k:"winter_camp"}],
+          "2028-01-11":[{k:"team_meet"}],
+          "2028-01-12":[{k:"den_kontenta"}],
+          "2028-01-13":[{k:"hotdog"}],
+          "2028-01-14":[{k:"vecherniy_drift"}],
+          "2028-01-15":[{k:"morozny_drift"}],
+          "2028-01-17":[{k:"winter_garage"}],
+          "2028-01-18":[{k:"track_test"}],
+          "2028-01-19":[{k:"open_garage"}],
+          "2028-01-22":[{k:"morozny_drift"}],
+          "2028-01-23":[{k:"cars_coffee"}],
+          "2028-01-27":[{k:"hotdog"}],
+          "2028-01-28":[{k:"vecherniy_drift"}],
+          "2028-01-29":[{k:"morozny_drift"}],
+          "2028-01-30":[{k:"family_sunday"}],
+          "2028-02-05":[{k:"morozny_drift"}],
+          "2028-02-06":[{k:"winter_camp"}],
+          "2028-02-09":[{k:"den_kontenta"}],
+          "2028-02-10":[{k:"hotdog"}],
+          "2028-02-11":[{k:"vecherniy_drift"}],
+          "2028-02-12":[{k:"morozny_drift"}],
+          "2028-02-13":[{k:"cars_coffee"}],
+          "2028-02-14":[{k:"drift_lovers"}],
+          "2028-02-15":[{k:"track_test"}],
+          "2028-02-16":[{k:"open_garage"}],
+          "2028-02-19":[{k:"morozny_drift"}],
+          "2028-02-23":[{k:"drivers_day"}],
+          "2028-02-24":[{k:"hotdog"}],
+          "2028-02-25":[{k:"vecherniy_drift"}],
+          "2028-02-26":[{k:"morozny_drift"}],
+          "2028-02-27":[{k:"family_sunday"}],
+          "2028-03-04":[{k:"morozny_drift"}],
+          "2028-03-05":[{k:"winter_camp"}],
+          "2028-03-08":[{k:"girls_day"}],
+          "2028-03-09":[{k:"hotdog"}],
+          "2028-03-10":[{k:"vecherniy_drift"}],
+          "2028-03-11":[{k:"morozny_drift"}],
+          "2028-03-14":[{k:"team_meet"}],
+          "2028-03-15":[{k:"den_kontenta"}],
+          "2028-03-18":[{k:"morozny_drift"}],
+          "2028-03-19":[{k:"cars_coffee"}],
+          "2028-03-21":[{k:"track_test"}],
+          "2028-03-22":[{k:"open_garage"}],
+          "2028-03-23":[{k:"hotdog"}],
+          "2028-03-24":[{k:"vecherniy_drift"}],
+          "2028-03-25":[{k:"morozny_drift"}],
+          "2028-03-26":[{k:"family_sunday"}],
+          "2028-04-02":[{k:"winter_camp"}],
+          "2028-04-14":[{k:"vecherniy_drift"}],
+          "2028-04-16":[{k:"family_sunday"}],
+          "2028-05-01":[{k:"garage_picnic"}]
+        };
+
+        var MONTHS = [
+          {y:2027,m:10,label:"Ноябрь"},
+          {y:2027,m:11,label:"Декабрь"},
+          {y:2028,m:0,label:"Январь"},
+          {y:2028,m:1,label:"Февраль"},
+          {y:2028,m:2,label:"Март"},
+          {y:2028,m:3,label:"Апрель"},
+          {y:2028,m:4,label:"Май"}
+        ];
+        var DOW = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
+        var MON_GEN = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+        var WD_FULL = ["воскресенье","понедельник","вторник","среда","четверг","пятница","суббота"];
+        var FLAG = "2028-02-23";
+        var FEATURED = {drivers_day:1, ny_fair:1, girls_day:1, drift_lovers:1};
+
+        var $tabs=document.getElementById("drpCal4Tabs"),
+            $dow=document.getElementById("drpCal4Dow"),
+            $grid=document.getElementById("drpCal4Grid"),
+            $panel=document.getElementById("drpCal4Panel"),
+            $tip=document.getElementById("drpCal4Tip");
+
+        /* move tooltip to <body> so position:fixed is relative to the viewport —
+           ancestors use "transform: translateY(0)" for scroll-reveal, which
+           otherwise becomes the fixed-position containing block and throws off placement */
+        document.body.appendChild($tip);
+
+        var cur=0, selKey=null;
+        var canHover = window.matchMedia && window.matchMedia("(hover:hover)").matches;
+
+        function pad(n){return (n<10?"0":"")+n;}
+        function keyOf(y,m,d){return y+"-"+pad(m+1)+"-"+pad(d);}
+        function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+        /* counts for summary */
+        var COUNT={A:0,B:0,C:0,total:0};
+        for(var key in SCHEDULE){ if(!SCHEDULE.hasOwnProperty(key))continue;
+          SCHEDULE[key].forEach(function(e){var c=TYPES[e.k].cls;COUNT[c]++;COUNT.total++;});
+        }
+
+        /* header stat appended to lede */
+        (function(){
+          var l=document.querySelector("#drpCal4 .lede");
+          var s=document.createElement("span");
+          s.style.cssText="display:block;margin-top:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--ink-3)";
+          s.textContent=COUNT.total+" событий · ноябрь 2027 — май 2028";
+          l.appendChild(s);
+        })();
+
+        /* tabs */
+        MONTHS.forEach(function(mo,i){
+          var b=document.createElement("button");
+          b.className="tab";b.type="button";
+          b.setAttribute("aria-selected", i===0?"true":"false");
+          b.innerHTML=esc(mo.label)+' <span class="yr">'+mo.y+"</span>";
+          b.addEventListener("click",function(){ cur=i; syncTabs(); renderMonth(); });
+          $tabs.appendChild(b);
+        });
+        function syncTabs(){
+          Array.prototype.forEach.call($tabs.children,function(c,i){
+            c.setAttribute("aria-selected", i===cur?"true":"false");
+          });
+        }
+
+        /* weekday header */
+        DOW.forEach(function(d){var s=document.createElement("span");s.textContent=d;$dow.appendChild(s);});
+
+        function renderMonth(){
+          var mo=MONTHS[cur], first=new Date(mo.y,mo.m,1).getDay();
+          var offset=(first+6)%7;
+          var days=new Date(mo.y,mo.m+1,0).getDate();
+          var html="";
+          for(var i=0;i<offset;i++){ html+='<div class="cell empty" aria-hidden="true"></div>'; }
+          for(var d=1;d<=days;d++){
+            var k=keyOf(mo.y,mo.m,d);
+            var evs=SCHEDULE[k];
+            var wd=new Date(mo.y,mo.m,d).getDay();
+            var feat=evs&&evs.some(function(e){return FEATURED[e.k];});
+            var cls="cell"+((wd===0||wd===6)?" weekend":"")+(evs?" has":"")+(feat?" flag":"")+(k===selKey?" sel":"");
+            var chips="";
+            if(evs){
+              chips='<div class="chips">';
+              evs.forEach(function(e){
+                var t=TYPES[e.k];
+                chips+='<span class="chip '+t.cls+(FEATURED[e.k]?" go":"")+'"><span class="txt">'+esc(t.name)+'</span></span>';
+              });
+              chips+='</div>';
+            }
+            var label=evs? (d+", "+evs.length+" событий") : (""+d);
+            html+='<'+(evs?"button":"div")+' class="'+cls+'"'+(evs?' type="button" data-k="'+k+'" aria-label="'+esc(label)+'"':' aria-hidden="true"')+'>'
+                 + '<span class="num">'+d+'</span>'+chips
+                 + '</'+(evs?"button":"div")+'>';
+          }
+          var total=offset+days, trail=(7-(total%7))%7;
+          for(var t2=0;t2<trail;t2++){ html+='<div class="cell empty" aria-hidden="true"></div>'; }
+          $grid.innerHTML=html;
+        }
+
+        /* panel: day detail */
+        function renderDay(k){
+          var evs=SCHEDULE[k]; if(!evs)return;
+          var p=k.split("-"), y=+p[0], m=+p[1]-1, d=+p[2];
+          var wd=new Date(y,m,d).getDay();
+          var head='<div class="p-head"><div>'
+            +'<div class="p-eyebrow">Программа дня</div>'
+            +'<h3 class="p-date">'+d+" "+MON_GEN[m]+" · "+WD_FULL[wd]+'</h3></div>'
+            +'<button class="p-close" type="button" id="drpCal4PClose">← Сезон</button></div>';
+          var body="";
+          evs.forEach(function(e){
+            var t=TYPES[e.k];
+            body+='<div class="ev">'
+              +'<span class="badge '+t.cls+(FEATURED[e.k]?" go":"")+'">'+(FEATURED[e.k]?"★ "+(t.star||"Ключевое событие"):"Класс "+t.cls)+'</span>'
+              +'<h4 class="ev-name">'+esc(t.name)+(e.n?' <span class="ev-note">· '+esc(e.n)+'</span>':'')+'</h4>'
+              +'<div class="ev-meta"><span>Гостей: <b>'+esc(t.g)+'</b></span>'+(t.freq?'<span>'+esc(t.freq)+'</span>':'')+'</div>'
+              +'<p class="ev-desc">'+esc(t.desc)+'</p>'
+              +'<div class="works-label">Ориентировочный список работ</div>'
+              +'<ul class="ev-works">'+t.w.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul>'
+              +'</div>';
+          });
+          $panel.innerHTML=head+body;
+          document.getElementById("drpCal4PClose").addEventListener("click",function(){ selKey=null; renderSummary(); renderMonth(); });
+        }
+
+        function renderSummary(){
+          $panel.innerHTML=
+            '<div class="p-eyebrow">Обзор сезона</div>'
+            +'<h3 class="p-date" style="text-transform:none">Зима 2027–2028</h3>'
+            +'<div class="sum-nums">'
+              +'<div class="stat A"><div class="n">'+COUNT.A+'</div><div class="l">Класс A<br>фестивали</div></div>'
+              +'<div class="stat B"><div class="n">'+COUNT.B+'</div><div class="l">Класс B<br>клубные</div></div>'
+              +'<div class="stat C"><div class="n">'+COUNT.C+'</div><div class="l">Класс C<br>регулярные</div></div>'
+            +'</div>'
+            +'<p class="sum-note">Первый зимний сезон DRP: еженедельный Морозный дрифт и вечерние заезды, образовательные Winter Camp и тематические праздники — Новогодняя ярмарка (27–31 декабря), Drift Lovers 14 февраля, DRP Drivers Day 23 февраля, Girls Drive Day 8 марта и Garage Picnic 1 мая.</p>'
+            +'<div class="sum-hint">Выберите день в календаре →</div>';
+        }
+
+        /* tooltip */
+        var tipKey=null;
+        function positionTip(x,y){
+          var tr=$tip.getBoundingClientRect();
+          var left=Math.min(Math.max(tr.width/2+6, x), window.innerWidth-tr.width/2-6);
+          var top=y-16;
+          $tip.style.left=left+"px";
+          if(top-tr.height<6){ $tip.style.top=(y+16+tr.height)+"px"; }
+          else { $tip.style.top=top+"px"; }
+        }
+        function showTip(x,y,k){
+          var evs=SCHEDULE[k]; if(!evs)return;
+          tipKey=k;
+          var p=k.split("-"), d=+p[2], m=+p[1]-1;
+          var rows=evs.map(function(e){var t=TYPES[e.k];
+            return '<div class="tip-row"><span class="tip-dot '+t.cls+'"></span>'+esc(t.name)+(e.n?' · '+esc(e.n):'')+'</div>';}).join("");
+          $tip.innerHTML='<div class="tip-d">'+d+" "+MON_GEN[m]+'</div>'+rows;
+          $tip.hidden=false;
+          positionTip(x,y);
+        }
+        function hideTip(){ $tip.hidden=true; tipKey=null; }
+
+        /* interactions (delegated) */
+        $grid.addEventListener("click",function(ev){
+          var c=ev.target.closest(".cell.has"); if(!c)return;
+          selKey=c.getAttribute("data-k");
+          renderDay(selKey); renderMonth(); hideTip();
+          if(window.innerWidth<=860){ $panel.scrollIntoView({behavior:"smooth",block:"start"}); }
+        });
+        if(canHover){
+          $grid.addEventListener("mouseover",function(ev){
+            var c=ev.target.closest(".cell.has"); if(!c)return;
+            showTip(ev.clientX, ev.clientY, c.getAttribute("data-k"));
+          });
+          $grid.addEventListener("mousemove",function(ev){
+            var c=ev.target.closest(".cell.has"); if(!c)return;
+            if($tip.hidden || tipKey!==c.getAttribute("data-k")){ showTip(ev.clientX, ev.clientY, c.getAttribute("data-k")); }
+            else { positionTip(ev.clientX, ev.clientY); }
+          });
+          $grid.addEventListener("mouseout",function(ev){
+            var c=ev.target.closest(".cell.has"); if(!c)return;
+            if(!c.contains(ev.relatedTarget)) hideTip();
+          });
+          window.addEventListener("scroll",hideTip,{passive:true});
+        }
+
+        /* init */
+        syncTabs(); renderMonth(); renderSummary();
+      })();
+      </script>
+      </div>
+
+      <div class="stage-events-link">
+        <div class="stage-events-link-title">Детальный план мероприятий, спецпроектов и наружной коммуникации</div>
+        <div class="stage-events-link-desc">Полный календарь активностей, форматов и офлайн-точек контакта на этом этапе ведётся в отдельной таблице.</div>
+        <a href="https://docs.google.com/spreadsheets/d/1WnzvRiEgekiQ_Y95LRysDT2K8VQR1N1rk2xlPTxJ2uw/edit?gid=377337266#gid=377337266" target="_blank" rel="noopener">Открыть таблицу мероприятий →</a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 5 -->
+  <div class="stage-panel" data-stage="5">
+    <div class="stage-meta-grid reveal">
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">ЦА этапа</div>
+          <ul class="stage-dash-list">
+            <li>Профессионалы, дрифт-энтузиасты, автолюбители</li>
+            <li>B2B</li>
+            <li>Широкие аудитории</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Цели этапа</div>
+          <ol class="stage-num-list">
+            <li>Превратить открытие DRP в одно из самых заметных событий сезона в Санкт-Петербурге.</li>
+            <li>Закрепить DRP как новую точку притяжения Санкт-Петербурга.</li>
+            <li>Продемонстрировать все возможности, продукты и сценарии посещения DRP.</li>
+            <li>Закрепить устойчивое восприятие DRP как главной базы для дрифта.</li>
+            <li>Сформировать привычку регулярно возвращаться в DRP через продукты, мероприятия и календарь событий.</li>
+            <li>Усилить сообщество вокруг DRP через контент, мероприятия, партнёрства и UGC.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Продукты этапа</div>
+          <ul class="stage-dash-list">
+            <li>Трек и спорт</li>
+            <li>Кафе и F&amp;B</li>
+            <li>Аренда боксов</li>
+            <li>Мерч и околоспортивный retail</li>
+            <li>Арендаторы и автосервисы</li>
+            <li>Digital Sales Layer</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Функции на этапе</div>
+          <div class="stage-func-badges">
+            <div class="stage-func-badge active">SMM</div>
+            <div class="stage-func-badge active">Performance</div>
+            <div class="stage-func-badge active">PR</div>
+            <div class="stage-func-badge active">Мероприятия</div>
+            <div class="stage-func-badge active">Спецпроекты</div>
+            <div class="stage-func-badge active">Наружка и офлайн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">01</div>
+        <div class="stage-function-name">SMM</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Канал</th><th>Роль и фокус на этапе</th><th>Форматы контента / активности</th><th>Объём (ед./мес)</th><th>KPI канала</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Telegram</td><td>Открытие: освещение открытия и событий, продукты, удержание</td><td>Контент открытия и событий, всё об экосистеме, продукты, удержание (ежедневно в пик)</td><td>30 постов + 8 видео</td><td>Продажи/брони (атриб.), билеты, активность</td></tr>
+            <tr><td>ВКонтакте</td><td>Максимум охвата</td><td>События, конкурсы, UGC, клипы</td><td>24 поста + 12 клипов</td><td>Охват, брони, сообщество</td></tr>
+            <tr><td>Instagram</td><td>Контент событий, must-visit</td><td>Контент событий, продукты, UGC</td><td>24 / 20 / 90</td><td>Охват, ER, переходы, продажи</td></tr>
+            <tr><td>YouTube</td><td>Репортажи и трансляции</td><td>Репортажи/трансляции событий, соревнования, продукты</td><td>5 роликов + 12 Shorts</td><td>Просмотры, переходы</td></tr>
+            <tr><td>Яндекс Дзен</td><td>Экосистема и кейсы</td><td>Материалы об экосистеме, кейсы</td><td>6 материалов</td><td>Дочитывания</td></tr>
+            <tr><td>Яндекс Карты / 2ГИС</td><td>Конверсия в визит</td><td>Генерация отзывов, события, фото</td><td>4 обновления + активная работа</td><td>Рейтинг, отзывы, маршруты → визит</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stage-simple-title" style="margin-top:48px;">KPI</div>
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Метрика</th><th>Ед. изм.</th><th>Нижняя граница</th><th>Верхняя граница</th><th>Комментарий / фаза воронки</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Совокупный охват за этап</td><td>охваты</td><td>20 000 000</td><td>30 000 000</td><td>Открытие; массовый приток (6 мес)</td></tr>
+            <tr><td>Билеты на события</td><td>шт.</td><td>10 000</td><td>20 000</td><td>Action</td></tr>
+            <tr><td>Продажи / брони (атриб. SMM)</td><td>₽</td><td>20 000 000 ₽</td><td>40 000 000 ₽</td><td>План — уточняется после модели атрибуции</td></tr>
+            <tr><td>Загрузка ключевых продуктов</td><td>%</td><td>60%</td><td>80%</td><td>Трек / обучение / боксы</td></tr>
+            <tr><td>UGC-единицы</td><td>ед.</td><td>800</td><td>1 500</td><td>Контент событий</td></tr>
+            <tr><td>Медиапубликации (tier-1)</td><td>шт.</td><td>25</td><td>50</td><td>Доля голоса</td></tr>
+            <tr><td>Повторные визиты</td><td>%</td><td>25%</td><td>40%</td><td>Retention (старт)</td></tr>
+            <tr><td>ДРР (доля рекл. расходов)</td><td>%</td><td>15%</td><td>30%</td><td>Чем ниже — тем лучше</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">02</div>
+        <div class="stage-function-name">Performance</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line">лето 2028 · 6 мес · Пиковая закупка. Официальное открытие. Сезон соревнований и мероприятий.</div>
+      <div class="stage-perf-boxes">
+        <div class="stage-perf-box tint">
+          <div class="stage-perf-box-title">Продукты в закупке</div>
+          <div class="stage-perf-box-sub">Полный ассортимент продуктов DRP, публичный сезон</div>
+          <ul>
+            <li class="strong">Крупные соревнования (билеты, регистрации)</li>
+            <li class="strong">Онлайн-курсы (массовый охват)</li>
+            <li class="strong">Курсы судейства / механики / тюнинга</li>
+            <li class="strong">Магазин экипировки</li>
+            <li class="strong">Туристические пакеты (для регионов)</li>
+            <li class="strong">Автокинотеатр</li>
+            <li class="strong">Локальные фестивали / Бренд-дни</li>
+            <li class="strong">Партнёрские академии, презентации продуктов</li>
+          </ul>
+        </div>
+        <div class="stage-perf-box">
+          <div class="stage-perf-box-title">Задачи периода</div>
+          <ul>
+            <li>Пиковая закупка на открытие — максимальная нагрузка</li>
+            <li>Массовая узнаваемость и охват широких сегментов</li>
+            <li>Геотаргет под крупные ивенты и соревнования</li>
+            <li>Look-alike и Look-alike 2.0 по накопленной CRM-базе</li>
+            <li>Полномасштабная коммуникация: контент × перформанс</li>
+          </ul>
+          <div class="stage-perf-box-divider">
+            <div class="stage-perf-box-note">Тест продуктов следующего этапа</div>
+            <ul>
+              <li>Зимний / специальный дрифт — тест на энтузиастах</li>
+              <li>Квесты — тест как альтернатива летнему потоку</li>
+              <li>Онлайн-магазин мерча — тест e-commerce на подписчиках</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="stage-result-line">Ожидаемый результат: пиковый поток гостей на открытие, полноценный летний сезон</div>
+
+      <div class="stage-simple-title" style="margin-top:40px;">Каналы и стратегия</div>
+      <div style="font-size:13px;font-style:italic;color:rgba(255,255,255,0.4);margin-top:-14px;margin-bottom:16px;">распределение и приоритеты по продуктам</div>
+      <div class="stage-two-col">
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Распределение по каналам</div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#FF6B00;"></div><div class="stage-dist-name">Яндекс.Директ</div><div class="stage-dist-pct">65%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#3c50b4;"></div><div class="stage-dist-name">VK Ads</div><div class="stage-dist-pct">20%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#c0392b;"></div><div class="stage-dist-name">Telegram Ads</div><div class="stage-dist-pct">15%</div></div>
+          <div class="stage-perf-box-note" style="margin-top:6px;">CPL продуктов: билеты мероприятия и соревнования 1100–1700 ₽, B2B 15–25 тыс ₽ · Охват: 12–15 млн пользователей · Рост CRM-базы: до 10 тысяч контактов</div>
+        </div>
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Приоритетные каналы под продукты</div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.Поиск</div><div class="stage-priority-desc">Билеты на соревнования, туристические пакеты, курсы</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.РСЯ + Look-alike</div><div class="stage-priority-desc">Массовый охват под открытие</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">VK Видео + Look-alike</div><div class="stage-priority-desc">Ивенты, фестивали, регионы</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Telegram</div><div class="stage-priority-desc">Ретаргет и удержание энтузиастов</div></div>
+          <div class="stage-budget-box">
+            <div class="stage-budget-box-title">Тестовый бюджет: программатик / in-app</div>
+            <div class="stage-budget-box-value">8,33% от общего бюджета</div>
+            <div class="stage-budget-box-desc">Программатик масштабируем после успешных тестов этапов 3–4. Премиум-таргет и медийка.</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">03</div>
+        <div class="stage-function-name">PR</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line"><strong>Цель:</strong> привлечь максимальный охват, показать открытие как событие федерального и мирового масштаба, показать, как парк изменит/расширит мир российского дрифта</div>
+      <ul class="stage-dash-list">
+        <li>Пресс-конференция</li>
+        <li>Возможно отдельный ивент для медиа</li>
+        <li>Или отдельный сценарий для представителей медиа на открытии (сопровождение, пресс-подходы, возможности тестировать парк и пр.)</li>
+        <li>Прямые трансляции</li>
+        <li>Стимуляция UGC</li>
+      </ul>
+      <div class="stage-goal-line" style="margin-top:20px;">Требуется отдельная проработка.</div>
+      <div class="stage-simple-title" style="margin-top:32px;">KPI</div>
+      <ul class="stage-dash-list">
+        <li>не менее 100 публикаций</li>
+        <li>10–20 федеральных СМИ</li>
+        <li>20+ инфлюенсеров</li>
+      </ul>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">04</div>
+        <div class="stage-function-name">Мероприятия и спецпроекты</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div style="margin-bottom:40px;">
+      <style>
+      .drp-cal{
+        /* ——— dark tokens (matches site theme) ——— */
+        --bg:#121212; --panel:#1a1a1a; --panel-2:#202020;
+        --ink:#F5F2EC; --ink-2:rgba(245,242,236,0.58); --ink-3:rgba(245,242,236,0.36);
+        --line:rgba(255,255,255,0.10); --line-2:rgba(255,255,255,0.06);
+        --accent:#FF6B00;
+        --a:#FF6B00;   /* A — крупные фестивали */
+        --b:#8B98A3;   /* B — клубные события   */
+        --c:#D7A457;   /* C — регулярные форматы */
+        --font-sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+        --font-mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+
+        color:var(--ink);
+        background:
+          radial-gradient(120% 90% at 100% 0%, color-mix(in srgb,var(--accent) 8%,transparent), transparent 60%),
+          var(--bg);
+        border:1px solid rgba(255,255,255,0.08);
+        font-family:var(--font-sans);
+        -webkit-font-smoothing:antialiased;
+        line-height:1.5;
+        padding:clamp(18px,4vw,44px) clamp(14px,4vw,44px);
+        box-sizing:border-box;
+        border-radius:16px;
+      }
+      .drp-cal *,.drp-cal *::before,.drp-cal *::after{box-sizing:border-box;}
+
+      .drp-cal .wrap{max-width:1360px;margin:0 auto;}
+
+      /* ——— header ——— */
+      .drp-cal .head{
+        display:flex;flex-wrap:wrap;gap:24px 32px;align-items:flex-end;
+        justify-content:space-between;
+        padding-bottom:22px;border-bottom:1px solid var(--line);
+      }
+      .drp-cal .eyebrow{
+        display:inline-flex;align-items:center;gap:8px;
+        font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;
+        text-transform:uppercase;color:var(--ink-2);margin-bottom:14px;
+      }
+      .drp-cal .tick{width:9px;height:9px;background:var(--accent);display:inline-block;}
+      .drp-cal .title{
+        font-size:clamp(28px,5vw,46px);line-height:1.02;font-weight:800;
+        letter-spacing:-.025em;margin:0;text-wrap:balance;
+      }
+      .drp-cal .lede{
+        margin:14px 0 0;max-width:46ch;color:var(--ink-2);font-size:15px;
+      }
+      .drp-cal .legend{display:flex;flex-direction:column;gap:9px;}
+      .drp-cal .lg{
+        display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-2);
+      }
+      .drp-cal .lg b{color:var(--ink);font-family:var(--font-mono);font-weight:700;width:14px;}
+      .drp-cal .sw{width:13px;height:13px;border-radius:3px;flex:none;}
+      .drp-cal .sw.A{background:var(--a);}
+      .drp-cal .sw.B{background:var(--b);}
+      .drp-cal .sw.C{background:var(--c);}
+
+      /* ——— month tabs ——— */
+      .drp-cal .tabs{
+        display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 18px;
+      }
+      .drp-cal .tab{
+        appearance:none;border:1px solid var(--line);background:var(--panel);
+        color:var(--ink-2);font-family:var(--font-sans);font-size:13.5px;font-weight:600;
+        padding:9px 16px;border-radius:999px;cursor:pointer;
+        display:inline-flex;align-items:baseline;gap:8px;
+        transition:background .18s,color .18s,border-color .18s,transform .12s;
+      }
+      .drp-cal .tab .yr{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);}
+      .drp-cal .tab:hover{color:var(--ink);border-color:var(--ink-3);}
+      .drp-cal .tab[aria-selected="true"]{
+        background:var(--ink);color:var(--panel);border-color:var(--ink);
+      }
+      .drp-cal .tab[aria-selected="true"] .yr{color:color-mix(in srgb,var(--panel) 65%,transparent);}
+      .drp-cal .tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+      /* ——— layout ——— */
+      .drp-cal .body{
+        display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,360px);gap:20px;align-items:start;
+      }
+      @media (max-width:860px){ .drp-cal .body{grid-template-columns:1fr;} }
+
+      /* ——— calendar ——— */
+      .drp-cal .cal{
+        border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--line);min-width:0;
+      }
+      .drp-cal .dow{
+        display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:var(--line);
+      }
+      .drp-cal .dow span{
+        background:var(--panel-2);text-align:center;padding:10px 0;
+        font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;
+        text-transform:uppercase;color:var(--ink-3);
+      }
+      .drp-cal .grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:var(--line);}
+      .drp-cal .cell{
+        background:var(--panel);min-height:110px;padding:9px 9px 10px;min-width:0;
+        display:flex;flex-direction:column;gap:6px;text-align:left;
+        border:0;font:inherit;color:inherit;cursor:pointer;position:relative;
+        transition:background .15s;
+      }
+      .drp-cal .cell.empty{background:var(--panel-2);cursor:default;}
+      .drp-cal .cell.weekend{background:color-mix(in srgb,var(--panel-2) 55%,var(--panel));}
+      .drp-cal .cell.has:hover{background:color-mix(in srgb,var(--accent) 8%,var(--panel));}
+      .drp-cal .cell:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;z-index:2;}
+      .drp-cal .cell .num{
+        font-family:var(--font-mono);font-size:13px;font-weight:600;
+        color:var(--ink-2);font-variant-numeric:tabular-nums;line-height:1;
+      }
+      .drp-cal .cell.weekend .num{color:var(--ink-3);}
+      .drp-cal .cell.has .num{color:var(--ink);}
+      .drp-cal .cell.flag{background:color-mix(in srgb,#FF6B00 12%,var(--panel));}
+      .drp-cal .cell.flag::after{
+        content:"";position:absolute;inset:0;border:2px solid #FF6B00;
+        border-radius:2px;pointer-events:none;
+        box-shadow:inset 0 0 0 1px rgba(255,107,0,.35),0 0 20px rgba(255,107,0,.28);
+      }
+      .drp-cal .cell.sel{background:color-mix(in srgb,var(--accent) 14%,var(--panel));}
+      .drp-cal .cell.sel .num{color:var(--accent);}
+
+      .drp-cal .chips{display:flex;flex-direction:column;gap:4px;margin-top:auto;min-width:0;}
+      .drp-cal .chip{
+        display:flex;align-items:center;gap:0;min-width:0;
+        border:1px solid;border-radius:5px;padding:3px 8px;
+        font-size:11.5px;font-weight:600;line-height:1.3;
+        max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+      }
+      .drp-cal .chip .txt{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+      .drp-cal .chip.A{background:var(--a);color:#fff;border-color:var(--a);}
+      .drp-cal .chip.B{background:color-mix(in srgb,var(--b) 13%,transparent);color:var(--b);border-color:color-mix(in srgb,var(--b) 38%,transparent);}
+      .drp-cal .chip.C{background:color-mix(in srgb,var(--c) 13%,transparent);color:var(--c);border-color:color-mix(in srgb,var(--c) 38%,transparent);}
+      .drp-cal .chip.go{
+        background:linear-gradient(180deg,#FF8A3D,#FF6B00);color:#fff;border-color:#FF8A3D;font-weight:700;
+        box-shadow:0 0 0 1px rgba(255,138,61,.40),0 5px 16px rgba(255,107,0,.50);
+      }
+      .drp-cal .chip.go .txt::before{content:"\2605\00a0";}
+
+      /* ——— detail panel ——— */
+      .drp-cal .panel{
+        position:sticky;top:16px;
+        border:1px solid var(--line);border-radius:12px;background:var(--panel);
+        padding:20px;min-height:220px;
+      }
+      .drp-cal .panel .p-eyebrow{
+        font-family:var(--font-mono);font-size:10.5px;letter-spacing:.18em;
+        text-transform:uppercase;color:var(--ink-3);
+      }
+      .drp-cal .panel .p-date{
+        font-size:20px;font-weight:800;letter-spacing:-.02em;margin:6px 0 0;text-transform:capitalize;
+      }
+      .drp-cal .p-close{
+        appearance:none;border:1px solid var(--line);background:transparent;color:var(--ink-2);
+        font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+        padding:6px 11px;border-radius:999px;cursor:pointer;transition:.15s;
+      }
+      .drp-cal .p-close:hover{color:var(--ink);border-color:var(--ink-3);}
+      .drp-cal .p-close:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+      .drp-cal .ev{border-top:1px solid var(--line);padding-top:16px;margin-top:16px;}
+      .drp-cal .ev:first-of-type{border-top:0;padding-top:0;margin-top:18px;}
+      .drp-cal .badge{
+        display:inline-flex;align-items:center;gap:6px;
+        font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;
+        text-transform:uppercase;padding:3px 8px;border-radius:5px;border:1px solid;
+      }
+      .drp-cal .badge.A{background:var(--a);color:#fff;border-color:var(--a);}
+      .drp-cal .badge.B{background:color-mix(in srgb,var(--b) 14%,transparent);color:var(--b);border-color:color-mix(in srgb,var(--b) 40%,transparent);}
+      .drp-cal .badge.C{background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--c);border-color:color-mix(in srgb,var(--c) 40%,transparent);}
+      .drp-cal .badge.go{background:linear-gradient(180deg,#FF8A3D,#FF6B00);color:#fff;border-color:#FF8A3D;box-shadow:0 4px 14px rgba(255,107,0,.45);}
+      .drp-cal .ev-name{font-size:17px;font-weight:750;letter-spacing:-.015em;margin:10px 0 0;text-wrap:balance;}
+      .drp-cal .ev-note{color:var(--accent);font-weight:700;font-size:13px;}
+      .drp-cal .ev-meta{
+        display:flex;flex-wrap:wrap;gap:6px 14px;margin:9px 0 0;
+        font-family:var(--font-mono);font-size:11.5px;color:var(--ink-2);
+      }
+      .drp-cal .ev-meta b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;}
+      .drp-cal .ev-desc{margin:11px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.55;}
+      .drp-cal .ev-works{
+        list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px;
+      }
+      .drp-cal .ev-works li{
+        font-size:11.5px;color:var(--ink-2);background:var(--panel-2);
+        border:1px solid var(--line);border-radius:5px;padding:3px 8px;
+      }
+      .drp-cal .works-label{
+        font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+        color:var(--ink-3);margin:14px 0 0;
+      }
+
+      /* summary (default panel state) */
+      .drp-cal .sum-nums{display:flex;gap:8px;margin:16px 0 0;}
+      .drp-cal .stat{flex:1;border:1px solid var(--line);border-radius:9px;padding:12px 10px;background:var(--panel-2);}
+      .drp-cal .stat .n{font-family:var(--font-mono);font-size:26px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;}
+      .drp-cal .stat.A .n{color:var(--a);}
+      .drp-cal .stat.B .n{color:var(--b);}
+      .drp-cal .stat.C .n{color:var(--c);}
+      .drp-cal .stat .l{font-size:11px;color:var(--ink-2);margin-top:6px;line-height:1.3;}
+      .drp-cal .sum-note{margin:16px 0 0;font-size:13px;color:var(--ink-2);line-height:1.55;}
+      .drp-cal .sum-hint{
+        margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);
+        font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);
+      }
+      .drp-cal .p-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+
+      /* ——— hover tooltip ———
+         Note: this element is moved to <body> by the calendar script so that
+         position:fixed is relative to the viewport (an ancestor inside .drp-cal
+         uses "transform: translateY(0)" for scroll-reveal, which otherwise
+         becomes the fixed containing block). Because of that, these rules are
+         written against the #drpCal5Tip id — not ".drp-cal .tip" — and colors
+         are hardcoded rather than read from .drp-cal's custom properties. */
+      #drpCal5Tip{
+        position:fixed;z-index:9999;pointer-events:none;
+        background:#F5F2EC;color:#1a1a1a;
+        border-radius:8px;padding:9px 11px;max-width:240px;
+        box-shadow:0 10px 30px rgba(0,0,0,.45);
+        font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+        font-size:12px;line-height:1.4;
+        transform:translate(-50%,-100%);
+      }
+      #drpCal5Tip .tip-d{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;margin-bottom:5px;}
+      #drpCal5Tip .tip-row{display:flex;align-items:center;gap:7px;margin-top:4px;}
+      #drpCal5Tip .tip-dot{width:7px;height:7px;border-radius:2px;flex:none;}
+      #drpCal5Tip .tip-dot.A{background:#FF6B00;}
+      #drpCal5Tip .tip-dot.B{background:#8B98A3;}
+      #drpCal5Tip .tip-dot.C{background:#D7A457;}
+      #drpCal5Tip[hidden]{display:none;}
+
+      @media (max-width:520px){
+        .drp-cal .cell{min-height:60px;padding:6px 5px;}
+        .drp-cal .chip{padding:0;width:8px;height:8px;border-radius:50%;justify-content:center;}
+        .drp-cal .chip .txt{display:none;}
+        .drp-cal .chips{flex-direction:row;flex-wrap:wrap;gap:4px;}
+        .drp-cal .legend{flex-direction:row;flex-wrap:wrap;gap:12px;}
+      }
+      @media (prefers-reduced-motion:reduce){
+        .drp-cal *{transition:none!important;}
+      }
+      </style>
+
+      <section class="drp-cal" id="drpCal5">
+        <div class="wrap">
+          <header class="head">
+            <div class="head-main">
+              <div class="eyebrow"><span class="tick"></span>DRP · Сезон 2028</div>
+              <h2 class="title">Календарь событий</h2>
+              <p class="lede">Первый сезон Drift Racing Park — от Grand Opening до закрытия. Наведите курсор или нажмите на день, чтобы увидеть программу.</p>
+            </div>
+            <div class="legend" role="list" aria-label="Классы событий">
+              <span class="lg" role="listitem"><i class="sw A"></i><b>A</b> Крупные фестивали</span>
+              <span class="lg" role="listitem"><i class="sw B"></i><b>B</b> Клубные события</span>
+              <span class="lg" role="listitem"><i class="sw C"></i><b>C</b> Регулярные форматы</span>
+            </div>
+          </header>
+
+          <nav class="tabs" id="drpCal5Tabs" aria-label="Месяцы сезона"></nav>
+
+          <div class="body">
+            <div class="cal">
+              <div class="dow" id="drpCal5Dow"></div>
+              <div class="grid" id="drpCal5Grid" role="grid" aria-label="Календарь событий"></div>
+            </div>
+            <aside class="panel" id="drpCal5Panel" aria-live="polite"></aside>
+          </div>
+        </div>
+        <div class="tip" id="drpCal5Tip" role="tooltip" hidden></div>
+      </section>
+
+      <script>
+      (function(){
+        var TYPES = {
+          grand_opening:{name:"Grand Opening Festival",cls:"A",g:"5 000–10 000",freq:"Главное событие открытия",
+            desc:"Главное событие открытия DRP. Двухдневный фестиваль с профессиональными дрифт-заездами, шоу-программой, концертом, партнёрскими зонами, фуд-кортами и презентацией всех продуктов комплекса.",
+            w:["Концепция и режиссура","Продакшн: сцена, свет, звук, LED","Церемония открытия","Дрифт-шоу","Концерт, ведущий","Приглашённые пилоты","Партнёрские и детская зоны","Навигация, регистрация","Охрана, медицина","Фото/видео, контент-команда","Брендинг территории, мерч","VIP-зона"]},
+          summer_drift:{name:"Summer Drift Festival",cls:"A",g:"3 000–5 000",freq:"Двухдневный фестиваль",
+            desc:"Два дня соревнований и шоу-заездов по дрифту, дрифт-такси, открытый паддок с пилотами, выставка редких и кастомных авто, зоны автобрендов, фуд-корт, музыкальная сцена и вечерняя программа.",
+            w:["Спортивная программа и шоу-заезды","Дрифт-такси","Открытый паддок","Выставка автомобилей","Музыкальная сцена, DJ и артисты","Фуд-корт, маркет","Партнёрские активации","Детская зона","Фото/видео","Охрана, медицина","Навигация и оформление"]},
+          sound_taste:{name:"Sound & Taste",cls:"A",g:"4 000–5 000",freq:"Музыкально-гастрономический фестиваль",
+            desc:"Главный летний музыкально-гастрономический фестиваль DRP: живая музыка, современная гастрономия и отдых на открытом воздухе. Территория превращается в большой городской фестиваль с несколькими сценами и гастромаркетом.",
+            w:["Главная сцена, DJ Stage","Гастромаркет: рестораны и фуд-траки","Фермерский маркет","Лаунж- и пикниковые зоны","Мастер-классы от шефов","Детская зона","Маркет локальных брендов","Арт-инсталляции","Вечернее световое шоу","Фото/видео"]},
+          garage_sale:{name:"Garage Sale Weekend",cls:"A",g:"3 000–5 000",freq:"Автомобильный маркет",
+            desc:"Большой автомобильный маркет: участники продают и покупают запчасти, колёса, экипировку, винил, мерч и коллекционные предметы. Регулярная точка встречи автомобильного сообщества.",
+            w:["Организация маркета","Сцена, DJ","Партнёрские зоны","Фотограф","Видеопродакшн"]},
+          detailing_tuning:{name:"Detailing & Tuning Weekend",cls:"A",g:"1 500–3 000",freq:"Фестиваль детейлинга и тюнинга",
+            desc:"Фестиваль детейлинга, оклейки, тюнинга и ухода за автомобилями с мастер-классами и презентациями ведущих брендов.",
+            w:["Выставка брендов","Мастер-классы","Соревнования по детейлингу","Партнёрские стенды","Лекции","Фото/видео"]},
+          media_day:{name:"Media Day",cls:"A",g:"2 000–3 000",freq:"Серия из 6 медиа-дней за сезон",
+            desc:"Серия закрытых медиа-дней: DRP приглашает известных медийных персон, не связанных с автоспортом, познакомиться с дрифтом на собственном опыте. Под руководством инструкторов гости проходят обучение и соревнуются за лучшее время и точность.",
+            w:["Приглашение селебрити и инфлюенсеров","Видео- и фотосъёмка","Ведущий, интервью-зона","Пресс-центр","Обучение с инструкторами","Соревновательные испытания","Электронная турнирная таблица","Партнёрские интеграции","Брендзоны, кейтеринг, DJ"]},
+          spb_cup:{name:"Кубок Санкт-Петербурга по дрифту",cls:"A",g:"3 000–5 000",freq:"Официальные соревнования",
+            desc:"Кубок Санкт-Петербурга по дрифту — официальный этап соревнований на трассе DRP с квалификацией, парными заездами и награждением.",
+            w:["Спортивная организация заездов","Судейство и хронометраж","Трибуны и зрительские зоны","Партнёрские зоны","Фуд-корт","Фото/видео","Охрана, медицина"]},
+          grounded:{name:"Grounded Event",cls:"A",g:"4 000–8 000",freq:"Stance- и кастом-культура",
+            desc:"Один из крупнейших фестивалей stance- и кастом-культуры в России с сильным комьюнити и выставочной составляющей.",
+            w:["Выставочная зона stance / custom","Конкурсная программа","Партнёрские активации","Музыкальная сцена, DJ","Фуд-корт, маркет","Фото/видео","Охрана, медицина"]},
+          japdays:{name:"JapDays",cls:"A",g:"2 000–3 000",freq:"Японская автокультура",
+            desc:"Один из крупнейших российских фестивалей японской автомобильной культуры.",
+            w:["Выставка JDM-автомобилей","Конкурсы и награждения","Партнёрские зоны","Музыка, фуд-корт","Фото/видео","Охрана"]},
+          tech_sport:{name:"Фестиваль технических видов спорта",cls:"A",g:"3 000–5 000",freq:"Мультиспортивный фестиваль",
+            desc:"Масштабный фестиваль технических видов спорта: дрифт, картинг, мотоспорт, внедорожные соревнования, симрейсинг и демонстрационные шоу.",
+            w:["Несколько спортивных дисциплин","Демонстрационные шоу","Симрейсинг-зона","Партнёрские активации","Фуд-корт, сцена","Фото/видео","Охрана, медицина"]},
+          bimmerdays:{name:"Bimmerdays",cls:"A",g:"2 500–3 500",freq:"Фестиваль BMW и MINI",
+            desc:"Крупнейший российский фестиваль владельцев и поклонников BMW и MINI: выставка автомобилей, конкурсы, клубные активности, презентации партнёров и развлекательная программа.",
+            w:["Выставка BMW / MINI","Клубные активности","Конкурсы","Презентации партнёров","Развлекательная программа","Фуд-корт","Фото/видео"]},
+          no_drift_no_fest:{name:"No Drift No Fest",cls:"A",g:"3 000–5 000",freq:"Фестиваль автокультуры",
+            desc:"Крупный фестиваль автомобильной культуры: соревнования по дрифту, выставка автомобилей, музыка, фуд-корт, партнёрские зоны и развлекательная программа.",
+            w:["Соревнования по дрифту","Выставка автомобилей","Музыкальная сцена","Фуд-корт","Партнёрские зоны","Развлекательная программа","Фото/видео, охрана"]},
+          drift_expo:{name:"Drift Expo",cls:"A",g:"4 000–6 000",freq:"Дрифт-машины и культура",
+            desc:"Крупный фестиваль дрифт-машин и культуры: выставка болидов, шоу-заезды и встреча сообщества.",
+            w:["Выставка дрифт-автомобилей","Шоу-заезды","Партнёрские зоны, маркет","Музыка, фуд-корт","Фото/видео","Охрана"]},
+          original_meet:{name:"Original Meet",cls:"A",g:"3 000–5 000",freq:"Фестиваль раритетных авто",
+            desc:"Фестиваль раритетных автомобилей — выставка, конкурс и встреча коллекционеров.",
+            w:["Выставка раритетных авто","Конкурс и награждения","Партнёрские зоны","Фуд-корт, музыка","Фото/видео"]},
+          tsunami_picnic:{name:"Tsunami Picnic",cls:"A",g:"3 000–5 000",freq:"Stance · JDM · street culture",
+            desc:"Крупнейший фестиваль автомобильной культуры, объединяющий stance, JDM, дрифт, музыку, маркет и street culture. Идеальный кандидат для проведения на территории DRP.",
+            w:["Зоны stance / JDM / drift","Музыкальная сцена, DJ","Маркет и street-culture зоны","Фуд-корт","Партнёрские активации","Фото/видео","Охрана, медицина"]},
+
+          cars_coffee:{name:"Cars & Coffee",cls:"B",g:"300–500",freq:"Регулярно · раз в 2 недели",
+            desc:"Небольшая встреча автомобильного сообщества: выставка автомобилей, кофе и неформальное общение. Формат закрепляет за DRP статус нового места встречи автокультуры Санкт-Петербурга.",
+            w:["Кофе-поинты","Навигация, фотозона","Партнёрские стенды","Охрана","Фото/видео"]},
+          den_rossii:{name:"День России",cls:"B",g:"500–1 500",freq:"Государственный праздник",
+            desc:"Фестиваль российского автоспорта: выставка отечественных автомобилей, легенды автоспорта, показательные заезды и концертная программа.",
+            w:["Тематическое оформление","Выставка российских автомобилей","Ведущий","Партнёрские зоны","Фуд-корт","Семейные активности","Фото/видео","Охрана, медицина"]},
+          den_avtomobilista:{name:"День автомобилиста · завершение сезона",cls:"B",g:"1 500–2 000",freq:"Финал сезона",
+            desc:"Главное ежегодное событие для всех автомобилистов Санкт-Петербурга: выставка автомобилей, клубные встречи, шоу-заезды. Торжественное завершение сезона DRP.",
+            w:["Парад автомобилей","Выставка","Сцена, концерт","Клубные зоны","Партнёрские активности","Фотозоны","Семейные активности","Видеопродакшн"]},
+
+          vecherniy_drift:{name:"Вечерний дрифт",cls:"C",g:"300–500",freq:"Регулярный вечерний формат",
+            desc:"Вечерние тренировочные заезды в атмосфере закатного и искусственного освещения. Проверка вечерней эксплуатации площадки и один из первых регулярных вечерних форматов комплекса.",
+            w:["Световое оборудование","DJ, ведущий","Фуд-зона","Охрана","Фото/видео","Вечернее оформление"]},
+          hotdog:{name:"Хот-договый четверг",cls:"C",g:"250–500",freq:"Еженедельно · по четвергам",
+            desc:"Еженедельная механика: тренировочный день плюс гастрономический опыт. Все участники трек-дня получают фирменный хот-дог и напиток, превращая тренировку в регулярный ритуал сообщества.",
+            w:["Фуд-зона, выдача питания","Музыкальное сопровождение","Брендинг акции","Регистрация участников","Фото/видео"]},
+          open_garage:{name:"Open Garage",cls:"C",g:"250–500",freq:"Регулярно в течение сезона",
+            desc:"День открытых технических боксов: посетители знакомятся с подготовкой автомобилей, работой инженеров и механиков. Формат раскрывает закулисье автоспорта и усиливает доверие к площадке.",
+            w:["Экскурсоводы","Подготовка боксов","Демонстрационные автомобили","Механики","Навигация, мерч-зона","Зона вопросов и ответов","Фото/видео"]},
+          den_kontenta:{name:"День контента",cls:"C",g:"200–300",freq:"Регулярно в течение сезона",
+            desc:"Профессиональная фото- и видеосъёмка автомобилей и пилотов на территории комплекса. Участники получают качественный контент для соцсетей, а DRP — поток пользовательских публикаций и органических упоминаний.",
+            w:["Фото- и видеопродакшн","Съёмочные точки","Свет при необходимости","Фотозоны","Координация автомобилей","Монтаж экспресс-контента"]},
+          family_sunday:{name:"Семейное воскресенье",cls:"C",g:"150–200",freq:"Регулярно · по воскресеньям",
+            desc:"Семейный выходной с детскими активностями, экскурсиями по комплексу, симуляторами и безопасным знакомством с автоспортом. DRP как пространство для отдыха всей семьёй, а не только спортивная площадка.",
+            w:["Детская зона, аниматоры","Симуляторы","Мастер-классы","Экскурсии, ведущий","Фотограф, охрана","Медицинское сопровождение"]},
+          team_meet:{name:"Встреча с командой DRP",cls:"C",g:"200–300",freq:"Камерный формат",
+            desc:"Камерные встречи с командой DRP, инженерами, инструкторами и пилотами. Гости знакомятся с историей проекта, задают вопросы и первыми узнают о развитии комплекса.",
+            w:["Сцена / лекторий, звук","Презентационное оборудование","Модератор","Кейтеринг","Фото/видео","Экскурсия по объекту"]},
+          den_molodezhi:{name:"День молодёжи",cls:"C",g:"500–1 500",freq:"Молодёжная культура",
+            desc:"Фестиваль современной молодёжной культуры: дрифт, BMX, скейт, граффити, музыка, стритфуд, кастом и локальные бренды.",
+            w:["Музыкальная сцена, DJ","BMX / скейт-зона","Граффити и арт-активации","Дрифт-шоу","Стритфуд","Локальный маркет","Ведущий","Фото/видео, охрана"]},
+          belye_nochi:{name:"Белые ночи",cls:"C",g:"500–1 000",freq:"Серия вечерних событий",
+            desc:"Серия вечерних мероприятий с ночным дрифтом, DJ-сетами, кино под открытым небом и специальным световым оформлением трассы.",
+            w:["Световое оформление трассы","DJ-сеты","Лаунж-зона","Фуд-корт","Фото/видео"]},
+          den_semyi:{name:"День семьи в DRP",cls:"C",g:"300–500",freq:"Семейный фестиваль",
+            desc:"Масштабный семейный фестиваль с развлечениями для детей, экскурсиями и образовательными активностями.",
+            w:["Детская зона","Образовательные мастер-классы","Семейные конкурсы","Ведущий, фотограф","Охрана, медицина"]}
+        };
+
+        var SCHEDULE = {
+          "2028-06-01":[{k:"hotdog"}],
+          "2028-06-03":[{k:"grand_opening",n:"День 1 из 2"}],
+          "2028-06-04":[{k:"grand_opening",n:"День 2 из 2"}],
+          "2028-06-06":[{k:"media_day"}],
+          "2028-06-08":[{k:"hotdog"}],
+          "2028-06-09":[{k:"vecherniy_drift"}],
+          "2028-06-10":[{k:"spb_cup"}],
+          "2028-06-11":[{k:"family_sunday"}],
+          "2028-06-12":[{k:"den_rossii"}],
+          "2028-06-15":[{k:"hotdog"}],
+          "2028-06-16":[{k:"belye_nochi"}],
+          "2028-06-17":[{k:"summer_drift",n:"День 1 из 2"}],
+          "2028-06-18":[{k:"summer_drift",n:"День 2 из 2"}],
+          "2028-06-20":[{k:"media_day"}],
+          "2028-06-22":[{k:"hotdog"},{k:"den_kontenta"}],
+          "2028-06-23":[{k:"vecherniy_drift"}],
+          "2028-06-24":[{k:"den_molodezhi"},{k:"cars_coffee"}],
+          "2028-06-25":[{k:"original_meet"}],
+          "2028-06-28":[{k:"open_garage"}],
+          "2028-06-29":[{k:"hotdog"}],
+
+          "2028-07-01":[{k:"sound_taste",n:"День 1 из 2"}],
+          "2028-07-02":[{k:"sound_taste",n:"День 2 из 2"}],
+          "2028-07-04":[{k:"media_day"}],
+          "2028-07-05":[{k:"team_meet"}],
+          "2028-07-07":[{k:"vecherniy_drift"}],
+          "2028-07-08":[{k:"den_semyi"},{k:"cars_coffee"}],
+          "2028-07-09":[{k:"detailing_tuning"}],
+          "2028-07-11":[{k:"den_kontenta"}],
+          "2028-07-13":[{k:"hotdog"}],
+          "2028-07-15":[{k:"japdays",n:"День 1 из 2"}],
+          "2028-07-16":[{k:"japdays",n:"День 2 из 2"},{k:"family_sunday"}],
+          "2028-07-18":[{k:"media_day"}],
+          "2028-07-21":[{k:"vecherniy_drift"}],
+          "2028-07-22":[{k:"grounded",n:"День 1 из 2"},{k:"cars_coffee"}],
+          "2028-07-23":[{k:"grounded",n:"День 2 из 2"}],
+          "2028-07-26":[{k:"open_garage"}],
+          "2028-07-27":[{k:"hotdog"}],
+          "2028-07-29":[{k:"tsunami_picnic",n:"День 1 из 2"}],
+          "2028-07-30":[{k:"tsunami_picnic",n:"День 2 из 2"}],
+
+          "2028-08-01":[{k:"media_day"}],
+          "2028-08-04":[{k:"vecherniy_drift"}],
+          "2028-08-05":[{k:"bimmerdays",n:"День 1 из 2"}],
+          "2028-08-06":[{k:"bimmerdays",n:"День 2 из 2"}],
+          "2028-08-08":[{k:"den_kontenta"}],
+          "2028-08-10":[{k:"hotdog"}],
+          "2028-08-12":[{k:"sound_taste",n:"День 1 из 2"},{k:"cars_coffee"}],
+          "2028-08-13":[{k:"sound_taste",n:"День 2 из 2"}],
+          "2028-08-18":[{k:"vecherniy_drift"}],
+          "2028-08-19":[{k:"drift_expo",n:"День 1 из 2"}],
+          "2028-08-20":[{k:"drift_expo",n:"День 2 из 2"},{k:"family_sunday"}],
+          "2028-08-22":[{k:"media_day"}],
+          "2028-08-23":[{k:"open_garage"}],
+          "2028-08-24":[{k:"hotdog"}],
+          "2028-08-26":[{k:"garage_sale"},{k:"cars_coffee"}],
+          "2028-08-27":[{k:"detailing_tuning"}],
+          "2028-08-29":[{k:"den_kontenta"}],
+
+          "2028-09-06":[{k:"team_meet"}],
+          "2028-09-08":[{k:"vecherniy_drift"}],
+          "2028-09-09":[{k:"tech_sport",n:"День 1 из 2"},{k:"cars_coffee"}],
+          "2028-09-10":[{k:"tech_sport",n:"День 2 из 2"}],
+          "2028-09-12":[{k:"den_kontenta"}],
+          "2028-09-16":[{k:"no_drift_no_fest"}],
+          "2028-09-20":[{k:"open_garage"}],
+          "2028-09-23":[{k:"cars_coffee"}],
+          "2028-09-30":[{k:"den_avtomobilista"}]
+        };
+
+        var MONTHS = [
+          {y:2028,m:5,label:"Июнь"},
+          {y:2028,m:6,label:"Июль"},
+          {y:2028,m:7,label:"Август"},
+          {y:2028,m:8,label:"Сентябрь"}
+        ];
+        var DOW = ["Пн","Вт","Ср","Чт","Пт","Сб","Вс"];
+        var MON_GEN = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"];
+        var WD_FULL = ["воскресенье","понедельник","вторник","среда","четверг","пятница","суббота"];
+        var FLAG = "2028-06-03"; /* Grand Opening — акцентный день */
+
+        var $tabs=document.getElementById("drpCal5Tabs"),
+            $dow=document.getElementById("drpCal5Dow"),
+            $grid=document.getElementById("drpCal5Grid"),
+            $panel=document.getElementById("drpCal5Panel"),
+            $tip=document.getElementById("drpCal5Tip");
+
+        /* move tooltip to <body> so position:fixed is relative to the viewport —
+           ancestors use "transform: translateY(0)" for scroll-reveal, which
+           otherwise becomes the fixed-position containing block and throws off placement */
+        document.body.appendChild($tip);
+
+        var cur=0, selKey=null;
+        var canHover = window.matchMedia && window.matchMedia("(hover:hover)").matches;
+
+        function pad(n){return (n<10?"0":"")+n;}
+        function keyOf(y,m,d){return y+"-"+pad(m+1)+"-"+pad(d);}
+        function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+        /* counts for summary */
+        var COUNT={A:0,B:0,C:0,total:0};
+        for(var key in SCHEDULE){ if(!SCHEDULE.hasOwnProperty(key))continue;
+          SCHEDULE[key].forEach(function(e){var c=TYPES[e.k].cls;COUNT[c]++;COUNT.total++;});
+        }
+
+        /* header stat appended to lede */
+        (function(){
+          var l=document.querySelector("#drpCal5 .lede");
+          var s=document.createElement("span");
+          s.style.cssText="display:block;margin-top:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--ink-3)";
+          s.textContent=COUNT.total+" событий · июнь — сентябрь 2028";
+          l.appendChild(s);
+        })();
+
+        /* tabs */
+        MONTHS.forEach(function(mo,i){
+          var b=document.createElement("button");
+          b.className="tab";b.type="button";
+          b.setAttribute("aria-selected", i===0?"true":"false");
+          b.innerHTML=esc(mo.label)+' <span class="yr">'+mo.y+"</span>";
+          b.addEventListener("click",function(){ cur=i; syncTabs(); renderMonth(); });
+          $tabs.appendChild(b);
+        });
+        function syncTabs(){
+          Array.prototype.forEach.call($tabs.children,function(c,i){
+            c.setAttribute("aria-selected", i===cur?"true":"false");
+          });
+        }
+
+        /* weekday header */
+        DOW.forEach(function(d){var s=document.createElement("span");s.textContent=d;$dow.appendChild(s);});
+
+        function renderMonth(){
+          var mo=MONTHS[cur], first=new Date(mo.y,mo.m,1).getDay();
+          var offset=(first+6)%7;
+          var days=new Date(mo.y,mo.m+1,0).getDate();
+          var html="";
+          for(var i=0;i<offset;i++){ html+='<div class="cell empty" aria-hidden="true"></div>'; }
+          for(var d=1;d<=days;d++){
+            var k=keyOf(mo.y,mo.m,d);
+            var evs=SCHEDULE[k];
+            var wd=new Date(mo.y,mo.m,d).getDay();
+            var cls="cell"+((wd===0||wd===6)?" weekend":"")+(evs?" has":"")+(k===FLAG?" flag":"")+(k===selKey?" sel":"");
+            var chips="";
+            if(evs){
+              chips='<div class="chips">';
+              evs.forEach(function(e){
+                var t=TYPES[e.k];
+                chips+='<span class="chip '+t.cls+(e.k==="grand_opening"?" go":"")+'"><span class="txt">'+esc(t.name)+'</span></span>';
+              });
+              chips+='</div>';
+            }
+            var label=evs? (d+", "+evs.length+" событий") : (""+d);
+            html+='<'+(evs?"button":"div")+' class="'+cls+'"'+(evs?' type="button" data-k="'+k+'" aria-label="'+esc(label)+'"':' aria-hidden="true"')+'>'
+                 + '<span class="num">'+d+'</span>'+chips
+                 + '</'+(evs?"button":"div")+'>';
+          }
+          var total=offset+days, trail=(7-(total%7))%7;
+          for(var t2=0;t2<trail;t2++){ html+='<div class="cell empty" aria-hidden="true"></div>'; }
+          $grid.innerHTML=html;
+        }
+
+        /* panel: day detail */
+        function renderDay(k){
+          var evs=SCHEDULE[k]; if(!evs)return;
+          var p=k.split("-"), y=+p[0], m=+p[1]-1, d=+p[2];
+          var wd=new Date(y,m,d).getDay();
+          var head='<div class="p-head"><div>'
+            +'<div class="p-eyebrow">Программа дня</div>'
+            +'<h3 class="p-date">'+d+" "+MON_GEN[m]+" · "+WD_FULL[wd]+'</h3></div>'
+            +'<button class="p-close" type="button" id="drpCal5PClose">← Сезон</button></div>';
+          var body="";
+          evs.forEach(function(e){
+            var t=TYPES[e.k];
+            body+='<div class="ev">'
+              +'<span class="badge '+t.cls+(e.k==="grand_opening"?" go":"")+'">'+(e.k==="grand_opening"?"★ Открытие сезона":"Класс "+t.cls)+'</span>'
+              +'<h4 class="ev-name">'+esc(t.name)+(e.n?' <span class="ev-note">· '+esc(e.n)+'</span>':'')+'</h4>'
+              +'<div class="ev-meta"><span>Гостей: <b>'+esc(t.g)+'</b></span>'+(t.freq?'<span>'+esc(t.freq)+'</span>':'')+'</div>'
+              +'<p class="ev-desc">'+esc(t.desc)+'</p>'
+              +'<div class="works-label">Ориентировочный список работ</div>'
+              +'<ul class="ev-works">'+t.w.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul>'
+              +'</div>';
+          });
+          $panel.innerHTML=head+body;
+          document.getElementById("drpCal5PClose").addEventListener("click",function(){ selKey=null; renderSummary(); renderMonth(); });
+        }
+
+        function renderSummary(){
+          $panel.innerHTML=
+            '<div class="p-eyebrow">Обзор сезона</div>'
+            +'<h3 class="p-date" style="text-transform:none">Сезон 2028</h3>'
+            +'<div class="sum-nums">'
+              +'<div class="stat A"><div class="n">'+COUNT.A+'</div><div class="l">Класс A<br>фестивали</div></div>'
+              +'<div class="stat B"><div class="n">'+COUNT.B+'</div><div class="l">Класс B<br>клубные</div></div>'
+              +'<div class="stat C"><div class="n">'+COUNT.C+'</div><div class="l">Класс C<br>регулярные</div></div>'
+            +'</div>'
+            +'<p class="sum-note">Первый полный сезон Drift Racing Park: от двухдневного Grand Opening в начале июня до финального Дня автомобилиста в конце сентября. Крупные фестивали — по выходным, регулярные форматы — в будни.</p>'
+            +'<div class="sum-hint">Выберите день в календаре →</div>';
+        }
+
+        /* tooltip */
+        var tipKey=null;
+        function positionTip(x,y){
+          var tr=$tip.getBoundingClientRect();
+          var left=Math.min(Math.max(tr.width/2+6, x), window.innerWidth-tr.width/2-6);
+          var top=y-16;
+          $tip.style.left=left+"px";
+          if(top-tr.height<6){ $tip.style.top=(y+16+tr.height)+"px"; }
+          else { $tip.style.top=top+"px"; }
+        }
+        function showTip(x,y,k){
+          var evs=SCHEDULE[k]; if(!evs)return;
+          tipKey=k;
+          var p=k.split("-"), d=+p[2], m=+p[1]-1;
+          var rows=evs.map(function(e){var t=TYPES[e.k];
+            return '<div class="tip-row"><span class="tip-dot '+t.cls+'"></span>'+esc(t.name)+(e.n?' · '+esc(e.n):'')+'</div>';}).join("");
+          $tip.innerHTML='<div class="tip-d">'+d+" "+MON_GEN[m]+'</div>'+rows;
+          $tip.hidden=false;
+          positionTip(x,y);
+        }
+        function hideTip(){ $tip.hidden=true; tipKey=null; }
+
+        /* interactions (delegated) */
+        $grid.addEventListener("click",function(ev){
+          var c=ev.target.closest(".cell.has"); if(!c)return;
+          selKey=c.getAttribute("data-k");
+          renderDay(selKey); renderMonth(); hideTip();
+          if(window.innerWidth<=860){ $panel.scrollIntoView({behavior:"smooth",block:"start"}); }
+        });
+        if(canHover){
+          $grid.addEventListener("mouseover",function(ev){
+            var c=ev.target.closest(".cell.has"); if(!c)return;
+            showTip(ev.clientX, ev.clientY, c.getAttribute("data-k"));
+          });
+          $grid.addEventListener("mousemove",function(ev){
+            var c=ev.target.closest(".cell.has"); if(!c)return;
+            if($tip.hidden || tipKey!==c.getAttribute("data-k")){ showTip(ev.clientX, ev.clientY, c.getAttribute("data-k")); }
+            else { positionTip(ev.clientX, ev.clientY); }
+          });
+          $grid.addEventListener("mouseout",function(ev){
+            var c=ev.target.closest(".cell.has"); if(!c)return;
+            if(!c.contains(ev.relatedTarget)) hideTip();
+          });
+          window.addEventListener("scroll",hideTip,{passive:true});
+        }
+
+        /* init */
+        syncTabs(); renderMonth(); renderSummary();
+      })();
+      </script>
+      </div>
+
+      <div class="stage-events-link">
+        <div class="stage-events-link-title">Детальный план мероприятий, спецпроектов и наружной коммуникации</div>
+        <div class="stage-events-link-desc">Полноформатный запуск ивентов. Генерация крупных мероприятий.</div>
+        <a href="https://docs.google.com/spreadsheets/d/1WnzvRiEgekiQ_Y95LRysDT2K8VQR1N1rk2xlPTxJ2uw/edit?gid=377337266#gid=377337266" target="_blank" rel="noopener">Открыть таблицу мероприятий →</a>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAGE 6 -->
+  <div class="stage-panel" data-stage="6">
+    <div class="stage-meta-grid reveal">
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">ЦА этапа</div>
+          <ul class="stage-dash-list">
+            <li>Профессионалы, дрифт-энтузиасты, автолюбители</li>
+            <li>B2B</li>
+            <li>Широкие аудитории</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Цели этапа</div>
+          <ol class="stage-num-list">
+            <li>Поддерживать устойчивый интерес к DRP через регулярную коммуникацию продуктов, мероприятий и жизни проекта.</li>
+            <li>Закрепить DRP как главную площадку для дрифта, событий и активного досуга в регионе.</li>
+            <li>Укреплять лояльность и развивать сообщество вокруг DRP.</li>
+            <li>Поддерживать регулярную посещаемость через продвижение продуктов, календаря событий и сезонных активностей.</li>
+            <li>Усилить медийность DRP за счет контента, партнерств, PR и UGC.</li>
+            <li>Формировать образ постоянно развивающегося проекта с новыми продуктами, событиями и возможностями.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="stage-meta-col">
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Продукты этапа</div>
+          <ul class="stage-dash-list">
+            <li>Трек и спорт</li>
+            <li>Кафе и F&amp;B</li>
+            <li>Аренда боксов</li>
+            <li>Мерч и околоспортивный retail</li>
+            <li>Арендаторы и автосервисы</li>
+            <li>Digital Sales Layer</li>
+          </ul>
+        </div>
+        <div class="stage-meta-block">
+          <div class="stage-meta-label">Функции на этапе</div>
+          <div class="stage-func-badges">
+            <div class="stage-func-badge active">SMM</div>
+            <div class="stage-func-badge active">Performance</div>
+            <div class="stage-func-badge active">PR</div>
+            <div class="stage-func-badge">Мероприятия</div>
+            <div class="stage-func-badge">Спецпроекты</div>
+            <div class="stage-func-badge">Наружка и офлайн</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">01</div>
+        <div class="stage-function-name">SMM</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Канал</th><th>Роль и фокус на этапе</th><th>Форматы контента / активности</th><th>Объём (ед./мес)</th><th>KPI канала</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Telegram</td><td>Always-on: постоянный контент-поток, зимний сезон, удержание</td><td>Регулярные форматы, зимний контент, календарь, удержание, реактивация</td><td>24 поста + 6 видео</td><td>Удержание, повторные, активность сообщества</td></tr>
+            <tr><td>ВКонтакте</td><td>Регулярные форматы и сообщество</td><td>Регулярные рубрики, зимние события, конкурсы, клипы</td><td>20 постов + 10 клипов</td><td>Охват, повторные, сообщество</td></tr>
+            <tr><td>Instagram</td><td>Зимний контент и UGC</td><td>Reels, зимний дрифт, UGC, must-visit зимой</td><td>20 / 16 / 75</td><td>Охват, ER, переходы</td></tr>
+            <tr><td>YouTube</td><td>Регулярные ролики</td><td>Зимний дрифт, рейтинги пилотов, регулярные форматы</td><td>4 ролика + 10 Shorts</td><td>Просмотры, переходы</td></tr>
+            <tr><td>Яндекс Дзен</td><td>Экспертный/образовательный поток</td><td>Регулярные материалы, образование, кейсы</td><td>4 материала</td><td>Дочитывания</td></tr>
+            <tr><td>Яндекс Карты / 2ГИС</td><td>Поддержание рейтинга</td><td>Зимние события, отзывы, фото</td><td>—</td><td>Рейтинг, отзывы, маршруты</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stage-simple-title" style="margin-top:48px;">KPI</div>
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead>
+            <tr><th>Метрика</th><th>Ед. изм.</th><th>Нижняя граница</th><th>Верхняя граница</th><th>Комментарий / фаза воронки</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Совокупный охват за окно (3 мес)</td><td>охваты</td><td>9 000 000</td><td>15 000 000</td><td>Always-on; далее ежемесячный run-rate сохраняется</td></tr>
+            <tr><td>Продажи / брони (атриб. SMM)</td><td>₽</td><td>12 000 000 ₽</td><td>25 000 000 ₽</td><td>План — уточняется после модели атрибуции</td></tr>
+            <tr><td>Загрузка продуктов (зимний сезон)</td><td>%</td><td>40%</td><td>65%</td><td>Зимой ниже пикового сезона</td></tr>
+            <tr><td>Повторные визиты</td><td>%</td><td>30%</td><td>45%</td><td>Retention</td></tr>
+            <tr><td>Retention базы</td><td>%</td><td>25%</td><td>40%</td><td>Удержание аудитории</td></tr>
+            <tr><td>Активное сообщество</td><td>чел.</td><td>130 000</td><td>200 000</td><td>Накопленное (подписчики / участники)</td></tr>
+            <tr><td>ДРР (доля рекл. расходов)</td><td>%</td><td>15%</td><td>30%</td><td>Чем ниже — тем лучше</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">02</div>
+        <div class="stage-function-name">Performance</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line">нояб 2028 — янв 2029 · 3 мес · Всегда-он режим. Первый зимний сезон. Ретаргет базы. Удержание.</div>
+      <div class="stage-perf-boxes">
+        <div class="stage-perf-box tint">
+          <div class="stage-perf-box-title">Продукты в закупке</div>
+          <div class="stage-perf-box-sub">Зимние продукты + удержание летних клиентов</div>
+          <ul>
+            <li class="strong">Зимний / специальный дрифт</li>
+            <li class="strong">Онлайн-курсы (набор на зимний поток)</li>
+            <li class="strong">Курсы судейства / механики / тюнинга</li>
+            <li class="strong">Квесты</li>
+            <li class="strong">Онлайн-магазин мерча</li>
+            <li class="strong">Абонементы (возврат клиентов сезона)</li>
+          </ul>
+        </div>
+        <div class="stage-perf-box">
+          <div class="stage-perf-box-title">Задачи периода</div>
+          <ul>
+            <li>Активный ретаргет по всей накопленной CRM-базе</li>
+            <li>Спецпредложения под зимний сезон</li>
+            <li>Удержание регулярных клиентов через абонементы</li>
+            <li>Стабильный поток без пиков — операционка</li>
+          </ul>
+          <div class="stage-perf-box-divider">
+            <div class="stage-perf-box-note">Тест продуктов следующего этапа</div>
+            <ul>
+              <li>Подготовка кампаний под сезон 2029 (планирование)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="stage-result-line">Ожидаемый результат: стабильный always-on поток, зимний сезон закрыт, регулярные клиенты возвращаются</div>
+
+      <div class="stage-simple-title" style="margin-top:40px;">Каналы и стратегия</div>
+      <div class="stage-two-col">
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Распределение по каналам</div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#FF6B00;"></div><div class="stage-dist-name">Яндекс.Директ</div><div class="stage-dist-pct">70%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#c0392b;"></div><div class="stage-dist-name">Telegram Ads</div><div class="stage-dist-pct">15%</div></div>
+          <div class="stage-dist-item"><div class="stage-dist-dot" style="background:#3c50b4;"></div><div class="stage-dist-name">VK Ads</div><div class="stage-dist-pct">15%</div></div>
+          <div class="stage-perf-box-note" style="margin-top:6px;">KPI этапа. Лид на зимний продукт: 3 000–5 000 ₽ · Ретаргет CPL: −12–25% относительно новой закупки</div>
+        </div>
+        <div class="stage-two-col-box">
+          <div class="stage-two-col-title">Приоритетные каналы под продукты</div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Яндекс.Поиск + РСЯ</div><div class="stage-priority-desc">Зимние продукты, сезонные офферы</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Ретаргет (все каналы)</div><div class="stage-priority-desc">Возврат клиентов летнего сезона, абонементы</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">Telegram</div><div class="stage-priority-desc">Удержание клуба, регулярные касания</div></div>
+          <div class="stage-priority-item"><div class="stage-priority-name">VK</div><div class="stage-priority-desc">Магазин мерча (e-commerce), квесты</div></div>
+          <div class="stage-budget-box">
+            <div class="stage-budget-box-title">Тестовый бюджет: программатик / in-app</div>
+            <div class="stage-budget-box-value">0.5 млн из 6.5 млн</div>
+            <div class="stage-budget-box-desc">Программатик — поддержка охватов, ретаргет в приложениях</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="stage-function reveal collapsed">
+      <div class="stage-function-head">
+        <div class="stage-function-num">03</div>
+        <div class="stage-function-name">PR</div>
+        <div class="stage-function-toggle">⌄</div>
+      </div>
+      <div class="stage-function-body">
+      <div class="stage-goal-line"><strong>Цель:</strong> заложить надежный фундамент репутации и подогреть пользовательский поток</div>
+      <div class="stage-goal-line" style="margin-top:-12px;">На протяжении года после открытия</div>
+      <ul class="stage-dash-list">
+        <li>Генерация инфоповодов и рассылка релизов</li>
+        <li>Работа по формированию пула дружественных медиа и выстраивание отношений с городскими локальными медиа</li>
+        <li>Истории по различным категориям ЦА</li>
+        <li>Подконтрольные публикации с фаундрами</li>
+        <li>Ивенты для медиа опционально</li>
+        <li>Участие команды в чужих мероприятиях</li>
+        <li>Выступления фаундеров</li>
+        <li>Работа с запросами</li>
+        <li>Калибровка PR-стратегии на ближайшие годы</li>
+      </ul>
+      <div class="stage-simple-title" style="margin-top:32px;">KPI</div>
+      <ul class="stage-dash-list">
+        <li>не менее 4 инфоповодов ежемесячно</li>
+        <li>100+ публикаций за год</li>
+        <li>пул не менее 30 дружественных журналистов</li>
+        <li>не менее 20 публикаций о фаундерах и команде</li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage-collapse-all reveal">
+    <button class="stage-collapse-all-btn" type="button" id="stagesCollapseAllBtn">Свернуть всё ↑</button>
   </div>
 </section>
 
@@ -4689,6 +7346,71 @@ if (kfGrid) {
   }
   document.getElementById('spec-prev')?.addEventListener('click', () => go(-1));
   document.getElementById('spec-next')?.addEventListener('click', () => go(1));
+})();
+
+// ─── Stage tabs switching ───
+(function() {
+  const tabs = document.querySelectorAll('.stage-tab[data-stage]');
+  const panels = document.querySelectorAll('.stage-panel[data-stage]');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const id = tab.getAttribute('data-stage');
+      const panel = document.querySelector('.stage-panel[data-stage="' + id + '"]');
+      if (!panel) return;
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      panel.classList.add('active');
+      panel.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    });
+  });
+})();
+
+// ─── Stage function accordion ───
+(function() {
+  function expandFn(fn) {
+    const body = fn.querySelector('.stage-function-body');
+    if (!body || !fn.classList.contains('collapsed')) return;
+    const full = body.scrollHeight;
+    body.style.maxHeight = full + 'px';
+    fn.classList.remove('collapsed');
+    const onEnd = (e) => {
+      if (e.propertyName === 'max-height') {
+        body.style.maxHeight = 'none';
+        body.removeEventListener('transitionend', onEnd);
+      }
+    };
+    body.addEventListener('transitionend', onEnd);
+  }
+  function collapseFn(fn) {
+    const body = fn.querySelector('.stage-function-body');
+    if (!body || fn.classList.contains('collapsed')) return;
+    const current = body.scrollHeight;
+    body.style.maxHeight = current + 'px';
+    void body.offsetHeight;
+    fn.classList.add('collapsed');
+    body.style.maxHeight = '0px';
+  }
+
+  document.querySelectorAll('.stage-function-head').forEach(head => {
+    head.addEventListener('click', () => {
+      const fn = head.closest('.stage-function');
+      if (fn.classList.contains('collapsed')) expandFn(fn);
+      else collapseFn(fn);
+    });
+  });
+
+  const collapseAllBtn = document.getElementById('stagesCollapseAllBtn');
+  if (collapseAllBtn) {
+    collapseAllBtn.addEventListener('click', () => {
+      const panel = document.querySelector('.stage-panel.active') || document.querySelector('.stage-panel');
+      if (panel) {
+        panel.querySelectorAll('.stage-function').forEach(fn => collapseFn(fn));
+      }
+      const stagesSection = document.getElementById('stages');
+      if (stagesSection) stagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 })();
 </script>
 
