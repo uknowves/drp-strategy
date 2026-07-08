@@ -1241,6 +1241,1619 @@ section {
   .stage-card { min-width: 220px; }
   .hero-text-parallax { padding: 0 20px; }
 }
+
+/* ─── ДИФФЕРЕНЦИАЦИЯ ─── */
+.diff-not-but {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 80px;
+  border-left: 3px solid rgba(255,255,255,0.08);
+  padding-left: 40px;
+}
+.diff-not {
+  font-family: 'Korataki', sans-serif;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: rgba(255,255,255,0.3);
+  text-decoration: line-through;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.diff-but {
+  font-family: 'Korataki', sans-serif;
+  font-size: clamp(20px, 3vw, 36px);
+  color: #FF6B00;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 28px 0;
+}
+.diff-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 80px;
+}
+.diff-col {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.diff-col-header {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.diff-col-other .diff-col-header { color: rgba(255,255,255,0.3); }
+.diff-col-drp .diff-col-header { color: #FF6B00; background: rgba(255,107,0,0.04); }
+.diff-compare-row {
+  display: flex;
+  align-items: center;
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.diff-col-other .diff-compare-row { color: rgba(255,255,255,0.35); }
+.diff-col-drp .diff-compare-row { color: rgba(255,255,255,0.85); }
+.diff-col-drp .diff-compare-row::before {
+  content: '→';
+  color: #FF6B00;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.diff-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.diff-pillar {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 32px;
+}
+.diff-pillar h4 {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,107,0,0.2);
+}
+.diff-pillar ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.diff-pillar ul li {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.diff-pillar ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: rgba(255,107,0,0.5);
+}
+
+/* ─── КРЕАТИВНАЯ ИДЕЯ ─── */
+.creative-idea-block {
+  position: relative;
+  padding: 80px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 0;
+}
+.creative-idea-eyebrow {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 28px;
+}
+.creative-idea-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 5vw, 68px);
+  text-transform: uppercase;
+  line-height: 1.0;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: 40px;
+  max-width: 900px;
+}
+.creative-idea-title span { color: #FF6B00; }
+.creative-idea-desc {
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.55);
+  max-width: 780px;
+}
+
+/* ─── ЛИДЕРЫ МНЕНИЙ ─── */
+.inf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.inf-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.inf-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.inf-card:hover { background: rgba(255,107,0,0.08); }
+.inf-card:hover::before { height: 100%; }
+.inf-cat {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,107,0,0.2);
+}
+.inf-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+}
+.inf-task-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  font-family: 'Halvar Breit', sans-serif;
+}
+.inf-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 4px;
+}
+.inf-card ul li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+  padding-left: 14px;
+  position: relative;
+}
+.inf-card ul li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: rgba(255,107,0,0.5);
+}
+
+/* ─── КОЛЛАБОРАЦИИ ─── */
+.collab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.collab-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.collab-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.collab-card:hover { background: rgba(255,107,0,0.08); }
+.collab-card:hover::before { height: 100%; }
+.collab-card h4 {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.collab-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .diff-compare { grid-template-columns: 1fr; }
+  .diff-pillars { grid-template-columns: 1fr; }
+  .inf-grid { grid-template-columns: repeat(2, 1fr); }
+  .collab-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .inf-grid { grid-template-columns: 1fr; }
+  .collab-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── КРЕАТИВНАЯ КОНЦЕПЦИЯ ─── */
+.concept-meta {
+  padding-bottom: 120px;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.concept-meta-eyebrow {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 28px;
+}
+.concept-hero-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 52px);
+  text-transform: uppercase;
+  line-height: 1.0;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: 40px;
+}
+.concept-hero-body {
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.concept-hero-body p {
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.45);
+  margin: 0;
+}
+.initiation-block { margin-bottom: 80px; padding-top: 120px; }
+.initiation-big-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 28px;
+}
+.initiation-main-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 52px);
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.initiation-main-title span { color: #FF6B00; }
+.initiation-sub-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 600;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 40px;
+  max-width: 680px;
+}
+.initiation-intro {
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.45);
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+.initiation-layers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.initiation-layer {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 40px 36px;
+}
+.initiation-layer-num {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #FF6B00;
+  margin-bottom: 12px;
+}
+.initiation-layer-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.initiation-layer p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.75;
+  margin: 0;
+}
+.initiation-layer p strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+/* Brand Stages */
+.brand-stages-block { margin-bottom: 80px; }
+.brand-stages-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 40px;
+}
+.brand-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.brand-stage {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.brand-stage-accent {
+  background: rgba(255,107,0,0.04);
+  border-color: rgba(255,107,0,0.2);
+}
+.brand-stage-num {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #FF6B00;
+}
+.brand-stage-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.brand-stage p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1;
+}
+.brand-stage-key {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,107,0,0.6);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Messaging note */
+.messaging-note {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-left: 3px solid #FF6B00;
+  padding: 32px 36px;
+}
+.messaging-note-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 12px;
+}
+.messaging-note p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  margin: 0 0 24px;
+}
+.messaging-note-btn {
+  display: inline-block;
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #FF6B00;
+  border: 1px solid rgba(255,107,0,0.4);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.messaging-note-btn:hover {
+  background: rgba(255,107,0,0.08);
+  border-color: #FF6B00;
+}
+
+/* ─── КОЛЛАБОРАЦИИ (tasks) ─── */
+.collab-tasks-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 40px;
+}
+.collab-tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.collab-task-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px;
+}
+.collab-task-name {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  line-height: 1.4;
+}
+.collab-task-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ─── ИНФЛЮЕНСЕРЫ: список задач ─── */
+.inf-task-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-top: 4px;
+}
+.inf-task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.inf-task-list li {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+.inf-task-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: rgba(255,107,0,0.5);
+}
+
+/* ─── МОДЕЛЬ ТРЁХ КОШЕЛЬКОВ ─── */
+.wallets-section { margin-top: 80px; }
+.wallets-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 40px;
+}
+.wallets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.wallet-card {
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+.wallet-card.wallet-a { background: rgba(60,80,180,0.12); border: 1px solid rgba(60,80,180,0.25); }
+.wallet-card.wallet-b { background: rgba(160,30,40,0.14); border: 1px solid rgba(160,30,40,0.3); }
+.wallet-card.wallet-v { background: rgba(160,80,60,0.12); border: 1px solid rgba(160,80,60,0.25); }
+.wallet-letter {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
+}
+.wallet-a .wallet-letter { background: rgba(80,100,200,0.6); }
+.wallet-b .wallet-letter { background: rgba(160,30,40,0.7); }
+.wallet-v .wallet-letter { background: rgba(160,80,60,0.6); }
+.wallet-name {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4;
+}
+.wallet-pct {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1;
+}
+.wallet-a .wallet-pct { color: rgba(120,150,240,0.9); }
+.wallet-b .wallet-pct { color: rgba(200,60,70,0.9); }
+.wallet-v .wallet-pct { color: rgba(200,120,90,0.9); }
+.wallet-card p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ─── СПЕЦПРОЕКТЫ ─── */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+.spec-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.spec-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.spec-card:hover { background: rgba(255,107,0,0.04); }
+.spec-card:hover::before { height: 100%; }
+.spec-eyebrow {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FF6B00;
+}
+.spec-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.3;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.spec-card p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+  margin: 0;
+}
+.spec-card p strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+.spec-tagline {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #FF6B00;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.spec-collab-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.spec-collab-names {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .initiation-layers { grid-template-columns: 1fr; }
+  .brand-stages-grid { grid-template-columns: 1fr; }
+  .collab-tasks-grid { grid-template-columns: 1fr; }
+  .wallets-grid { grid-template-columns: 1fr; }
+  .spec-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── STRATEGY FUNCTIONS ─── */
+#strategy-functions .section-label,
+.sf-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.4);
+  margin-bottom: 48px;
+}
+.sf-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 4.5vw, 68px);
+  text-transform: uppercase;
+  line-height: 1.0;
+  letter-spacing: -1px;
+  color: #111;
+  margin-bottom: 48px;
+  max-width: 900px;
+}
+.sf-body {
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.75;
+  color: rgba(0,0,0,0.6);
+  max-width: 760px;
+  margin: 0 0 32px;
+}
+.sf-lead {
+  font-size: 15px;
+  color: rgba(0,0,0,0.7);
+  margin: 0 0 16px;
+}
+.sf-lead strong { font-weight: 700; }
+.sf-steps {
+  max-width: 760px;
+  margin: 0 0 64px;
+  padding-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sf-steps li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(0,0,0,0.6);
+}
+.sf-steps li strong { color: rgba(0,0,0,0.85); font-weight: 700; }
+.sf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  padding-top: 40px;
+}
+.sf-list li {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 3.5vw, 52px);
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.15);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  transition: color 0.2s;
+}
+.sf-list li:hover { color: rgba(0,0,0,0.7); }
+
+/* ─── FUNCTION SECTIONS (light bg — full theme override) ─── */
+
+/* Base text colour for all content in fn-sections */
+.fn-section { color: #1a1a1a; }
+
+/* Section headings */
+.fn-section .section-title { color: #111; }
+.fn-section .section-label { color: #FF6B00; }
+
+/* All cards → 15% lighter than beige bg */
+.fn-section .smm-card,
+.fn-section .perf-intro-box,
+.fn-section .perf-source-col,
+.fn-section .pr-includes-item,
+.fn-section .pr-model-card,
+.fn-section .pr-scenario-card,
+.fn-section .events-seg-col,
+.fn-section .event-detail-card,
+.fn-section .spec-card,
+.fn-section .collab-task-card {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.5) !important;
+}
+
+/* perf-benefit blocks */
+.fn-section .perf-benefit {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.5) !important;
+}
+.fn-section .perf-intro-box {
+  color: rgba(0,0,0,0.6) !important;
+}
+.fn-section .perf-benefit-title {
+  color: #111 !important;
+}
+.fn-section .perf-benefit p {
+  color: rgba(0,0,0,0.55) !important;
+}
+
+/* Wallet cards keep colour tints but lighter */
+.fn-section .wallet-card.wallet-a { background: rgba(60,80,180,0.08) !important; border-color: rgba(60,80,180,0.2) !important; }
+.fn-section .wallet-card.wallet-b { background: rgba(160,30,40,0.08) !important; border-color: rgba(160,30,40,0.2) !important; }
+.fn-section .wallet-card.wallet-v { background: rgba(160,80,60,0.08) !important; border-color: rgba(160,80,60,0.2) !important; }
+
+/* All plain text inside cards → dark */
+.fn-section .smm-card-role,
+.fn-section .smm-card-desc,
+.fn-section .perf-benefit p,
+.fn-section .perf-funnel-footnote,
+.fn-section .perf-sources-note,
+.fn-section .pr-model-card p,
+.fn-section .pr-model-card ul li,
+.fn-section .pr-scenario-steps li,
+.fn-section .crisis-list li,
+.fn-section .events-seg-item-name,
+.fn-section .events-seg-item-desc,
+.fn-section .spec-card p,
+.fn-section .spec-tagline,
+.fn-section .wallet-card p,
+.fn-section .wallet-name { color: rgba(0,0,0,0.55) !important; }
+
+/* Card titles/headings → dark */
+.fn-section .smm-card-name,
+.fn-section .smm-card-role { color: #FF6B00 !important; }
+.fn-section .pr-model-title { color: #FF6B00 !important; }
+.fn-section .pr-includes-text,
+.fn-section .events-seg-title,
+.fn-section .event-detail-title,
+.fn-section .spec-title,
+.fn-section .wallet-name,
+.fn-section .collab-task-name { color: #111 !important; }
+
+/* Section-level labels & intros outside cards */
+.fn-section .perf-funnel-title,
+.fn-section .perf-sources-title,
+.fn-section .perf-funnel-sub,
+.fn-section .perf-sources-sub,
+.fn-section .wallets-title,
+.fn-section .pr-models-label,
+.fn-section .pr-scenarios-label,
+.fn-section .crisis-label,
+.fn-section .crisis-block-title,
+.fn-section .events-seg-title,
+.fn-section .perf-benefit-title { color: #111 !important; }
+
+/* Funnel step labels on light bg */
+.fn-section .funnel-step-label { color: rgba(0,0,0,0.75) !important; }
+.fn-section .funnel-step-6 .funnel-step-label { color: #fff !important; }
+
+/* Percentage/pct in wallets → keep colour but slightly darker */
+.fn-section .wallet-a .wallet-pct { color: rgba(60,80,200,0.8) !important; }
+.fn-section .wallet-b .wallet-pct { color: rgba(160,30,40,0.8) !important; }
+.fn-section .wallet-v .wallet-pct { color: rgba(160,80,60,0.8) !important; }
+
+/* Source table rows on light bg */
+.fn-section .perf-source-row { border-bottom-color: rgba(0,0,0,0.06) !important; }
+.fn-section .perf-source-row-name { color: rgba(0,0,0,0.55) !important; }
+.fn-section .perf-source-dest { color: rgba(0,0,0,0.35) !important; }
+
+/* Hover: smm/collab cards on light */
+.fn-section .smm-card:hover,
+.fn-section .collab-task-card:hover {
+  background: rgba(255,107,0,0.08) !important;
+  border-color: rgba(255,107,0,0.2) !important;
+}
+
+/* Hover: PR, Events, Спецпроекты cards on light */
+.fn-section .pr-includes-item:hover,
+.fn-section .pr-model-card:hover,
+.fn-section .pr-scenario-card:hover,
+.fn-section .events-seg-col:hover,
+.fn-section .event-detail-card:hover,
+.fn-section .spec-card:hover {
+  background: rgba(255,107,0,0.08) !important;
+  border-color: rgba(255,107,0,0.2) !important;
+}
+
+/* PR models task block on light bg */
+.fn-section .pr-models-task { border-color: rgba(255,107,0,0.25) !important; background: rgba(255,107,0,0.05) !important; }
+.fn-section .pr-models-task-body { color: rgba(0,0,0,0.45) !important; }
+
+/* Fix remaining white text in fn-sections */
+.fn-section .pr-includes-text { color: rgba(0,0,0,0.65) !important; }
+.fn-section .event-detail-card p { color: rgba(0,0,0,0.55) !important; }
+.fn-section .crisis-block-title { color: rgba(0,0,0,0.35) !important; }
+.fn-section .crisis-list li { color: rgba(0,0,0,0.55) !important; }
+.fn-section .spec-collab-label { color: rgba(0,0,0,0.4) !important; }
+.fn-section .spec-collab-names { color: rgba(0,0,0,0.6) !important; }
+.fn-section .spec-card p strong { color: rgba(0,0,0,0.75) !important; }
+
+/* pr-includes item number keeps orange */
+.fn-section .pr-includes-num { color: #FF6B00 !important; }
+
+/* pr-model num */
+.fn-section .pr-model-num { color: rgba(0,0,0,0.25) !important; }
+
+/* pr-scenario badge */
+.fn-section .pr-scenario-badge { color: #FF6B00 !important; }
+
+/* spec-eyebrow */
+.fn-section .spec-eyebrow { color: #FF6B00 !important; }
+
+/* event detail eyebrow */
+.fn-section .event-detail-eyebrow { color: #FF6B00 !important; }
+
+/* Divider stays orange */
+.fn-section .section-divider { background: #FF6B00; }
+
+/* PESO label → dark on light bg */
+.fn-section .peso-label { color: #111 !important; }
+.fn-section .peso-desc-text { color: rgba(0,0,0,0.5) !important; }
+.fn-section .peso-desc-text strong { color: rgba(0,0,0,0.75) !important; }
+
+/* Before pseudo-elements on cards */
+.fn-section .smm-card::before,
+.fn-section .collab-task-card::before,
+.fn-section .pr-includes-item::before,
+.fn-section .pr-model-card::before,
+.fn-section .pr-scenario-card::before,
+.fn-section .events-seg-col::before,
+.fn-section .event-detail-card::before,
+.fn-section .spec-card::before { background: #FF6B00; }
+
+/* ─── SMM ─── */
+.smm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+.smm-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.smm-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.smm-card:hover { background: rgba(255,107,0,0.08); }
+.smm-card:hover::before { height: 100%; }
+.smm-card-name {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B00;
+}
+.smm-card-role {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.4;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.smm-card-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ─── PERFORMANCE ─── */
+.perf-intro-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 40px;
+  margin-bottom: 60px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.5);
+}
+.perf-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-bottom: 80px;
+}
+.perf-benefit {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.perf-benefit::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.fn-section .perf-benefit:hover {
+  background: rgba(255,107,0,0.08) !important;
+  border-color: rgba(255,107,0,0.2) !important;
+}
+.perf-benefit:hover::before { height: 100%; }
+.perf-benefit-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 16px;
+  padding-left: 22px;
+  position: relative;
+}
+.perf-benefit-title::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #FF6B00;
+}
+.perf-benefit p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.75;
+  margin: 0;
+}
+.perf-funnel-section { margin-bottom: 80px; }
+.perf-funnel-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 8px;
+}
+.perf-funnel-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 40px;
+}
+.perf-funnel-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: calc(100% + 120px);
+  margin-left: -60px;
+  margin-top: 32px;
+  position: relative;
+}
+
+/* Funnel mouse-following tooltip */
+.funnel-tooltip {
+  position: fixed;
+  background: #111;
+  color: rgba(255,255,255,0.9);
+  padding: 12px 18px;
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 260px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s;
+  z-index: 9999;
+  border-left: 3px solid #FF6B00;
+}
+.funnel-tooltip.visible { opacity: 1; }
+.funnel-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 54px;
+}
+.funnel-step-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+.funnel-step { cursor: pointer; transition: filter 0.2s; }
+.funnel-step:hover { filter: brightness(1.12); }
+.funnel-step-1 { width: 100%; background: rgba(255,107,0,0.15); }
+.funnel-step-2 { width: 83%;  background: rgba(255,107,0,0.28); }
+.funnel-step-3 { width: 66%;  background: rgba(255,107,0,0.42); }
+.funnel-step-4 { width: 50%;  background: rgba(255,107,0,0.57); }
+.funnel-step-5 { width: 36%;  background: rgba(255,107,0,0.73); }
+.funnel-step-6 { width: 22%;  background: rgba(255,107,0,0.92); }
+
+.perf-funnel-footnote {
+  font-size: 12px;
+  color: rgba(255,255,255,0.28);
+  font-style: italic;
+  margin-top: 32px;
+  line-height: 1.7;
+}
+.perf-sources-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 8px;
+}
+.perf-sources-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 40px;
+}
+.perf-sources-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+.perf-source-col {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.perf-source-header {
+  padding: 16px 24px;
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #fff;
+}
+.perf-source-header.yandex { background: #C0392B; }
+.perf-source-header.vk     { background: #2167C5; }
+.perf-source-header.tg     { background: #9B0025; }
+.perf-source-row {
+  padding: 13px 24px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.perf-source-row-name { font-size: 13px; color: rgba(255,255,255,0.55); }
+.perf-source-row-right { text-align: right; }
+.perf-source-cpm { font-size: 13px; font-weight: 700; color: #FF6B00; }
+.perf-source-dest { font-size: 11px; color: rgba(255,255,255,0.28); }
+.perf-sources-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.28);
+  font-style: italic;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+/* ─── PR ─── */
+.pr-includes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 80px;
+}
+.pr-includes-item {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.pr-includes-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.pr-includes-item:hover { background: rgba(255,107,0,0.04); }
+.pr-includes-item:hover::before { height: 100%; }
+.pr-includes-num {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 36px;
+  color: rgba(255,107,0,0.2);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.pr-includes-text {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.5;
+  padding-top: 6px;
+}
+.peso-section {
+  margin-bottom: 80px;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+}
+.peso-desc-col {
+  flex: 0 0 260px;
+}
+.peso-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 24px;
+}
+.peso-desc-text {
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.75;
+  margin: 0;
+}
+.peso-desc-text strong {
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+}
+.peso-venn-wrap {
+  flex: 0 0 420px;
+  display: flex;
+  justify-content: center;
+}
+.peso-venn {
+  width: 420px;
+  height: auto;
+}
+.peso-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.peso-card {
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.peso-card.paid    { background: rgba(220,80,80,0.1);  border: 1px solid rgba(220,80,80,0.2);  }
+.peso-card.earned  { background: rgba(220,140,70,0.1); border: 1px solid rgba(220,140,70,0.2); }
+.peso-card.shared  { background: rgba(110,90,190,0.1); border: 1px solid rgba(110,90,190,0.2); }
+.peso-card.owned   { background: rgba(50,170,110,0.1); border: 1px solid rgba(50,170,110,0.2); }
+.peso-card-label {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+.peso-card.paid   .peso-card-label { color: rgba(230,100,100,0.9); }
+.peso-card.earned .peso-card-label { color: rgba(230,160,80,0.9);  }
+.peso-card.shared .peso-card-label { color: rgba(150,130,230,0.9); }
+.peso-card.owned  .peso-card-label { color: rgba(60,200,140,0.9);  }
+.peso-card p { font-size: 13px; color: rgba(255,255,255,0.4); margin: 0; line-height: 1.65; }
+.pr-models-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 40px;
+}
+.pr-models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 65px;
+}
+.pr-models-task {
+  border: 1px solid rgba(255,107,0,0.2);
+  background: rgba(255,107,0,0.04);
+  padding: 32px 36px;
+  margin-bottom: 80px;
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+}
+.pr-models-task-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  flex-shrink: 0;
+}
+.pr-models-task-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #FF6B00;
+}
+.pr-models-task-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.65;
+  margin-left: auto;
+  max-width: 320px;
+}
+.pr-model-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.pr-model-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.pr-model-card:hover { background: rgba(255,107,0,0.04); }
+.pr-model-card:hover::before { height: 100%; }
+.pr-model-num {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #FF6B00;
+  margin-bottom: 16px;
+}
+.pr-model-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.pr-model-card p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; margin: 0; }
+.pr-model-card ul { list-style: none; padding: 0; margin: 0 0 12px; display: flex; flex-direction: column; gap: 8px; }
+.pr-model-card ul li { font-size: 14px; color: rgba(255,255,255,0.4); padding-left: 16px; position: relative; }
+.pr-model-card ul li::before { content: '–'; position: absolute; left: 0; color: rgba(255,107,0,0.5); }
+.pr-scenarios-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 40px;
+}
+.pr-scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 80px;
+}
+.pr-scenario-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.pr-scenario-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.pr-scenario-card:hover { background: rgba(255,107,0,0.04); }
+.pr-scenario-card:hover::before { height: 100%; }
+.pr-scenario-badge {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 24px;
+}
+.pr-scenario-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: sc;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pr-scenario-steps li {
+  counter-increment: sc;
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.55;
+  padding-left: 28px;
+  position: relative;
+}
+.pr-scenario-steps li::before {
+  content: counter(sc);
+  position: absolute;
+  left: 0;
+  color: rgba(255,107,0,0.6);
+  font-weight: 700;
+  font-family: 'Korataki', sans-serif;
+  font-size: 13px;
+}
+.crisis-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 40px;
+}
+.crisis-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.crisis-block-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 20px;
+  margin-top: 32px;
+}
+.crisis-block-title:first-child { margin-top: 0; }
+.crisis-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.crisis-list li { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.6; padding-left: 20px; position: relative; }
+.crisis-list li::before { content: '→'; position: absolute; left: 0; color: rgba(255,107,0,0.45); font-size: 11px; }
+
+/* ─── МЕРОПРИЯТИЯ ─── */
+.events-seg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 80px;
+}
+.events-seg-col {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.events-seg-col::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.events-seg-col:hover { background: rgba(255,107,0,0.04); }
+.events-seg-col:hover::before { height: 100%; }
+.events-seg-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,107,0,0.18);
+}
+.events-seg-item { margin-bottom: 22px; }
+.events-seg-item:last-child { margin-bottom: 0; }
+.events-seg-item-name {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 5px;
+}
+.events-seg-item-desc { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.6; }
+/* ─── EVENTS SLIDER ─── */
+@keyframes evslide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.event-slider {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+.event-slider-left {
+  flex: 0 0 300px;
+}
+.event-slider-right {
+  flex: 0 0 300px;
+  padding-top: 32px;
+}
+/* Image panels — one visible at a time */
+.event-slide-img-wrap {
+  display: none;
+}
+.event-slide-img-wrap.active {
+  display: block;
+  animation: evslide-in 0.3s ease;
+}
+.event-slide-img {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.event-slide-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.event-slide-img-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: rgba(0,0,0,0.18);
+  text-transform: uppercase;
+  position: absolute;
+}
+/* Nav row under image */
+.event-slider-nav {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  gap: 0;
+}
+.event-slider-btn {
+  background: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  color: rgba(0,0,0,0.3);
+  font-size: 18px;
+  line-height: 1;
+}
+.event-slider-btn:hover {
+  background: rgba(255,107,0,0.08);
+  border-color: rgba(255,107,0,0.4);
+  color: #FF6B00;
+}
+.event-slider-counter {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(0,0,0,0.2);
+  flex: 1;
+  text-align: center;
+}
+/* Text panels — one visible at a time */
+.event-slide-info {
+  display: none;
+}
+.event-slide-info.active {
+  display: block;
+  animation: evslide-in 0.3s ease;
+}
+.event-slide-eyebrow {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 12px;
+}
+.event-slide-title {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: #111;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  line-height: 1.2;
+}
+.event-slide-body {
+  font-size: 14px;
+  color: rgba(0,0,0,0.48);
+  line-height: 1.8;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .smm-grid { grid-template-columns: repeat(2, 1fr); }
+  .perf-benefits { grid-template-columns: 1fr; }
+  .perf-sources-grid { grid-template-columns: 1fr; }
+  .pr-includes-grid { grid-template-columns: 1fr; }
+  .peso-grid { grid-template-columns: repeat(2, 1fr); }
+  .pr-models-grid { grid-template-columns: 1fr; }
+  .pr-scenarios-grid { grid-template-columns: 1fr; }
+  .crisis-cols { grid-template-columns: 1fr; gap: 0; }
+  .events-seg-grid { grid-template-columns: 1fr; }
+  .events-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .smm-grid { grid-template-columns: 1fr; }
+  .peso-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -2070,6 +3683,642 @@ section {
   </div>
 </section>
 
+
+<!-- КРЕАТИВНАЯ КОНЦЕПЦИЯ -->
+<section id="creative-concept" style="background: #0d0d0d;">
+  <div class="reveal">
+    <div class="section-label">07 / Креативная концепция</div>
+  </div>
+
+  <div class="concept-meta reveal">
+    <div class="concept-meta-eyebrow">От метафоры бренда к коммуникационной стратегии</div>
+    <div class="concept-hero-title">ИММЕРСИВНЫЙ<br>ОПЫТ ГОНЩИКА</div>
+    <div class="concept-hero-body">
+      <p>DRP — это место, где человек не наблюдает автоспорт, а проживает путь гонщика.</p>
+      <p>Поэтому коммуникационная стратегия строится не вокруг открытия объекта, а вокруг пути, который бренд и его аудитория проходят вместе.</p>
+    </div>
+  </div>
+
+  <div class="initiation-block reveal">
+    <div class="initiation-big-label">КРЕАТИВНАЯ КОНЦЕПЦИЯ (BIG IDEA)</div>
+    <div class="initiation-main-title">Первая глава бренда DRP — <span>INITIATION</span></div>
+    <div class="initiation-sub-title">в которой одновременно начинается путь проекта и путь его первых героев</div>
+    <div class="initiation-intro reveal">
+      Название Initiation выбрано не случайно. Оно объединяет два смысла, которые лежат в основе всей коммуникационной стратегии, и становится символом первой главы развития DRP.
+    </div>
+    <div class="initiation-layers">
+      <div class="initiation-layer">
+        <div class="initiation-layer-num">Слой 01</div>
+        <div class="initiation-layer-title">Дрифт</div>
+        <p>В профессиональном дрифте <strong>Initiation</strong> — это момент входа автомобиля в управляемый занос. Именно с него начинается проезд и определяется дальнейшая траектория движения.</p>
+      </div>
+      <div class="initiation-layer">
+        <div class="initiation-layer-num">Слой 02</div>
+        <div class="initiation-layer-title">Посвящение</div>
+        <p>В широком смысле <strong>Initiation</strong> означает начало нового пути, переход в новый статус и вступление в сообщество. Каждый, кто присоединяется к DRP на этом этапе, становится не просто будущим посетителем, а одним из первых участников истории бренда.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="brand-stages-block reveal">
+    <div class="brand-stages-title">Сценарий первой главы жизни бренда (2 года)</div>
+    <div class="brand-stages-grid">
+      <div class="brand-stage">
+        <div class="brand-stage-num">Этап 1</div>
+        <div class="brand-stage-title">Подготовка к коммуникации — обратный отсчёт</div>
+        <p>Бренд готовится к своему первому публичному выходу и закладывает основу для последующего развития.</p>
+        <div class="brand-stage-key">Идеальный проезд требует подготовки.</div>
+      </div>
+      <div class="brand-stage">
+        <div class="brand-stage-num">Этап 2</div>
+        <div class="brand-stage-title">Запуск коммуникации — объединение инициаторов</div>
+        <p>Сбор первых участников сообщества.</p>
+        <div class="brand-stage-key">Первые становятся частью истории.</div>
+      </div>
+      <div class="brand-stage">
+        <div class="brand-stage-num">Этап 3</div>
+        <div class="brand-stage-title">Прогрев к запуску — поиск идеальной траектории</div>
+        <p>Начинается настройка.</p>
+        <div class="brand-stage-key">Мы доводим систему до совершенства.</div>
+      </div>
+      <div class="brand-stage">
+        <div class="brand-stage-num">Этап 4</div>
+        <div class="brand-stage-title">Запуск и прогрев к открытию — первый занос</div>
+        <p>Все процессы начинают работать. Это уже сама Initiation в терминологии дрифта. Проект начинает двигаться.</p>
+        <div class="brand-stage-key">DRP входит в свою траекторию.</div>
+      </div>
+      <div class="brand-stage brand-stage-accent">
+        <div class="brand-stage-num">Этап 5</div>
+        <div class="brand-stage-title">Открытие — полное вхождение</div>
+        <p>Всё готово. Проект выходит на рынок полностью.</p>
+        <div class="brand-stage-key">Наступает момент, ради которого всё началось.</div>
+      </div>
+      <div class="brand-stage">
+        <div class="brand-stage-num">Этап 6</div>
+        <div class="brand-stage-title">Continuation (Продолжение)</div>
+        <p>Мы не заканчиваем историю. Наоборот. INITIATION завершена. Но путь только начинается.</p>
+        <div class="brand-stage-key" style="color: rgba(255,107,0,0.5);">→</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="messaging-note reveal">
+    <div class="messaging-note-title">Подход к разработке сообщений для коммуникации</div>
+    <p>На основе этапов, столпов, челленджей и креативной идеи мы строим сообщения для каждого канала.</p>
+    <a href="https://board.vk.com/?uid=65d5ffb1-0d22-483f-a88d-33f347ef6d95&utm_campaign=board.vk.company&utm_content=&utm_medium=try_1st_screen&utm_source=board.vk.company&utm_term=" target="_blank" class="messaging-note-btn">Доска с сообщениями →</a>
+  </div>
+</section>
+
+<!-- ЛИДЕРЫ МНЕНИЙ -->
+<section id="influencers" style="background: #000;">
+  <div class="reveal">
+    <div class="section-label">Работа с лидерами мнений</div>
+    <div class="section-title">Инфлюенсеры</div>
+    <div class="section-divider"></div>
+    <a href="https://docs.google.com/spreadsheets/d/1MWvnKFhT3bAlUb43Rjq36uLnynlWYX89oTGPckM5Dyc/edit?gid=0#gid=0" target="_blank" class="messaging-note-btn" style="margin-top: 32px; margin-bottom: 64px; display: inline-block;">Пул инфлюэнсеров →</a>
+  </div>
+  <div class="inf-grid reveal">
+    <div class="inf-card">
+      <div class="inf-cat">Лидеры автомобильной культуры</div>
+      <div class="inf-desc">Профессиональные пилоты, дрифтеры, автомобильные блогеры, механики, тюнинг-эксперты.</div>
+      <div class="inf-task-label">Задача</div>
+      <ul class="inf-task-list">
+        <li>Подтверждение экспертности DRP</li>
+        <li>Формирование доверия</li>
+        <li>Работа с ядром сообщества</li>
+        <li>Демонстрация инфраструктуры мирового уровня</li>
+      </ul>
+    </div>
+    <div class="inf-card">
+      <div class="inf-cat">Автомобильный lifestyle</div>
+      <div class="inf-desc">Автоблогеры, владельцы интересных автомобилей, creators вокруг JDM, stance, classic, supercars.</div>
+      <div class="inf-task-label">Задача</div>
+      <ul class="inf-task-list">
+        <li>Показать DRP как место автомобильной культуры</li>
+        <li>Формировать желание приехать</li>
+        <li>Создавать красивый вирусный контент</li>
+      </ul>
+    </div>
+    <div class="inf-card">
+      <div class="inf-cat">Lifestyle и городские медиа</div>
+      <div class="inf-desc">Блогеры про Петербург, городской досуг, рестораны, архитектуру.</div>
+      <div class="inf-task-label">Задача</div>
+      <p style="font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6; margin:0;">Показать DRP как новую точку притяжения города и альтернативу привычному досугу.</p>
+    </div>
+    <div class="inf-card">
+      <div class="inf-cat">Entertainment</div>
+      <div class="inf-desc">Комики, музыканты, стримеры, медийные личности.</div>
+      <div class="inf-task-label">Задача</div>
+      <p style="font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6; margin:0;">Расширение аудитории далеко за пределы автомобильного сообщества.</p>
+    </div>
+  </div>
+</section>
+
+<!-- КОЛЛАБОРАЦИИ -->
+<section id="collaborations" style="background: #000;">
+  <div class="reveal">
+    <div class="section-label">Коллаборации</div>
+    <div class="section-title">Работа с брендами</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="reveal">
+    <div class="collab-tasks-title">Какие задачи решают коллаборации с брендами</div>
+  </div>
+  <div class="collab-tasks-grid reveal">
+    <div class="collab-task-card">
+      <div class="collab-task-name">Усиливают доверие к DRP</div>
+      <p>Партнёрство с сильными брендами становится внешним подтверждением уровня проекта.</p>
+    </div>
+    <div class="collab-task-card">
+      <div class="collab-task-name">Расширяют аудиторию</div>
+      <p>Каждый партнёр приводит собственную аудиторию, знакомя с DRP людей, которые могли раньше не интересоваться дрифтом или автоспортом.</p>
+    </div>
+    <div class="collab-task-card">
+      <div class="collab-task-name">Усиливают медийность проекта</div>
+      <p>Совместные кампании увеличивают количество публикаций, упоминаний в СМИ, охватов в социальных сетях и присутствие DRP в городской и автомобильной повестке.</p>
+    </div>
+    <div class="collab-task-card">
+      <div class="collab-task-name">Создают новые поводы для посещения</div>
+      <p>Совместные продукты, мероприятия и специальные активации регулярно формируют новые причины приехать в DRP, поддерживая интерес к площадке в течение всего сезона.</p>
+    </div>
+    <div class="collab-task-card">
+      <div class="collab-task-name">Обогащают пользовательский опыт</div>
+      <p>Партнёры помогают создавать дополнительные сервисы, развлечения и активности, благодаря которым DRP становится не просто треком, а многофункциональной территорией для отдыха.</p>
+    </div>
+    <div class="collab-task-card">
+      <div class="collab-task-name">Создают контент</div>
+      <p>Каждая коллаборация становится самостоятельным инфоповодом для социальных сетей, PR и пользовательского контента, увеличивая органический охват проекта.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ФУНКЦИИ КОММУНИКАЦИОННОЙ СТРАТЕГИИ -->
+<section id="strategy-functions" style="background: #C9C4BC;">
+  <div class="sf-inner reveal">
+    <div class="sf-label">08 / Функции коммуникационной стратегии</div>
+    <div class="sf-title"><span style="color:#FF6B00;">Функции</span> коммуникационной стратегии</div>
+    <p class="sf-body">Коммуникационная стратегия DRP состоит из нескольких взаимосвязанных функциональных блоков, каждый из которых решает собственные коммуникационные и бизнес-задачи.</p>
+    <p class="sf-lead"><strong>Далее мы последовательно:</strong></p>
+    <ol class="sf-steps">
+      <li><strong>Рассмотрим каждую функцию стратегии</strong> — её роль, задачи, инструменты и ожидаемый результат.</li>
+      <li><strong>Покажем её реализацию по этапам</strong>, включая ключевые активности, KPI, необходимые ресурсы и бюджет на каждом этапе развития проекта.</li>
+    </ol>
+    <ul class="sf-list">
+      <li>SMM</li>
+      <li>Performance</li>
+      <li>PR</li>
+      <li>Мероприятия</li>
+      <li>Спецпроекты</li>
+      <li>Наружка и офлайн</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SMM -->
+<section id="smm" class="fn-section" style="background: #C9C4BC;">
+  <div class="reveal">
+    <div class="section-label">SMM</div>
+    <div class="section-title">Каналы коммуникации</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="smm-grid reveal">
+    <div class="smm-card">
+      <div class="smm-card-name">Telegram</div>
+      <div class="smm-card-role">Закулисье и комьюнити</div>
+      <p class="smm-card-desc">Самая близкая к аудитории площадка.</p>
+    </div>
+    <div class="smm-card">
+      <div class="smm-card-name">Instagram</div>
+      <div class="smm-card-role">Витрина новой автомобильной культуры</div>
+      <p class="smm-card-desc">Главная задача Instagram — формировать желание стать частью DRP.</p>
+    </div>
+    <div class="smm-card">
+      <div class="smm-card-name">VK</div>
+      <div class="smm-card-role">Главная информационная площадка</div>
+      <p class="smm-card-desc">Самая универсальная площадка бренда, объединяющая новости, афиши, мероприятия, сообщества и продукты.</p>
+    </div>
+    <div class="smm-card">
+      <div class="smm-card-name">YouTube</div>
+      <div class="smm-card-role">Документальный сериал о DRP</div>
+      <p class="smm-card-desc">Канал «мини фильмов» о строительстве, пилотах, автомобилях, инженерии, соревнованиях и жизни сообщества.</p>
+    </div>
+    <div class="smm-card">
+      <div class="smm-card-name">Рассылки</div>
+      <div class="smm-card-role">«Персональный помощник»</div>
+      <p class="smm-card-desc">Рассылки сопровождают пользователя на каждом этапе взаимодействия с DRP: информируют, напоминают, помогают пользоваться продуктами.</p>
+    </div>
+    <div class="smm-card">
+      <div class="smm-card-name">Яндекс Дзен</div>
+      <div class="smm-card-role">Эксперт автомобильной культуры</div>
+      <p class="smm-card-desc">Площадка для длинных материалов, аналитики и историй. DRP раскрывает автомобильную культуру шире, чем собственный проект.</p>
+    </div>
+    <div class="smm-card">
+      <div class="smm-card-name">Форумы</div>
+      <div class="smm-card-role">Специализированные сообщества</div>
+      <p class="smm-card-desc">Пространство общения с самой требовательной аудиторией. Главная задача — заслужить уважение сообщества, а не рекламировать проект.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section id="performance" class="fn-section" style="background: #C9C4BC;">
+  <div class="reveal">
+    <div class="section-label">Performance</div>
+    <div class="section-title">Перформанс</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="perf-intro-box reveal">
+    Комплексная система интернет-продвижения, которая позволяет выстраивать взаимодействие с потенциальными клиентами на каждом этапе принятия решения: от первого знакомства с брендом до бронирования, покупки и повторного обращения. При этом каждый этап измеряется, анализируется и постоянно оптимизируется.
+  </div>
+  <div class="perf-benefits reveal">
+    <div class="perf-benefit">
+      <div class="perf-benefit-title">Управляемый поток гостей</div>
+      <p>Платим за результат — клик, лид, бронь. Не за показы. Единственный канал с чёткой ценой каждого контакта.</p>
+    </div>
+    <div class="perf-benefit">
+      <div class="perf-benefit-title">База клиентов до открытия</div>
+      <p>Собираем «ждунов» до дня X. К открытию у DRP есть готовая тёплая аудитория, а не «пустое» открытие.</p>
+    </div>
+    <div class="perf-benefit">
+      <div class="perf-benefit-title">CRM-база работает годами</div>
+      <p>Один раз собрали контакты — возвращаем через ретаргет и email. Каждый лид монетизируется многократно.</p>
+    </div>
+    <div class="perf-benefit">
+      <div class="perf-benefit-title">Страховка сарафана</div>
+      <p>Если инфлюенсер не сработает или ивент просядет — перформанс продолжит генерировать поток. Стабильность.</p>
+    </div>
+  </div>
+
+  <div class="perf-funnel-section reveal">
+    <div class="perf-funnel-title">Воронка перформанса</div>
+    <div class="perf-funnel-sub">Путь пользователя от первого касания до оплаты через рекламу</div>
+    <div class="perf-funnel-wrap">
+      <div class="funnel-step funnel-step-1" data-note="Показы рекламы целевым сегментам в Яндексе, VK и Telegram"><span class="funnel-step-label">Охват аудитории</span></div>
+      <div class="funnel-step funnel-step-2" data-note="Клики по рекламе — заинтересовавшиеся переходят на сайт / лендинг"><span class="funnel-step-label">Переходы</span></div>
+      <div class="funnel-step funnel-step-3" data-note="Оставили контакт: клуб ожидания, подписка на канал, форма «оповестить»"><span class="funnel-step-label">Подписчики / CRM</span></div>
+      <div class="funnel-step funnel-step-4" data-note="Оставили заявку на конкретный продукт: тренировку, курс, B2B-услугу"><span class="funnel-step-label">Лиды</span></div>
+      <div class="funnel-step funnel-step-5" data-note="Оплатили и подтвердили — стали платящими клиентами DRP"><span class="funnel-step-label">Бронирования</span></div>
+      <div class="funnel-step funnel-step-6" data-note="Деньги в кассе + база для повторных продаж через ретаргет и CRM"><span class="funnel-step-label">Выручка DRP</span></div>
+    </div>
+    <p class="perf-funnel-footnote">Каждый шаг воронки требует своих креативов, каналов и оптимизации. Перформанс отвечает за первые 5 шагов; выручка — совместная работа с продажами и CRM.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="perf-sources-title">Основные источники</div>
+    <div class="perf-sources-sub">Стоимость 1000 показов по каждому источнику. Бенчмарки на середину 2026.</div>
+    <div class="perf-sources-grid">
+      <div class="perf-source-col">
+        <div class="perf-source-header yandex">Яндекс.Директ</div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Поиск (бренд)</span><div class="perf-source-row-right"><div class="perf-source-cpm">350–800 ₽</div><div class="perf-source-dest">→ Главная сайта</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Поиск (категории)</span><div class="perf-source-row-right"><div class="perf-source-cpm">250–570 ₽</div><div class="perf-source-dest">→ Лендинг</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">РСЯ (brand awareness)</span><div class="perf-source-row-right"><div class="perf-source-cpm">80–250 ₽</div><div class="perf-source-dest">→ Посадочная</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">РСЯ видео</span><div class="perf-source-row-right"><div class="perf-source-cpm">150–340 ₽</div><div class="perf-source-dest">→ Лендинг с видео</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Ретаргетинг</span><div class="perf-source-row-right"><div class="perf-source-cpm">100–280 ₽</div><div class="perf-source-dest">→ Спецоффер</div></div></div>
+      </div>
+      <div class="perf-source-col">
+        <div class="perf-source-header vk">VK Ads</div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Таргет сообществ</span><div class="perf-source-row-right"><div class="perf-source-cpm">80–200 ₽</div><div class="perf-source-dest">→ Сообщества VK</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Видео в ленте</span><div class="perf-source-row-right"><div class="perf-source-cpm">150–330 ₽</div><div class="perf-source-dest">→ Лендинг</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Look-alike</span><div class="perf-source-row-right"><div class="perf-source-cpm">100–260 ₽</div><div class="perf-source-dest">→ Лендинг</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Ретаргетинг</span><div class="perf-source-row-right"><div class="perf-source-cpm">60–180 ₽</div><div class="perf-source-dest">→ Спецоффер</div></div></div>
+      </div>
+      <div class="perf-source-col">
+        <div class="perf-source-header tg">Telegram Ads</div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Нишевые авто-каналы</span><div class="perf-source-row-right"><div class="perf-source-cpm">400–800 ₽</div><div class="perf-source-dest">→ ТГ-канал DRP</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Lifestyle / авто-каналы</span><div class="perf-source-row-right"><div class="perf-source-cpm">250–550 ₽</div><div class="perf-source-dest">→ Лендинг</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Широкие каналы</span><div class="perf-source-row-right"><div class="perf-source-cpm">150–370 ₽</div><div class="perf-source-dest">→ ТГ-канал DRP</div></div></div>
+        <div class="perf-source-row"><span class="perf-source-row-name">Ретаргетинг</span><div class="perf-source-row-right"><div class="perf-source-cpm">200–460 ₽</div><div class="perf-source-dest">→ Спецоффер</div></div></div>
+      </div>
+    </div>
+    <p class="perf-sources-note">Дополнительно тестируем программатик / in-app с 3-го этапа для поиска новых сегментов и снижения CPL.</p>
+  </div>
+
+  <div class="wallets-section reveal">
+    <div class="wallets-title">Модель трёх кошельков</div>
+    <div class="wallets-grid">
+      <div class="wallet-card wallet-a">
+        <div class="wallet-letter">А</div>
+        <div class="wallet-name">Brand awareness<br>Охват и подписки</div>
+        <div class="wallet-pct">25%</div>
+        <p>Этапы 1–3. Формирование клуба, охват, накопление CRM-базы «ждунов».</p>
+      </div>
+      <div class="wallet-card wallet-b">
+        <div class="wallet-letter">Б</div>
+        <div class="wallet-name">Лидогенерация</div>
+        <div class="wallet-pct">60%</div>
+        <p>Этапы 4–6. Только лиды, заявки, брони. Пиковая закупка на открытие.</p>
+      </div>
+      <div class="wallet-card wallet-v">
+        <div class="wallet-letter">В</div>
+        <div class="wallet-name">Резерв</div>
+        <div class="wallet-pct">10%</div>
+        <p>Сдвиги стройки, скачки ставок, тесты программатика. Не тратится без согласования.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PR -->
+<section id="pr" class="fn-section" style="background: #C9C4BC;">
+  <div class="reveal">
+    <div class="section-label">PR</div>
+    <div class="section-title">Связи с общественностью</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="pr-includes-grid reveal">
+    <div class="pr-includes-item"><span class="pr-includes-num">01</span><span class="pr-includes-text">Медиа / СМИ (органика и коммерция)</span></div>
+    <div class="pr-includes-item"><span class="pr-includes-num">02</span><span class="pr-includes-text">Публичные лица проекта (хэдлайнеры бренда)</span></div>
+    <div class="pr-includes-item"><span class="pr-includes-num">03</span><span class="pr-includes-text">Коммуникационные площадки проекта</span></div>
+    <div class="pr-includes-item"><span class="pr-includes-num">04</span><span class="pr-includes-text">Антикризисные коммуникации</span></div>
+    <div class="pr-includes-item"><span class="pr-includes-num">05</span><span class="pr-includes-text">Репутационная защита проекта</span></div>
+    <div class="pr-includes-item"><span class="pr-includes-num">06</span><span class="pr-includes-text">Политики внутренних коммуникаций</span></div>
+  </div>
+
+  <div class="peso-section reveal">
+    <div class="peso-desc-col">
+      <div class="peso-label">Модель PESO</div>
+      <p class="peso-desc-text">Фреймворк для структурирования PR-активности по четырём типам медиа.<br><br><strong>Paid</strong> — платные размещения и реклама.<br><strong>Earned</strong> — органические публикации в СМИ и у блогеров.<br><strong>Shared</strong> — соцсети, репосты, UGC-контент.<br><strong>Owned</strong> — собственные каналы бренда.<br><br>Центр пересечения — зона максимального доверия аудитории.</p>
+    </div>
+    <div class="peso-venn-wrap">
+      <svg class="peso-venn" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="blur-venn" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="0"/>
+          </filter>
+        </defs>
+        <!-- Earned — top -->
+        <circle cx="260" cy="170" r="140" fill="rgba(220,120,70,0.55)"/>
+        <!-- Paid — left -->
+        <circle cx="160" cy="285" r="140" fill="rgba(210,80,80,0.55)"/>
+        <!-- Shared — right -->
+        <circle cx="360" cy="285" r="140" fill="rgba(110,90,200,0.55)"/>
+        <!-- Owned — bottom -->
+        <circle cx="260" cy="370" r="140" fill="rgba(50,170,110,0.55)"/>
+        <!-- Center ring -->
+        <circle cx="260" cy="280" r="52" fill="none" stroke="white" stroke-width="2.5" opacity="0.7"/>
+
+        <!-- Labels -->
+        <text x="260" y="82" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="700" font-size="20" fill="#111">Earned</text>
+        <text x="260" y="102" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="400" font-size="11" fill="rgba(0,0,0,0.55)">органические публикации</text>
+
+        <text x="62" y="278" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="700" font-size="20" fill="#111">Paid</text>
+        <text x="62" y="296" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="400" font-size="11" fill="rgba(0,0,0,0.55)">платные размещения</text>
+
+        <text x="458" y="278" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="700" font-size="20" fill="#111">Shared</text>
+        <text x="458" y="296" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="400" font-size="11" fill="rgba(0,0,0,0.55)">соцсети, UGC</text>
+
+        <text x="260" y="460" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="700" font-size="20" fill="#111">Owned</text>
+        <text x="260" y="478" text-anchor="middle" font-family="'Halvar Breit',sans-serif" font-weight="400" font-size="11" fill="rgba(0,0,0,0.55)">собственные каналы</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="pr-models-label">Структура публичности: варианты моделей</div>
+    <div class="pr-models-grid">
+      <div class="pr-model-card">
+        <div class="pr-model-num">МОДЕЛЬ 01</div>
+        <div class="pr-model-title">Основатель-хэдлайнер</div>
+        <p>Бренд — один конкретный человек. Примеры: Tesla / Илон Маск, Virgin Group / Ричард Брэнсон.</p>
+      </div>
+      <div class="pr-model-card">
+        <div class="pr-model-num">МОДЕЛЬ 02</div>
+        <div class="pr-model-title">Команда основателей</div>
+        <p>Бренд — команда визионеров. В команде хэдлайнеров могут быть не только фаундеры, но и спортсмены, топ-менеджмент. Пример: Italy Group.</p>
+      </div>
+      <div class="pr-model-card">
+        <div class="pr-model-num">МОДЕЛЬ 03</div>
+        <div class="pr-model-title">Хэдлайнеры: комьюнити</div>
+        <ul><li>Скейт-парки</li><li>Outdoor-проекты</li><li>Серф-бренды</li></ul>
+        <p>Место как бы выросло из тусовки сообщества увлечённых людей.</p>
+      </div>
+      <div class="pr-model-card">
+        <div class="pr-model-num">МОДЕЛЬ 04</div>
+        <div class="pr-model-title">Хэдлайнеры-герои</div>
+        <p>Пример: Red Bull. Несколько категорий героев: спортсмены, дети, тренеры. Количество неограничено, можно менять фокусы в зависимости от периода и целей.</p>
+      </div>
+      <div class="pr-model-card">
+        <div class="pr-model-num">МОДЕЛЬ 05</div>
+        <div class="pr-model-title">Без конкретных лиц, фокус на место</div>
+        <p>Бренд строится вокруг самого места, истории, атмосферы, уникального опыта. Примеры: Nürburgring, Topgolf Las Vegas.</p>
+      </div>
+    </div>
+    <div class="pr-models-task">
+      <div class="pr-models-task-label">Задача</div>
+      <div class="pr-models-task-title">Избрать модель или синтезировать гибридный вариант</div>
+      <div class="pr-models-task-body">Выбор модели определяет долгосрочный вектор публичной стратегии.</div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="pr-scenarios-label">Три сценария работы с PR</div>
+    <div class="pr-scenarios-grid">
+      <div class="pr-scenario-card">
+        <div class="pr-scenario-badge">Вариант 1 — Максимум</div>
+        <ol class="pr-scenario-steps">
+          <li>Превью: первый анонс, макеты и рендеры (3–6 мес)</li>
+          <li>PR строительства проекта (за год до открытия)</li>
+          <li>Перед открытием (за 2–3 мес)</li>
+          <li>Открытие и кульминация</li>
+          <li>База репутации (полгода после открытия)</li>
+          <li>Рутинная постоянная работа</li>
+        </ol>
+      </div>
+      <div class="pr-scenario-card">
+        <div class="pr-scenario-badge">Вариант 2 — Средний</div>
+        <ol class="pr-scenario-steps">
+          <li>Первый анонс и PR строительства проекта</li>
+          <li>Перед открытием (за 2–3 мес)</li>
+          <li>Открытие и кульминация</li>
+          <li>База репутации (полгода после открытия)</li>
+          <li>Рутинная постоянная работа</li>
+        </ol>
+      </div>
+      <div class="pr-scenario-card">
+        <div class="pr-scenario-badge">Вариант 3 — Минимум</div>
+        <ol class="pr-scenario-steps">
+          <li>Первый анонс</li>
+          <li>Открытие и кульминация</li>
+          <li>Рутинная работа</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="crisis-label">Антикризисные коммуникации</div>
+    <div class="crisis-cols">
+      <div>
+        <div class="crisis-block-title">Возможные кризисы</div>
+        <ul class="crisis-list">
+          <li>Репутационные и ценностные</li>
+          <li>Политические</li>
+          <li>Технические</li>
+        </ul>
+        <div class="crisis-block-title">Кризисный штаб</div>
+        <ul class="crisis-list">
+          <li>Руководитель штаба — лицо, принимающее решения</li>
+          <li>Спикер для СМИ</li>
+          <li>PR</li>
+          <li>Юрист</li>
+          <li>GR</li>
+          <li>Соцсети / SMM</li>
+        </ul>
+      </div>
+      <div>
+        <div class="crisis-block-title">Необходимые инструменты</div>
+        <ul class="crisis-list">
+          <li>Матрица сообщений в кризисной ситуации</li>
+          <li>FAQ на 50–100 вопросов</li>
+          <li>Внутренний документ с ответами на самые вероятные вопросы</li>
+          <li>Антикризисный блок для сайта и соцсетей с заранее подготовленными шаблонами</li>
+          <li>Скрипт для публичного спикера в кризисной ситуации</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МЕРОПРИЯТИЯ -->
+<section id="events" class="fn-section" style="background: #C9C4BC;">
+  <div class="reveal">
+    <div class="section-label">Мероприятия</div>
+    <div class="section-title">События и активации</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="events-seg-grid reveal">
+    <div class="events-seg-col">
+      <div class="events-seg-title">По масштабу</div>
+      <div class="events-seg-item"><div class="events-seg-item-name">A-class</div><div class="events-seg-item-desc">Федеральные события, формирующие имидж DRP.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">B-class</div><div class="events-seg-item-desc">Крупные ежемесячные события, собирающие автомобильное сообщество.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">C-class</div><div class="events-seg-item-desc">Регулярная жизнь площадки (еженедельные активности).</div></div>
+    </div>
+    <div class="events-seg-col">
+      <div class="events-seg-title">По типу</div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Drift Core</div><div class="events-seg-item-desc">Всё, что связано непосредственно с дрифтом.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Auto Culture</div><div class="events-seg-item-desc">Автомобильная культура, lifestyle и городской досуг.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Internal</div><div class="events-seg-item-desc">Собственные мероприятия DRP.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">External</div><div class="events-seg-item-desc">Партнёрские и коллаборационные события.</div></div>
+    </div>
+    <div class="events-seg-col">
+      <div class="events-seg-title">По роли</div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Имиджевые</div><div class="events-seg-item-desc">Формируют бренд.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Коммерческие</div><div class="events-seg-item-desc">Продают продукты.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Комьюнити</div><div class="events-seg-item-desc">Создают привычку.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Контентные</div><div class="events-seg-item-desc">Генерируют охваты.</div></div>
+      <div class="events-seg-item"><div class="events-seg-item-name">Партнёрские</div><div class="events-seg-item-desc">Развивают экосистему.</div></div>
+    </div>
+  </div>
+  <div class="event-slider reveal">
+    <!-- Left: images -->
+    <div class="event-slider-left">
+      <div class="event-slide-img-wrap events-img active">
+        <div class="event-slide-img">
+          <img src="img/events/grand-opening.jpg" alt="Grand Opening Festival" onerror="this.style.display='none'"/>
+          <span class="event-slide-img-label">grand-opening.jpg</span>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap events-img">
+        <div class="event-slide-img">
+          <img src="img/events/drift-media-day.jpg" alt="Drift Media Day" onerror="this.style.display='none'"/>
+          <span class="event-slide-img-label">drift-media-day.jpg</span>
+        </div>
+      </div>
+      <div class="event-slider-nav">
+        <button class="event-slider-btn" id="events-prev" aria-label="Назад">&#8592;</button>
+        <span class="event-slider-counter">1 / 2</span>
+        <button class="event-slider-btn" id="events-next" aria-label="Вперёд">&#8594;</button>
+      </div>
+    </div>
+    <!-- Right: text -->
+    <div class="event-slider-right">
+      <div class="event-slide-info events-info active">
+        <div class="event-slide-eyebrow">A-class · Grand Opening</div>
+        <div class="event-slide-title">Grand Opening Festival</div>
+        <p class="event-slide-body">Главное событие открытия DRP. Полноценный двухдневный фестиваль с профессиональными дрифт-заездами, шоу-программой, концертом, партнёрскими зонами, фуд-кортами и презентацией всех продуктов комплекса. Формирует первое массовое знакомство аудитории с новой площадкой.</p>
+      </div>
+      <div class="event-slide-info events-info">
+        <div class="event-slide-eyebrow">A-class · Спецпроект</div>
+        <div class="event-slide-title">Drift Media Day</div>
+        <p class="event-slide-body">Серия медиа-дней, в рамках которых DRP приглашает известных медийных персон, не связанных с автоспортом, познакомиться с дрифтом через собственный опыт. Под руководством профессиональных инструкторов участники проходят обучение, выполняют серию заданий на трассе и соревнуются между собой за лучшее время и точность прохождения элементов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- СПЕЦПРОЕКТЫ -->
+<section id="special-projects" class="fn-section" style="background: #C9C4BC;">
+  <div class="reveal">
+    <div class="section-label">Спецпроекты</div>
+    <div class="section-title">Специальные активации</div>
+    <div class="section-divider"></div>
+  </div>
+  <div class="event-slider spec-slider reveal">
+    <!-- Left: images -->
+    <div class="event-slider-left">
+      <div class="event-slide-img-wrap spec-img active">
+        <div class="event-slide-img">
+          <img src="img/spec/brooklands-detailing.jpg" alt="Brooklands Detailing" onerror="this.style.display='none'"/>
+          <span class="event-slide-img-label">brooklands-detailing.jpg</span>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img">
+        <div class="event-slide-img">
+          <img src="img/spec/art-garage.jpg" alt="DRP ART GARAGE" onerror="this.style.display='none'"/>
+          <span class="event-slide-img-label">art-garage.jpg</span>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img">
+        <div class="event-slide-img">
+          <img src="img/spec/lica-drp.jpg" alt="Лица DRP" onerror="this.style.display='none'"/>
+          <span class="event-slide-img-label">lica-drp.jpg</span>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img">
+        <div class="event-slide-img">
+          <img src="img/spec/drp-quest.jpg" alt="DRP Квест" onerror="this.style.display='none'"/>
+          <span class="event-slide-img-label">drp-quest.jpg</span>
+        </div>
+      </div>
+      <div class="event-slider-nav">
+        <button class="event-slider-btn" id="spec-prev" aria-label="Назад">&#8592;</button>
+        <span class="event-slider-counter spec-counter">1 / 4</span>
+        <button class="event-slider-btn" id="spec-next" aria-label="Вперёд">&#8594;</button>
+      </div>
+    </div>
+    <!-- Right: text -->
+    <div class="event-slider-right">
+      <div class="event-slide-info spec-info active">
+        <div class="event-slide-eyebrow">DRP × Brooklands Detailing</div>
+        <div class="event-slide-title">Один автомобиль. Четыре идеи. Один выбор.</div>
+        <p class="event-slide-body">Вместе с Brooklands Detailing создаём уникальную ливрею для одной из машин парка DRP. Перед аудиторией — 4 концепта дизайна культовой BMW E30. Только один из них станет реальным автомобилем и выедет на трассу DRP.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Напишите в комментариях номер понравившегося концепта и расскажите, почему именно он должен победить. Самый популярный вариант отправится в работу.</p>
+        <div class="spec-tagline" style="margin-top:16px;">Голосуем. Выбираем. Создаём вместе.</div>
+      </div>
+      <div class="event-slide-info spec-info">
+        <div class="event-slide-eyebrow">Ежегодный спецпроект</div>
+        <div class="event-slide-title">DRP ART GARAGE</div>
+        <p class="event-slide-body">Ежегодный спецпроект, в рамках которого известные российские художники и дизайнеры создают масштабные арт-инсталляции, посвящённые автомобилям и дрифт-культуре. Территория DRP постепенно превращается в открытую галерею современного искусства, где каждый объект становится новой точкой притяжения, инфоповодом и частью культурной идентичности проекта.</p>
+        <div class="spec-collab-label" style="margin-top:20px;">Опции для коллабораций</div>
+        <div class="spec-collab-names">Алексей Лука · Гарри Нуриев</div>
+      </div>
+      <div class="event-slide-info spec-info">
+        <div class="event-slide-eyebrow">РБК Стиль / Forbes Russia</div>
+        <div class="event-slide-title">«Лица DRP»</div>
+        <p class="event-slide-body">Совместный редакционный проект с РБК Стиль или Forbes Russia, посвящённый людям, которые формируют современную дрифт-культуру. Каждый материал — это большое интервью и фотосессия на территории DRP, где через личную историю героя раскрывается его путь, ценности, отношение к скорости, лидерству и культуре дрифта.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Спецпроект одновременно укрепляет репутацию DRP как центра дрифт-культуры и расширяет её восприятие за пределами автоспортивного сообщества.</p>
+      </div>
+      <div class="event-slide-info spec-info">
+        <div class="event-slide-eyebrow">Пример спецпроекта</div>
+        <div class="event-slide-title">DRP Квест</div>
+        <p class="event-slide-body">По всей территории DRP размещены QR-коды, интегрированные в инфраструктуру парка: на ограждениях, смотровых площадках, возле автомобилей, в зоне сервиса, кафе, мерча и других локациях. Каждый QR открывает короткий вопрос, связанный с дрифтом, историей автоспорта или фактами о DRP.</p>
+        <p class="event-slide-body" style="margin-top:12px;">После прохождения всех точек участник становится финалистом и получает главный приз — <strong>бесплатный заезд на DRP</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-logo">DRIFT RACING PARK</div>
@@ -2326,6 +4575,28 @@ window.addEventListener('scroll', () => {
   lastScroll = st;
 });
 
+// ─── Funnel tooltip (mouse-following) ───
+(function() {
+  const tip = document.createElement('div');
+  tip.className = 'funnel-tooltip';
+  document.body.appendChild(tip);
+
+  document.addEventListener('mouseover', e => {
+    const step = e.target.closest('.funnel-step[data-note]');
+    if (!step) return;
+    tip.textContent = step.dataset.note;
+    tip.classList.add('visible');
+  });
+  document.addEventListener('mousemove', e => {
+    if (!tip.classList.contains('visible')) return;
+    tip.style.left = (e.clientX + 16) + 'px';
+    tip.style.top  = (e.clientY - 56) + 'px';
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest('.funnel-step[data-note]')) tip.classList.remove('visible');
+  });
+})();
+
 // ─── Smooth anchor scrolling ───
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', e => {
@@ -2384,6 +4655,44 @@ if (kfGrid) {
     kfGrid.querySelectorAll('.key-figure').forEach(f => f.classList.remove('active-fig'));
   });
 }
+
+// ─── EVENTS SLIDER ───
+(function() {
+  const imgs    = Array.from(document.querySelectorAll('.event-slide-img-wrap.events-img'));
+  const infos   = Array.from(document.querySelectorAll('.event-slide-info.events-info'));
+  const counter = document.querySelector('.event-slider-counter');
+  let current = 0;
+  const total = imgs.length;
+  function go(dir) {
+    imgs[current].classList.remove('active');
+    infos[current].classList.remove('active');
+    current = (current + dir + total) % total;
+    imgs[current].classList.add('active');
+    infos[current].classList.add('active');
+    if (counter) counter.textContent = (current + 1) + ' / ' + total;
+  }
+  document.getElementById('events-prev')?.addEventListener('click', () => go(-1));
+  document.getElementById('events-next')?.addEventListener('click', () => go(1));
+})();
+
+// ─── SPEC SLIDER ───
+(function() {
+  const imgs    = Array.from(document.querySelectorAll('.event-slide-img-wrap.spec-img'));
+  const infos   = Array.from(document.querySelectorAll('.event-slide-info.spec-info'));
+  const counter = document.querySelector('.spec-counter');
+  let current = 0;
+  const total = imgs.length;
+  function go(dir) {
+    imgs[current].classList.remove('active');
+    infos[current].classList.remove('active');
+    current = (current + dir + total) % total;
+    imgs[current].classList.add('active');
+    infos[current].classList.add('active');
+    if (counter) counter.textContent = (current + 1) + ' / ' + total;
+  }
+  document.getElementById('spec-prev')?.addEventListener('click', () => go(-1));
+  document.getElementById('spec-next')?.addEventListener('click', () => go(1));
+})();
 </script>
 
 </body>
