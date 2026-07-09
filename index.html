@@ -1723,7 +1723,20 @@ section {
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.06);
   padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
 }
+.collab-task-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.collab-task-card:hover { background: rgba(255,107,0,0.08); }
+.collab-task-card:hover::before { height: 100%; }
 .collab-task-name {
   font-family: 'Halvar Breit', sans-serif;
   font-size: 16px;
@@ -6846,7 +6859,7 @@ section {
             <tr><td>Instagram</td><td>Зимний контент и UGC</td><td>Reels, зимний дрифт, UGC, must-visit зимой</td><td>20 / 16 / 75</td><td>Охват, ER, переходы</td></tr>
             <tr><td>YouTube</td><td>Регулярные ролики</td><td>Зимний дрифт, рейтинги пилотов, регулярные форматы</td><td>4 ролика + 10 Shorts</td><td>Просмотры, переходы</td></tr>
             <tr><td>Яндекс Дзен</td><td>Экспертный/образовательный поток</td><td>Регулярные материалы, образование, кейсы</td><td>4 материала</td><td>Дочитывания</td></tr>
-            <tr><td>Яндекс Карты / 2ГИС</td><td>Поддержание рейтинга</td><td>Зимние события, отзывы, фото</td><td>—</td><td>Рейтинг, отзывы, маршруты</td></tr>
+            <tr><td>Яндекс Карты / 2ГИС</td><td>Поддержание рейтинга</td><td>Зимние события, отзывы, фото</td><td>3 обновления</td><td>Рейтинг, отзывы, маршруты</td></tr>
           </tbody>
         </table>
       </div>
@@ -6964,6 +6977,33 @@ section {
       </ul>
       </div>
     </div>
+  </div>
+
+  <div class="stage-summary reveal" style="margin-top:80px; padding-top:64px; border-top:1px solid rgba(255,255,255,0.08);">
+    <div class="stage-simple-title" style="margin-top:0;">Объём контента по всем этапам</div>
+    <div class="stage-table-wrap">
+      <table class="stage-table">
+        <thead>
+          <tr><th>Канал / формат</th><th>Этап 2</th><th>Этап 3</th><th>Этап 4</th><th>Этап 5</th><th>Этап 6</th><th>Итого за период, ед.</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Длительность этапа, мес</strong></td><td><strong>3</strong></td><td><strong>12</strong></td><td><strong>6</strong></td><td><strong>6</strong></td><td><strong>3</strong></td><td><strong>30</strong></td></tr>
+          <tr><td>Telegram — посты</td><td>16</td><td>20</td><td>24</td><td>30</td><td>24</td><td><strong>684</strong></td></tr>
+          <tr><td>Telegram — видео/клипы</td><td>2</td><td>4</td><td>5</td><td>8</td><td>6</td><td><strong>150</strong></td></tr>
+          <tr><td>ВКонтакте — посты</td><td>12</td><td>16</td><td>18</td><td>24</td><td>20</td><td><strong>540</strong></td></tr>
+          <tr><td>ВКонтакте — клипы</td><td>4</td><td>6</td><td>8</td><td>12</td><td>10</td><td><strong>234</strong></td></tr>
+          <tr><td>Instagram — посты (Grid)</td><td>12</td><td>16</td><td>18</td><td>24</td><td>20</td><td><strong>540</strong></td></tr>
+          <tr><td>Instagram — Reels</td><td>8</td><td>12</td><td>14</td><td>20</td><td>16</td><td><strong>420</strong></td></tr>
+          <tr><td>Instagram — Stories</td><td>30</td><td>50</td><td>60</td><td>90</td><td>75</td><td><strong>1815</strong></td></tr>
+          <tr><td>YouTube — ролики (10+ мин)</td><td>2</td><td>4</td><td>4</td><td>5</td><td>4</td><td><strong>120</strong></td></tr>
+          <tr><td>YouTube — Shorts</td><td>0</td><td>6</td><td>8</td><td>12</td><td>10</td><td><strong>222</strong></td></tr>
+          <tr><td>Яндекс Дзен — статьи/ролики</td><td>0</td><td>4</td><td>4</td><td>6</td><td>4</td><td><strong>120</strong></td></tr>
+          <tr><td>Яндекс Карты / 2ГИС — обновления</td><td>0</td><td>2</td><td>3</td><td>4</td><td>3</td><td><strong>75</strong></td></tr>
+          <tr><td><strong>ИТОГО ед./мес</strong></td><td><strong>86</strong></td><td><strong>140</strong></td><td><strong>166</strong></td><td><strong>235</strong></td><td><strong>192</strong></td><td><strong style="color:#FF6B00;">4920</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="stage-goal-line" style="margin-top:20px;">Этап 1 (Подготовка) — внутренний, контент по каналам не выпускается, поэтому в таблицу не включён.</div>
   </div>
 
   <div class="stage-collapse-all reveal">
