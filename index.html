@@ -1873,6 +1873,20 @@ section {
   background: #FF6B00;
   transition: height 0.4s ease;
 }
+.spec-card-img {
+  aspect-ratio: 4 / 3;
+  margin: -48px -44px 0 -44px;
+  background: rgba(0,0,0,0.07);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+}
+.spec-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .spec-card:hover { background: rgba(255,107,0,0.04); }
 .spec-card:hover::before { height: 100%; }
 .spec-eyebrow {
@@ -2095,6 +2109,8 @@ section {
 .fn-section .perf-source-row { border-bottom-color: rgba(0,0,0,0.06) !important; }
 .fn-section .perf-source-row-name { color: rgba(0,0,0,0.55) !important; }
 .fn-section .perf-source-dest { color: rgba(0,0,0,0.35) !important; }
+.fn-section .perf-source-note-text { color: rgba(0,0,0,0.55) !important; }
+.fn-section .perf-source-note-text strong { color: rgba(0,0,0,0.8) !important; }
 
 /* Hover: smm/collab cards on light */
 .fn-section .smm-card:hover,
@@ -2358,7 +2374,7 @@ section {
 }
 .perf-sources-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2px;
 }
 .perf-source-col {
@@ -2377,6 +2393,14 @@ section {
 .perf-source-header.yandex { background: #C0392B; }
 .perf-source-header.vk     { background: #2167C5; }
 .perf-source-header.tg     { background: #9B0025; }
+.perf-source-header.prog   { background: #8a8a8a; }
+.perf-source-note-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+}
+.perf-source-note-text strong { color: rgba(255,255,255,0.8); font-weight: 600; }
 .perf-source-row {
   padding: 13px 24px;
   border-top: 1px solid rgba(255,255,255,0.04);
@@ -2777,6 +2801,25 @@ section {
   text-transform: uppercase;
   position: absolute;
 }
+/* Horizontal 4:3 box added under the vertical image box */
+.event-slide-img-h {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin-top: 12px;
+  background: rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.event-slide-img-h img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 /* Nav row under image */
 .event-slider-nav {
   display: flex;
@@ -2812,6 +2855,28 @@ section {
   color: rgba(0,0,0,0.2);
   flex: 1;
   text-align: center;
+}
+/* Spec slider 2 — stacked layout: wide image on top, description below */
+.spec-slider2 {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0 400px;
+  gap: 0;
+}
+.spec-slider2 .event-slider-left {
+  flex: none;
+  width: 100%;
+}
+.spec-slider2 .event-slider-right {
+  flex: none;
+  width: 100%;
+  padding-top: 32px;
+}
+@media (max-width: 1100px) {
+  .spec-slider2 { padding: 0 40px; }
+}
+@media (max-width: 700px) {
+  .spec-slider2 { padding: 0; }
 }
 /* Text panels — one visible at a time */
 .event-slide-info {
@@ -3694,8 +3759,8 @@ section {
 <!-- COMMUNICATION GOALS -->
 <section id="comm-goals" style="background: rgba(255,255,255,0.01);">
   <div class="reveal">
-    <div class="section-label">06 / Цели коммуникации</div>
-    <div class="section-title">5 целей коммуникации</div>
+    <div class="section-label">06 / Декомпозиция главного вызова</div>
+    <div class="section-title">5 коммуникационных челленджей</div>
     <div class="section-divider"></div>
   </div>
 
@@ -4209,7 +4274,7 @@ section {
       <li>PR</li>
       <li>Мероприятия</li>
       <li>Спецпроекты</li>
-      <li>Наружка и офлайн</li>
+      <li>Наружка и оффлайн</li>
     </ul>
   </div>
 </section>
@@ -4268,7 +4333,7 @@ section {
     <div class="section-divider"></div>
   </div>
   <div class="perf-intro-box reveal">
-    Комплексная система интернет-продвижения, которая позволяет выстраивать взаимодействие с потенциальными клиентами на каждом этапе принятия решения: от первого знакомства с брендом до бронирования, покупки и повторного обращения. При этом каждый этап измеряется, анализируется и постоянно оптимизируется.
+    Performance — это не ещё один рекламный канал, а система интернет-продвижения, которая помогает каждому другому направлению работать эффективнее и, самое главное, выстраивает взаимодействие с потенциальными клиентами на каждом этапе принятия решения: от первого знакомства с брендом до бронирования, покупки и повторного обращения. При этом каждый этап измеряется, анализируется и постоянно оптимизируется.
   </div>
   <div class="perf-benefits reveal">
     <div class="perf-benefit">
@@ -4329,8 +4394,13 @@ section {
         <div class="perf-source-row"><span class="perf-source-row-name">Широкие каналы</span><div class="perf-source-row-right"><div class="perf-source-cpm">150–370 ₽</div><div class="perf-source-dest">→ ТГ-канал DRP</div></div></div>
         <div class="perf-source-row"><span class="perf-source-row-name">Ретаргетинг</span><div class="perf-source-row-right"><div class="perf-source-cpm">200–460 ₽</div><div class="perf-source-dest">→ Спецоффер</div></div></div>
       </div>
+      <div class="perf-source-col">
+        <div class="perf-source-header prog">Программатик / in-app</div>
+        <div class="perf-source-row" style="display:block;">
+          <p class="perf-source-note-text"><strong>Дополнительно тестируем</strong> с 3-го этапа для поиска новых сегментов и снижения CPL.</p>
+        </div>
+      </div>
     </div>
-    <p class="perf-sources-note">Дополнительно тестируем программатик / in-app с 3-го этапа для поиска новых сегментов и снижения CPL.</p>
   </div>
 
   <div class="wallets-section reveal">
@@ -4339,7 +4409,7 @@ section {
       <div class="wallet-card wallet-a">
         <div class="wallet-letter">А</div>
         <div class="wallet-name">Brand awareness<br>Охват и подписки</div>
-        <div class="wallet-pct">25%</div>
+        <div class="wallet-pct">30%</div>
         <p>Этапы 1–3. Формирование клуба, охват, накопление CRM-базы «ждунов».</p>
       </div>
       <div class="wallet-card wallet-b">
@@ -4650,6 +4720,131 @@ section {
       </div>
     </div>
   </div>
+
+  <div class="reveal" style="margin-top:80px;">
+    <div class="perf-sources-title">Ещё концепции коллабораций</div>
+    <div class="perf-sources-sub">9 дополнительных идей брендовых спецпроектов. Изображения — горизонтальный формат 4:3.</div>
+  </div>
+  <div class="event-slider spec-slider2 reveal">
+    <!-- Left: images -->
+    <div class="event-slider-left">
+      <div class="event-slide-img-wrap spec-img2 active">
+        <div class="event-slide-img-h">
+          <img src="drift-thru.jpg" alt="DRIFT THRU" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="drp-tbank.jpg" alt="DRP × Т-Банк" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="drp-daze.jpg" alt="DRP x DAZE" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="drp-yandex.jpg" alt="DRP x Yandex" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="lit-noise-meter.jpg" alt="LIT NOISE METER" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="bank-rossiya.jpg" alt="Банк «Россия» × DRP" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="drp-comics.jpg" alt="Комикс DRP" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="drift-signal.jpg" alt="DRIFT SIGNAL" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slide-img-wrap spec-img2">
+        <div class="event-slide-img-h">
+          <img src="drift-fuel.jpg" alt="DRIFT FUEL" onerror="this.style.display='none'"/>
+        </div>
+      </div>
+      <div class="event-slider-nav">
+        <button class="event-slider-btn" id="spec2-prev" aria-label="Назад">&#8592;</button>
+        <span class="event-slider-counter spec2-counter">1 / 9</span>
+        <button class="event-slider-btn" id="spec2-next" aria-label="Вперёд">&#8594;</button>
+      </div>
+    </div>
+    <!-- Right: text -->
+    <div class="event-slider-right">
+      <div class="event-slide-info spec-info2 active">
+        <div class="event-slide-eyebrow">DRP × Вкусно — и точка</div>
+        <div class="event-slide-title">DRIFT THRU</div>
+        <p class="event-slide-body"><strong>Кто быстрее: кухня или дрифтер?</strong></p>
+        <p class="event-slide-body" style="margin-top:12px;">Пока на кухне «Вкусно — и точка» готовят бургер, профессиональный пилот DRP проходит специальную конфигурацию трассы. Его задача — успеть завершить заезд ровно к моменту, когда заказ будет готов к выдаче. Финиш находится прямо у окна Drive Thru, где пилот забирает свой заказ, не покидая автомобиля.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Проект превращает привычный Drive Thru в настоящее гоночное испытание, объединяя скорость кухни и скорость трассы в одном шоу.</p>
+        <div class="spec-collab-label" style="margin-top:20px;">Дополнительная механика</div>
+        <div class="spec-collab-names">DRP x Happy Meal (Хеппи Мил)</div>
+        <p class="event-slide-body" style="margin-top:12px;">Во всех ресторанах «Вкусно — и точка» Санкт-Петербурга в течение кампании появляются лимитированные коллекционные машинки DRP. А дети получают скидку на детскую школу дрифта.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">DRP × Т-Банк</div>
+        <div class="event-slide-title">След в сердце</div>
+        <p class="event-slide-body">DRP — это любовь! Профессиональный пилот выполняет дрифт, оставляя следами шин огромное сердце, которое становится графическим символом совместной кампании DRP и Т-Банка. Аэрофотосъёмка превращает рисунок на асфальте в главный визуал проекта.</p>
+        <p class="event-slide-body" style="margin-top:12px;">На основе этого уникального принта выпускается лимитированная серия банковских карт Т-Банка. Каждый владелец карты получает специальные привилегии в DRP: скидки на обучение и трек-дни, приоритетную покупку билетов, доступ к закрытым мероприятиям и эксклюзивным предложениям партнёров.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">Коллаборация</div>
+        <div class="event-slide-title">DRP x DAZE</div>
+        <p class="event-slide-body">DRP и DAZE создают лимитированную коллекцию одежды, вдохновлённую эстетикой дрифт-культуры, гаражной жизни и атмосферой гоночных выходных. Коллекция объединяет узнаваемый визуальный язык DAZE с символикой DRP, превращая экипировку гонщиков, механиков и следы шин в элементы современной уличной моды.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Коллекция становится не сувениром с логотипом, а самостоятельным fashion-релизом, который одинаково интересен как автомобильному сообществу, так и поклонникам современного стритвира.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">DRP × Яндекс Go</div>
+        <div class="event-slide-title">Drift Taxi</div>
+        <p class="event-slide-body">DRP и Яндекс Go меняются ролями. Пока по улицам Санкт-Петербурга ездит специальный автомобиль Yandex Drift Taxi — спортивная машина в фирменной ливрее Яндекс Go, которая становится самым необычным такси города и привлекает внимание к проекту, на территории DRP гостей встречает настоящий брендированный автомобиль Яндекс Go, который превращается в полноценное Drift Taxi.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Городской автомобиль приглашает людей открыть для себя DRP, а на трассе привычное городское такси демонстрирует совершенно другую сторону — зрелищный профессиональный дрифт.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">DRP × LIT Energy</div>
+        <div class="event-slide-title">LIT NOISE METER</div>
+        <p class="event-slide-body">Во время главных заездов на территории DRP устанавливается огромный цифровой шумомер LIT Energy, который в режиме реального времени измеряет громкость поддержки трибун. Чем громче болельщики поддерживают пилотов, тем быстрее заполняется шкала энергии на экране.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Когда уровень шума достигает заранее установленной отметки, система случайным образом определяет сектор или ряд трибун, где зрители получают банки Lit Energy. Победа зависит не от удачи одного человека, а от энергии всей трибуны — чем громче поддержка, тем больше шансов активировать розыгрыш.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">Банк «Россия» × DRP</div>
+        <div class="event-slide-title">Цифровой маскот на кассе</div>
+        <p class="event-slide-body">Все платёжные терминалы на территории DRP превращаются в часть фирменного опыта комплекса. Вместо стандартного интерфейса гостей встречает цифровой маскот DRP, который сопровождает пользователя на протяжении оплаты, комментирует происходящее и превращает обычную транзакцию в небольшое интерактивное шоу.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Каждая оплата становится ещё одним элементом погружения в атмосферу DRP, а терминалы — полноценной частью бренд-экосистемы комплекса.</p>
+        <div class="spec-collab-label" style="margin-top:20px;">Как работает</div>
+        <p class="event-slide-body" style="margin-top:8px;">Во время оплаты маскот появляется на экране терминала и взаимодействует с пользователем: «Заправляемся перед следующим заездом?», «Пит-стоп завершён. Можно возвращаться на трассу.», «Отличный выбор. Время снова давить на газ.» После успешной оплаты маскот запускает короткую анимацию: автомобиль эффектно уходит в занос, оставляя фирменный след шин DRP.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">Комикс-коллаборация</div>
+        <div class="event-slide-title">История маскота DRP</div>
+        <p class="event-slide-body">DRP совместно с известным современным иллюстратором выпускает лимитированную серию комиксов о маскоте DRP, который проходит путь от первого знакомства с дрифтом до профессионального пилота. Каждая глава рассказывает о новом этапе его становления, одновременно знакомя читателей с культурой дрифта, философией DRP и возможностями комплекса.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Главной механикой становятся секретные промокоды, органично встроенные в иллюстрации. Они спрятаны в деталях: на наклейках автомобиля, табло времени, номерах машин, граффити, чеках кафе, баннерах, дорожных знаках или экипировке героев. Найденный код открывает скидки, подарки и специальные предложения DRP.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">DRP × МегаФон</div>
+        <div class="event-slide-title">DRIFT SIGNAL</div>
+        <p class="event-slide-body">DRP и МегаФон запускают игровую механику внутри Telegram Mini App: пользователь управляет машиной на виртуальной дрифт-арене DRP и должен в нужный момент нажать кнопку, чтобы войти в идеальный занос.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Чем точнее тайминг, тем чище траектория и выше итоговый счёт. Набранные очки конвертируются в бонусы МегаФона и скидки на продукты DRP: билеты, Drift Taxi, мерч, кафе, обучение или участие в мероприятиях.</p>
+        <div class="spec-collab-label" style="margin-top:20px;">Как работает игра</div>
+        <p class="event-slide-body" style="margin-top:8px;">Пользователь заходит в Telegram-бот / Mini App DRP × МегаФон. На экране появляется трасса DRP, автомобиль и шкала идеального входа в занос. Машина автоматически приближается к повороту, а игрок должен нажать кнопку DRIFT ровно в зелёной зоне.</p>
+      </div>
+      <div class="event-slide-info spec-info2">
+        <div class="event-slide-eyebrow">DRP × ЛУКОЙЛ</div>
+        <div class="event-slide-title">DRIFT FUEL</div>
+        <p class="event-slide-body">ЛУКОЙЛ становится официальной точкой входа в мир DRP. При заправке полного бака водитель получает лотерейный билет с шансом выиграть сессию на симрейсинге DRP, билеты на мероприятия, скидки на заезды и фирменный мерч.</p>
+        <p class="event-slide-body" style="margin-top:12px;">Дополняет коллаборацию фирменный DRP Hot Dog — специальное меню на АЗС с упаковкой в стиле DRP и QR-кодом, открывающим доступ к дополнительным призам и бонусам комплекса.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- STAGES -->
@@ -4718,7 +4913,7 @@ section {
             <div class="stage-func-badge active">PR</div>
             <div class="stage-func-badge">Мероприятия</div>
             <div class="stage-func-badge">Спецпроекты</div>
-            <div class="stage-func-badge">Наружка и офлайн</div>
+            <div class="stage-func-badge">Наружка и оффлайн</div>
           </div>
         </div>
       </div>
@@ -4827,7 +5022,7 @@ section {
             <div class="stage-func-badge active">PR</div>
             <div class="stage-func-badge">Мероприятия</div>
             <div class="stage-func-badge">Спецпроекты</div>
-            <div class="stage-func-badge">Наружка и офлайн</div>
+            <div class="stage-func-badge">Наружка и оффлайн</div>
           </div>
         </div>
       </div>
@@ -5033,7 +5228,7 @@ section {
             <div class="stage-func-badge active">PR</div>
             <div class="stage-func-badge">Мероприятия</div>
             <div class="stage-func-badge">Спецпроекты</div>
-            <div class="stage-func-badge">Наружка и офлайн</div>
+            <div class="stage-func-badge">Наружка и оффлайн</div>
           </div>
         </div>
       </div>
@@ -5220,7 +5415,7 @@ section {
             <div class="stage-func-badge active">PR</div>
             <div class="stage-func-badge active">Мероприятия</div>
             <div class="stage-func-badge active">Спецпроекты</div>
-            <div class="stage-func-badge active">Наружка и офлайн</div>
+            <div class="stage-func-badge active">Наружка и оффлайн</div>
           </div>
         </div>
       </div>
@@ -5968,7 +6163,7 @@ section {
 
       <div class="stage-events-link">
         <div class="stage-events-link-title">Детальный план мероприятий, спецпроектов и наружной коммуникации</div>
-        <div class="stage-events-link-desc">Полный календарь активностей, форматов и офлайн-точек контакта на этом этапе ведётся в отдельной таблице.</div>
+        <div class="stage-events-link-desc">Полный календарь активностей, форматов и оффлайн-точек контакта на этом этапе ведётся в отдельной таблице.</div>
         <a href="https://docs.google.com/spreadsheets/d/1WnzvRiEgekiQ_Y95LRysDT2K8VQR1N1rk2xlPTxJ2uw/edit?gid=377337266#gid=377337266" target="_blank" rel="noopener">Открыть таблицу мероприятий →</a>
       </div>
       </div>
@@ -6019,7 +6214,7 @@ section {
             <div class="stage-func-badge active">PR</div>
             <div class="stage-func-badge active">Мероприятия</div>
             <div class="stage-func-badge active">Спецпроекты</div>
-            <div class="stage-func-badge active">Наружка и офлайн</div>
+            <div class="stage-func-badge active">Наружка и оффлайн</div>
           </div>
         </div>
       </div>
@@ -6835,7 +7030,7 @@ section {
             <div class="stage-func-badge active">PR</div>
             <div class="stage-func-badge">Мероприятия</div>
             <div class="stage-func-badge">Спецпроекты</div>
-            <div class="stage-func-badge">Наружка и офлайн</div>
+            <div class="stage-func-badge">Наружка и оффлайн</div>
           </div>
         </div>
       </div>
@@ -7407,6 +7602,25 @@ if (kfGrid) {
   }
   document.getElementById('spec-prev')?.addEventListener('click', () => go(-1));
   document.getElementById('spec-next')?.addEventListener('click', () => go(1));
+})();
+
+// ─── SPEC SLIDER 2 (доп. концепции коллабораций) ───
+(function() {
+  const imgs    = Array.from(document.querySelectorAll('.event-slide-img-wrap.spec-img2'));
+  const infos   = Array.from(document.querySelectorAll('.event-slide-info.spec-info2'));
+  const counter = document.querySelector('.spec2-counter');
+  let current = 0;
+  const total = imgs.length;
+  function go(dir) {
+    imgs[current].classList.remove('active');
+    infos[current].classList.remove('active');
+    current = (current + dir + total) % total;
+    imgs[current].classList.add('active');
+    infos[current].classList.add('active');
+    if (counter) counter.textContent = (current + 1) + ' / ' + total;
+  }
+  document.getElementById('spec2-prev')?.addEventListener('click', () => go(-1));
+  document.getElementById('spec2-next')?.addEventListener('click', () => go(1));
 })();
 
 // ─── Stage tabs switching ───
