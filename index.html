@@ -88,10 +88,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(10,10,10,0.85);
-  backdrop-filter: blur(20px);
+  background: rgba(10,10,10,0.94);
   border-bottom: 1px solid rgba(255,255,255,0.06);
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 .nav-logo {
   font-family: 'Korataki', sans-serif;
@@ -759,8 +759,7 @@ section {
   border-bottom: 1px solid rgba(255,255,255,0.08);
   position: sticky;
   top: 0;
-  background: rgba(10,10,10,0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(10,10,10,0.97);
   z-index: 5;
 }
 .gantt-header span {
