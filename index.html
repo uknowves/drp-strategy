@@ -7054,7 +7054,15 @@ function handleHeroScroll() {
   }
 }
 
-window.addEventListener('scroll', handleHeroScroll, { passive: true });
+let heroScrollScheduled = false;
+window.addEventListener('scroll', () => {
+  if (heroScrollScheduled) return;
+  heroScrollScheduled = true;
+  requestAnimationFrame(() => {
+    handleHeroScroll();
+    heroScrollScheduled = false;
+  });
+}, { passive: true });
 handleHeroScroll();
 
 // ─── CHALLENGE SCROLL-DRIVEN ───
@@ -7115,7 +7123,15 @@ function handleChallengeScroll() {
   else { chLine3.classList.remove('lit'); }
 }
 
-window.addEventListener('scroll', handleChallengeScroll, { passive: true });
+let challengeScrollScheduled = false;
+window.addEventListener('scroll', () => {
+  if (challengeScrollScheduled) return;
+  challengeScrollScheduled = true;
+  requestAnimationFrame(() => {
+    handleChallengeScroll();
+    challengeScrollScheduled = false;
+  });
+}, { passive: true });
 handleChallengeScroll();
 
 // ─── Timeline stage tooltip ───
@@ -7219,15 +7235,21 @@ function switchGoal(dir) {
 // ─── Nav hide on scroll ───
 let lastScroll = 0;
 const nav = document.querySelector('.nav');
+let navScrollScheduled = false;
 window.addEventListener('scroll', () => {
-  const st = window.scrollY;
-  if (st > lastScroll && st > 100) {
-    nav.style.transform = 'translateY(-100%)';
-  } else {
-    nav.style.transform = 'translateY(0)';
-  }
-  lastScroll = st;
-});
+  if (navScrollScheduled) return;
+  navScrollScheduled = true;
+  requestAnimationFrame(() => {
+    const st = window.scrollY;
+    if (st > lastScroll && st > 100) {
+      nav.style.transform = 'translateY(-100%)';
+    } else {
+      nav.style.transform = 'translateY(0)';
+    }
+    lastScroll = st;
+    navScrollScheduled = false;
+  });
+}, { passive: true });
 
 // ─── Funnel tooltip (mouse-following) ───
 (function() {
