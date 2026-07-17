@@ -162,7 +162,7 @@ section { padding: 120px 60px; position: relative; }
   background: #000;
   z-index: 1;
 }
-.hero-video-wrap { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #000; }
+.hero-video-wrap { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #000; border: none; }
 .hero-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
 .hero-video-gradient {
   position: absolute; inset: 0; z-index: 1;
@@ -172,9 +172,13 @@ section { padding: 120px 60px; position: relative; }
 .hero-text-parallax {
   position: absolute;
   z-index: 4;
-  text-align: center;
+  text-align: left;
   width: 100%;
-  padding: 0 40px;
+  max-width: 620px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 60px;
   pointer-events: none;
 }
 .hero-text-parallax.visible { pointer-events: auto; }
@@ -212,8 +216,8 @@ section { padding: 120px 60px; position: relative; }
   font-size: 20px;
   line-height: 1.7;
   color: rgba(255,255,255,0.75);
-  max-width: 650px;
-  margin: 0 auto;
+  max-width: 480px;
+  margin: 0;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1.6s ease, transform 1.6s ease;
@@ -294,6 +298,7 @@ section { padding: 120px 60px; position: relative; }
 }
 .media-slot.media-loaded .media-slot-placeholder { opacity: 0; pointer-events: none; }
 #heroMediaSlot .media-slot-placeholder { justify-content: flex-start; padding-top: 64px; }
+#heroMediaSlot.media-slot { border: none; background: #000; }
 .media-slot.ratio-hero { aspect-ratio: 16 / 9; }
 .media-slot.ratio-portrait { aspect-ratio: 3 / 4; }
 .media-slot.ratio-wide { aspect-ratio: 16 / 9; }
