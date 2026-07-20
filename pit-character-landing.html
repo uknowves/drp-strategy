@@ -494,9 +494,136 @@ section { padding: 120px 60px; position: relative; }
 @media (max-width: 560px) {
   .format-gallery { grid-template-columns: 1fr; }
 }
+
+/* ─── PASSWORD GATE ─── */
+html.pw-locked, body.pw-locked { overflow: hidden !important; }
+#pw-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.pw-box {
+  width: 470px;
+  max-width: 100%;
+  text-align: center;
+}
+.pw-logo {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.pw-logo .drp { color: #fff; }
+.pw-logo .dot { color: #FF6B00; }
+.pw-logo .som { color: rgba(255,255,255,0.32); letter-spacing: 4px; margin-left: 6px; }
+.pw-sub {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.32);
+  margin-bottom: 44px;
+}
+.pw-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #1a1a1a;
+  border: 1px solid #FF6B00;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  font-family: 'Geist', system-ui, sans-serif;
+  outline: none;
+}
+.pw-input::placeholder { color: rgba(255,255,255,0.4); }
+.pw-btn {
+  width: 100%;
+  box-sizing: border-box;
+  background: #E2792F;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s ease;
+}
+.pw-btn:hover { background: #FF6B00; }
+.pw-error {
+  color: #e0503a;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  margin-top: 18px;
+  min-height: 16px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.pw-error.show { opacity: 1; }
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-logo"><span class="drp">DRP</span><span class="dot">.</span><span class="som">State of Mind</span></div>
+    <div class="pw-sub">Материал защищён паролем</div>
+    <input type="password" id="pw-input" class="pw-input" placeholder="Пароль" autocomplete="off" autocapitalize="off" spellcheck="false" />
+    <button type="button" id="pw-btn" class="pw-btn">Открыть</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var PW = 'DRP-Drift-2027';
+  var root = document.documentElement;
+  root.classList.add('pw-locked');
+  if (document.body) document.body.classList.add('pw-locked');
+  function ready(){
+    var gate = document.getElementById('pw-gate');
+    var input = document.getElementById('pw-input');
+    var btn = document.getElementById('pw-btn');
+    var err = document.getElementById('pw-error');
+    document.body.classList.add('pw-locked');
+    function submit(){
+      if (input.value === PW) {
+        gate.style.display = 'none';
+        root.classList.remove('pw-locked');
+        document.body.classList.remove('pw-locked');
+      } else {
+        err.textContent = 'Неверный пароль';
+        err.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+    }
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+    input.addEventListener('input', function(){ err.classList.remove('show'); });
+    input.focus();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
+})();
+</script>
+
 
 <!-- NAV -->
 <nav class="nav">
