@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRP — Персонаж ПИТ</title>
+<style>
+@font-face {
+  font-family: 'Korataki';
+  src: url('fonts/korataki-regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Korataki';
+  src: url('fonts/korataki-bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Korataki';
+  src: url('fonts/korataki-extrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Korataki';
+  src: url('fonts/korataki-light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Halvar Breit';
+  src: url('fonts/halvar-breit-rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Halvar Breit';
+  src: url('fonts/halvar-breit-bd.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Halvar Breit';
+  src: url('fonts/halvar-breit-md.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Halvar Breit';
+  src: url('fonts/halvar-breit-lt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Halvar Breit';
+  src: url('fonts/halvar-breit-blk.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('fonts/geist-variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Geist', 'Halvar Breit', sans-serif;
+  background: #0a0a0a;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAVIGATION ─── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(10,10,10,0.94);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.3s ease;
+}
+.nav-logo {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: #FF6B00;
+}
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+  text-transform: uppercase;
+}
+.nav-links a:hover { color: #FF6B00; }
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.nav-burger span { width: 24px; height: 2px; background: #fff; transition: 0.3s; }
+
+/* ─── SECTION SYSTEM ─── */
+section { padding: 120px 60px; position: relative; }
+.section-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 48px);
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.section-sub {
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
+  max-width: 620px;
+  margin-bottom: 60px;
+}
+.section-divider { width: 60px; height: 3px; background: #FF6B00; margin-bottom: 60px; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── HERO ─── */
+.hero-wrap { height: 220vh; position: relative; }
+.hero {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+  z-index: 1;
+}
+.hero-video-wrap { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: #000; border: none; }
+.hero-video-wrap video { width: 100%; height: 100%; object-fit: cover; }
+.hero-video-gradient {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%);
+  pointer-events: none;
+}
+.hero-text-parallax {
+  position: absolute;
+  z-index: 4;
+  text-align: left;
+  width: 100%;
+  max-width: 620px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 60px;
+  pointer-events: none;
+}
+.hero-text-parallax.visible { pointer-events: auto; }
+.hero-text-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.hero-text-label.visible { opacity: 1; transform: translateY(0); }
+.hero-text-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(28px, 4.5vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.4s ease, transform 1.4s ease;
+}
+.hero-text-title.visible { opacity: 1; transform: translateY(0); }
+.hero-text-title span { color: #FF6B00; }
+.hero-text-sub {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  max-width: 480px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.6s ease, transform 1.6s ease;
+}
+.hero-text-sub.visible { opacity: 1; transform: translateY(0); }
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.25);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.hero-scroll-hint .hint-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, rgba(255,107,0,0.5), transparent);
+}
+
+/* ─── MEDIA SLOT (placeholder system) ───
+   Drop the real file in with the exact filename shown and the
+   placeholder label disappears automatically. */
+.media-slot {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.media-slot img, .media-slot video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-slot-placeholder {
+  position: absolute; inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 20px;
+  background:
+    repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 14px),
+    #141414;
+  border: 1px dashed rgba(255,107,0,0.35);
+  transition: opacity 0.4s ease;
+}
+.media-slot-placeholder .ms-tag {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  border: 1px solid rgba(255,107,0,0.4);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.media-slot-placeholder .ms-name {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+  word-break: break-all;
+}
+.media-slot-placeholder .ms-ratio {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.5px;
+}
+.media-slot.media-loaded .media-slot-placeholder { opacity: 0; pointer-events: none; }
+#heroMediaSlot .media-slot-placeholder { justify-content: flex-start; padding-top: 64px; }
+#heroMediaSlot.media-slot { border: none; background: #000; }
+.media-slot.ratio-hero { aspect-ratio: 16 / 9; }
+.media-slot.ratio-portrait { aspect-ratio: 3 / 4; }
+.media-slot.ratio-wide { aspect-ratio: 16 / 9; }
+.media-slot.ratio-landscape { aspect-ratio: 4 / 3; }
+
+/* ─── CHAR INTRO (two-column) ─── */
+.char-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 0;
+  min-height: 60vh;
+  margin-left: -60px;
+  margin-right: -60px;
+  overflow: hidden;
+}
+.char-intro-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 56px;
+  background: #151515;
+}
+.char-intro-label {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 24px;
+}
+.char-intro-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(24px, 3vw, 36px);
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+.char-intro-text {
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
+  font-size: clamp(15px, 1.6vw, 17px);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.8;
+}
+.char-intro-text + .char-intro-text { margin-top: 16px; }
+.char-intro-right { position: relative; overflow: hidden; }
+.char-intro-right .media-slot { height: 100%; border: none; }
+
+/* ─── DIFF BRIDGE ─── */
+.diff-not-but {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 3px solid rgba(255,255,255,0.08);
+  padding-left: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.diff-not {
+  font-family: 'Korataki', sans-serif;
+  font-size: clamp(18px, 2.5vw, 28px);
+  color: rgba(255,255,255,0.3);
+  text-decoration: line-through;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.diff-but {
+  font-family: 'Korataki', sans-serif;
+  font-size: clamp(20px, 3vw, 36px);
+  color: #FF6B00;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 28px 0;
+}
+
+/* ─── FORMAT FEATURE BLOCKS ─── */
+.format-block { margin-bottom: 100px; }
+.format-block:last-child { margin-bottom: 0; }
+.format-head { max-width: 720px; margin-bottom: 40px; }
+.format-num {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,107,0,0.6);
+  margin-bottom: 14px;
+}
+.format-head h3 {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 32px);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.format-head p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
+}
+
+/* Gallery of 3 vertical images */
+.format-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+/* References / moodboard gallery — 4 square images */
+.refs-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.refs-gallery .media-slot { aspect-ratio: 1 / 1; }
+@media (max-width: 900px) {
+  .refs-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .refs-gallery { grid-template-columns: 1fr; }
+}
+
+/* Single big feature media */
+.format-feature .media-slot { border-radius: 4px; }
+
+/* Emotions block: text + image on one row, video full-width below */
+.emotions-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+@media (max-width: 900px) {
+  .emotions-top { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* ─── CLOSING ─── */
+.closing {
+  text-align: center;
+  background: #111;
+}
+.closing-inner { max-width: 760px; margin: 0 auto; }
+.closing .section-label { justify-content: center; }
+.closing .section-divider { margin-left: auto; margin-right: auto; }
+.closing p {
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 40px 60px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-logo {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  color: #FF6B00;
+  letter-spacing: 2px;
+}
+.footer-credit { font-size: 12px; color: rgba(255,255,255,0.3); }
+.footer-credit a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .char-intro { grid-template-columns: 1fr; margin-left: -24px; margin-right: -24px; }
+  .char-intro-right { min-height: 60vh; }
+  .format-gallery { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  section { padding: 80px 24px; }
+  .nav { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .char-intro-left { padding: 40px 24px; }
+  .footer { padding: 30px 24px; flex-direction: column; text-align: center; }
+  .hero-text-parallax { padding: 0 20px; }
+}
+@media (max-width: 560px) {
+  .format-gallery { grid-template-columns: 1fr; }
+}
+
+/* ─── PASSWORD GATE ─── */
+html.pw-locked, body.pw-locked { overflow: hidden !important; }
+#pw-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.pw-box {
+  width: 470px;
+  max-width: 100%;
+  text-align: center;
+}
+.pw-logo {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.pw-logo .drp { color: #fff; }
+.pw-logo .dot { color: #FF6B00; }
+.pw-logo .som { color: rgba(255,255,255,0.32); letter-spacing: 4px; margin-left: 6px; }
+.pw-sub {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.32);
+  margin-bottom: 44px;
+}
+.pw-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #1a1a1a;
+  border: 1px solid #FF6B00;
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  font-family: 'Geist', system-ui, sans-serif;
+  outline: none;
+}
+.pw-input::placeholder { color: rgba(255,255,255,0.4); }
+.pw-btn {
+  width: 100%;
+  box-sizing: border-box;
+  background: #E2792F;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s ease;
+}
+.pw-btn:hover { background: #FF6B00; }
+.pw-error {
+  color: #e0503a;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  margin-top: 18px;
+  min-height: 16px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.pw-error.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-logo"><span class="drp">DRP</span><span class="dot">.</span><span class="som">State of Mind</span></div>
+    <div class="pw-sub">Материал защищён паролем</div>
+    <input type="password" id="pw-input" class="pw-input" placeholder="Пароль" autocomplete="off" autocapitalize="off" spellcheck="false" />
+    <button type="button" id="pw-btn" class="pw-btn">Открыть</button>
+    <div class="pw-error" id="pw-error"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var PW = 'DRP-Drift-2027';
+  var root = document.documentElement;
+  root.classList.add('pw-locked');
+  if (document.body) document.body.classList.add('pw-locked');
+  function ready(){
+    var gate = document.getElementById('pw-gate');
+    var input = document.getElementById('pw-input');
+    var btn = document.getElementById('pw-btn');
+    var err = document.getElementById('pw-error');
+    document.body.classList.add('pw-locked');
+    function submit(){
+      if (input.value === PW) {
+        gate.style.display = 'none';
+        root.classList.remove('pw-locked');
+        document.body.classList.remove('pw-locked');
+      } else {
+        err.textContent = 'Неверный пароль';
+        err.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+    }
+    btn.addEventListener('click', submit);
+    input.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+    input.addEventListener('input', function(){ err.classList.remove('show'); });
+    input.focus();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready);
+  } else {
+    ready();
+  }
+})();
+</script>
+
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">DRP</div>
+  <ul class="nav-links">
+    <li><a href="#intro">Знакомство</a></li>
+    <li><a href="#formats">Форматы</a></li>
+    <li><a href="#collectible">Коллекция</a></li>
+    <li><a href="#collab">Коллаборации</a></li>
+    <li><a href="#emotions">Эмоции</a></li>
+    <li><a href="#finale">Финал</a></li>
+  </ul>
+  <button class="nav-burger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap" id="hero">
+  <section class="hero">
+    <div class="hero-video-wrap media-slot ratio-hero" id="heroMediaSlot">
+      <video id="heroVideo" muted playsinline preload="auto">
+        <source src="hero-character.mp4" type="video/mp4">
+      </video>
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Видео</span>
+        <span class="ms-name">hero-character.mp4</span>
+        <span class="ms-ratio">1920×1080 · 16:9 · сгенерировано в Higgsfield</span>
+      </div>
+      <div class="hero-video-gradient"></div>
+    </div>
+
+    <div class="hero-text-parallax" id="heroText">
+      <div class="hero-text-label">Концепт 1</div>
+      <div class="hero-text-title">ПИТ — <span>живое лицо</span><br>Drift Racing Park</div>
+      <div class="hero-text-sub">Простая форма, но запоминающийся образ, который подойдёт эстетически всем группам, сохраняя дерзкий настрой мира гонок и актуальную коллектбл стилистику.</div>
+    </div>
+
+    <div class="hero-scroll-hint" id="heroScrollHint">
+      <span>Scroll</span>
+      <div class="hint-line"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ЗНАКОМСТВО -->
+<section id="intro">
+  <div class="char-intro reveal">
+    <div class="char-intro-left">
+      <p class="char-intro-label">Знакомство</p>
+      <h2 class="char-intro-title">Свой и на трассе и на паддоке</h2>
+      <p class="char-intro-text">Пит — часть культуры, ему привычен запах шин, звук импакта, разговоры перед заездом. Он общительный, любознательный и выразительный. Белый комбинезон, оранжевые вставки, шлем всегда под рукой — он выглядит как один из пилотов, и всегда искренне рад видеть каждого гостя парка.</p>
+      <p class="char-intro-text">Дерзкий, креативный внутри хаоса, всегда готов пошутить и всегда готов выйти на трассу — характер, который считывается без единого слова.</p>
+    </div>
+    <div class="char-intro-right">
+      <div class="media-slot ratio-portrait">
+        <img src="character-portrait.png" alt="ПИТ — персонаж DRP">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">character-portrait.png</span>
+          <span class="ms-ratio">Референс персонажа · 3:4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- РЕФЕРЕНСЫ / ЧТО ПОВЛИЯЛО НА ИДЕЮ -->
+<section id="references" style="background: rgba(255,255,255,0.01); padding-top: 90px; padding-bottom: 90px;">
+  <div class="reveal" style="margin-bottom: 40px;">
+    <div class="section-label">Референсы</div>
+    <div class="section-title" style="margin-bottom: 16px;">Что повлияло на идею</div>
+    <p class="section-sub" style="margin-bottom: 16px;">Отправной точкой стал поиск простой формы головы, которая одновременно позволяет носить шлем и остаётся выразительной. Среди множества коллекционных игрушек по всему миру хотелось найти что-то своё, привязанное именно к миру гонок.</p>
+    <p class="section-sub" style="margin-bottom: 0;">Крупные глаза — чтобы лицо считывалось эмоцией даже без слов, шлем — не бутафория, а функциональный элемент, который персонаж реально может надеть и снять. Эти вводные и привели к балаклаве, которая сохраняет форму головы простой, не спорит со шлемом, акцентирует внимание на выразительных глазах, создаёт интригу вокруг персонажа и, конечно, сразу считывается как гоночная экипировка — поэтому у ПИТа маска, а не открытое лицо.</p>
+  </div>
+  <div class="refs-gallery reveal">
+    <div class="media-slot">
+      <img src="reference-1.png" alt="Референс 1">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">reference-1.png</span>
+        <span class="ms-ratio">1:1</span>
+      </div>
+    </div>
+    <div class="media-slot">
+      <img src="reference-2.png" alt="Референс 2">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">reference-2.png</span>
+        <span class="ms-ratio">1:1</span>
+      </div>
+    </div>
+    <div class="media-slot">
+      <img src="reference-3.png" alt="Референс 3">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">reference-3.png</span>
+        <span class="ms-ratio">1:1</span>
+      </div>
+    </div>
+    <div class="media-slot">
+      <img src="reference-4.png" alt="Референс 4">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">reference-4.png</span>
+        <span class="ms-ratio">1:1</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- МОСТИК К ФОРМАТАМ -->
+<section style="background: rgba(255,255,255,0.01); padding-top: 80px; padding-bottom: 80px;">
+  <div class="diff-not-but reveal">
+    <div class="diff-not">Стоковый персонаж</div>
+    <div class="diff-but">Полноценный мультиформатный маскот, который берёт на себя часть коммуникации</div>
+  </div>
+</section>
+
+<!-- ФОРМАТЫ -->
+<section id="formats">
+  <div class="reveal">
+    <div class="section-label">02 / Мультиформатность</div>
+    <div class="section-title">Один персонаж — бесконечность форм</div>
+    <div class="section-divider"></div>
+    <p class="section-sub">ПИТ спроектирован так, чтобы его образ мог быть использован в абсолютно разных сценариях, от диджитала до рукоделия — не теряя узнаваемости и характера.</p>
+  </div>
+
+  <!-- 01: КОЛЛЕКЦИОННАЯ СТАТУЭТКА -->
+  <div class="format-block reveal" id="collectible">
+    <div class="format-head">
+      <div class="format-num">Формат 01</div>
+      <h3>Коллекционная статуэтка</h3>
+      <p>Базовая форма персонажа существует как полноценный collectible-объект — с проработкой под разные цветовые схемы и лимитированные редакции. Каждая перекраска — новый повод для гостя забрать частичку DRP домой. Постоянные базовые вариации, или редкие коллекционные решения в ограниченных экземплярах.</p>
+    </div>
+    <div class="format-gallery">
+      <div class="media-slot ratio-portrait">
+        <img src="collectible-figure-1.png" alt="Коллекционная статуэтка — вариант 1">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">collectible-figure-1.png</span>
+          <span class="ms-ratio">3:4</span>
+        </div>
+      </div>
+      <div class="media-slot ratio-portrait">
+        <img src="collectible-figure-2.png" alt="Коллекционная статуэтка — вариант 2">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">collectible-figure-2.png</span>
+          <span class="ms-ratio">3:4</span>
+        </div>
+      </div>
+      <div class="media-slot ratio-portrait">
+        <img src="collectible-figure-3.png" alt="Коллекционная статуэтка — вариант 3">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">collectible-figure-3.png</span>
+          <span class="ms-ratio">3:4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02: КОЛЛАБОРАЦИИ -->
+  <div class="format-block reveal" id="collab">
+    <div class="format-head">
+      <div class="format-num">Формат 02</div>
+      <h3>Коллаборации с партнёрами</h3>
+      <p>Форма адаптируется под айдентику брендов-партнёров — от автомобильных марок до спонсоров соревнований. Готовый носитель для совместных лимитированных релизов и партнёрского мерча.</p>
+    </div>
+    <div class="format-gallery">
+      <div class="media-slot ratio-portrait">
+        <img src="brand-collab-1.png" alt="Коллаборация с брендом — вариант 1">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">brand-collab-1.png</span>
+          <span class="ms-ratio">3:4</span>
+        </div>
+      </div>
+      <div class="media-slot ratio-portrait">
+        <img src="brand-collab-2.png" alt="Коллаборация с брендом — вариант 2">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">brand-collab-2.png</span>
+          <span class="ms-ratio">3:4</span>
+        </div>
+      </div>
+      <div class="media-slot ratio-portrait">
+        <img src="brand-collab-3.png" alt="Коллаборация с брендом — вариант 3">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">brand-collab-3.png</span>
+          <span class="ms-ratio">3:4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03: НАГРАДА -->
+  <div class="format-block format-feature reveal">
+    <div class="format-head">
+      <div class="format-num">Формат 03</div>
+      <h3>Награда на соревнованиях</h3>
+      <p>В одной из функций персонажа он становится кубком — физическим трофеем, который забирает победитель заезда. Эмоциональный якорь турнира, который не спрячешь на полке к другим кубкам.</p>
+    </div>
+    <div class="media-slot ratio-wide">
+      <img src="competition-award.png" alt="ПИТ в виде награды на соревнованиях">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">competition-award.png</span>
+        <span class="ms-ratio">16:9</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04: ГИГАНТСКАЯ ИНСТАЛЛЯЦИЯ -->
+  <div class="format-block format-feature reveal">
+    <div class="format-head">
+      <div class="format-num">Формат 04</div>
+      <h3>Гигантская инсталляция</h3>
+      <p>Тот же силуэт — в масштабе арт-объекта у входа в парк. Точка притяжения для фото, ориентир на местности и заявление, которое видно ещё на подъезде к DRP.</p>
+    </div>
+    <div class="media-slot ratio-wide">
+      <video muted playsinline loop autoplay>
+        <source src="giant-installation.mp4" type="video/mp4">
+      </video>
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Видео</span>
+        <span class="ms-name">giant-installation.mp4</span>
+        <span class="ms-ratio">16:9</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05: ЖИВОЙ ЭМОЦИОНАЛЬНЫЙ ГЕРОЙ -->
+  <div class="format-block reveal" id="emotions">
+    <div class="emotions-top">
+      <div class="format-head" style="margin-bottom: 0;">
+        <div class="format-num">Формат 05</div>
+        <h3>Живой эмоциональный герой</h3>
+        <p>За пределами физических форм ПИТ — полноценный анимированный персонаж: с мимикой, реакциями и характером, которого можно снимать в контенте, сторис и роликах бренда так же, как настоящего героя, а не логотип.</p>
+      </div>
+      <div class="media-slot ratio-landscape">
+        <img src="character-emotions.png" alt="ПИТ — диапазон эмоций">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">character-emotions.png</span>
+          <span class="ms-ratio">4:3</span>
+        </div>
+      </div>
+    </div>
+    <div class="media-slot ratio-wide">
+      <video muted playsinline loop autoplay>
+        <source src="character-emotions-animated.mp4" type="video/mp4">
+      </video>
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Видео</span>
+        <span class="ms-name">character-emotions-animated.mp4</span>
+        <span class="ms-ratio">16:9</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ФИНАЛ -->
+<section id="finale" class="closing">
+  <div class="closing-inner reveal">
+    <div class="section-label">Финал</div>
+    <div class="section-title">От статуэтки до трассы — один герой, одна история</div>
+    <div class="section-divider"></div>
+    <p>ПИТ — это не разовый арт для сайта, а актив бренда: узнаваемый в любом масштабе, адаптируемый под любой контекст и готовый расти вместе с DRP — от первой статуэтки на полке до кубка чемпионата у входа в парк.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">DRIFT RACING PARK</div>
+  <div class="footer-credit">
+    Презентация персонажа — <a href="https://stfmind.com" target="_blank">State of Mind</a>
+  </div>
+</footer>
+
+<script>
+// ─── MEDIA SLOT AUTO-REVEAL ───
+// Drop a real file in with the exact name shown in the label and this
+// automatically hides the placeholder once the browser loads it.
+document.querySelectorAll('.media-slot').forEach(function (slot) {
+  var el = slot.querySelector('video, img');
+  if (!el) return;
+  function markLoaded() { slot.classList.add('media-loaded'); }
+  if (el.tagName === 'IMG') {
+    if (el.complete && el.naturalWidth > 0) markLoaded();
+    el.addEventListener('load', markLoaded);
+  } else {
+    el.addEventListener('loadeddata', markLoaded);
+    el.addEventListener('playing', markLoaded);
+  }
+});
+
+// ─── HERO SCROLL-DRIVEN VIDEO ───
+const heroWrap = document.querySelector('.hero-wrap');
+const heroText = document.getElementById('heroText');
+const heroScrollHint = document.getElementById('heroScrollHint');
+const heroLabel = document.querySelector('.hero-text-label');
+const heroTitle = document.querySelector('.hero-text-title');
+const heroSub = document.querySelector('.hero-text-sub');
+const heroVideo = document.getElementById('heroVideo');
+
+if (heroVideo) {
+  heroVideo.pause();
+  heroVideo.currentTime = 0;
+  heroVideo.preload = 'auto';
+}
+
+function handleHeroScroll() {
+  const rect = heroWrap.getBoundingClientRect();
+  const wrapHeight = heroWrap.offsetHeight;
+  const viewH = window.innerHeight;
+  const scrolled = -rect.top;
+  const progress = Math.max(0, Math.min(1, scrolled / (wrapHeight - viewH)));
+
+  // Scrub video with scroll
+  if (heroVideo && heroVideo.readyState >= 2 && heroVideo.duration) {
+    heroVideo.currentTime = progress * heroVideo.duration;
+  }
+
+  // Title appears mid-way through the reveal, once the character is lit
+  if (progress > 0.3) {
+    heroText.classList.add('visible');
+    heroLabel.classList.add('visible');
+  } else {
+    heroLabel.classList.remove('visible');
+  }
+  if (progress > 0.45) { heroTitle.classList.add('visible'); } else { heroTitle.classList.remove('visible'); }
+  if (progress > 0.6) { heroSub.classList.add('visible'); } else { heroSub.classList.remove('visible'); heroText.classList.remove('visible'); }
+
+  if (heroScrollHint) {
+    heroScrollHint.style.opacity = Math.max(0, 1 - progress * 5);
+  }
+}
+
+let heroScrollScheduled = false;
+window.addEventListener('scroll', () => {
+  if (heroScrollScheduled) return;
+  heroScrollScheduled = true;
+  requestAnimationFrame(() => {
+    handleHeroScroll();
+    heroScrollScheduled = false;
+  });
+}, { passive: true });
+handleHeroScroll();
+
+// ─── SCROLL REVEAL ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── NAV HIDE ON SCROLL ───
+let lastScroll = 0;
+const nav = document.querySelector('.nav');
+let navScrollScheduled = false;
+window.addEventListener('scroll', () => {
+  if (navScrollScheduled) return;
+  navScrollScheduled = true;
+  requestAnimationFrame(() => {
+    const st = window.scrollY;
+    if (st > lastScroll && st > 100) { nav.style.transform = 'translateY(-100%)'; }
+    else { nav.style.transform = 'translateY(0)'; }
+    lastScroll = st;
+    navScrollScheduled = false;
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
