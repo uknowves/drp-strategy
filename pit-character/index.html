@@ -427,6 +427,22 @@ section { padding: 120px 60px; position: relative; }
   .refs-gallery { grid-template-columns: 1fr; }
 }
 
+/* References text — two columns: intro paragraphs left, style note right */
+.refs-text-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.refs-text-grid .section-sub { max-width: none; }
+.refs-style-note {
+  border-left: 1px solid rgba(255,107,0,0.3);
+  padding-left: 32px;
+}
+@media (max-width: 900px) {
+  .refs-text-grid { grid-template-columns: 1fr; gap: 32px; }
+  .refs-style-note { border-left: none; border-top: 1px solid rgba(255,107,0,0.3); padding-left: 0; padding-top: 24px; }
+}
+
 /* Single big feature media */
 .format-feature .media-slot { border-radius: 4px; }
 
@@ -696,8 +712,15 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
   <div class="reveal" style="margin-bottom: 40px;">
     <div class="section-label">Референсы</div>
     <div class="section-title" style="margin-bottom: 16px;">Что повлияло на идею</div>
-    <p class="section-sub" style="margin-bottom: 16px;">Отправной точкой стал поиск простой формы головы, которая одновременно позволяет носить шлем и остаётся выразительной. Среди множества коллекционных игрушек по всему миру хотелось найти что-то своё, привязанное именно к миру гонок.</p>
-    <p class="section-sub" style="margin-bottom: 0;">Крупные глаза — чтобы лицо считывалось эмоцией даже без слов, шлем — не бутафория, а функциональный элемент, который персонаж реально может надеть и снять. Эти вводные и привели к балаклаве, которая сохраняет форму головы простой, не спорит со шлемом, акцентирует внимание на выразительных глазах, создаёт интригу вокруг персонажа и, конечно, сразу считывается как гоночная экипировка — поэтому у ПИТа маска, а не открытое лицо.</p>
+    <div class="refs-text-grid">
+      <div>
+        <p class="section-sub" style="margin-bottom: 16px;">Отправной точкой стал поиск простой формы головы, которая одновременно позволяет носить шлем и остаётся выразительной. Среди множества коллекционных игрушек по всему миру хотелось найти что-то своё, привязанное именно к миру гонок.</p>
+        <p class="section-sub" style="margin-bottom: 0;">Крупные глаза — чтобы лицо считывалось эмоцией даже без слов, шлем — не бутафория, а функциональный элемент, который персонаж реально может надеть и снять. Эти вводные и привели к балаклаве, которая сохраняет форму головы простой, не спорит со шлемом, акцентирует внимание на выразительных глазах, создаёт интригу вокруг персонажа и, конечно, сразу считывается как гоночная экипировка — поэтому у ПИТа маска, а не открытое лицо.</p>
+      </div>
+      <div class="refs-style-note">
+        <p class="section-sub" style="margin-bottom: 0;">Помимо гоночной эстетики, мы хотели, чтобы персонаж был стильным и соответствовал тенденциям. Современный уличный стиль сейчас часто обращается к образам балаклав, скрытого лица. Поэтому этот элемент делает персонажа не только инсайдером гоночной культуры, но и актуальным в уличной моде.</p>
+      </div>
+    </div>
   </div>
   <div class="refs-gallery reveal">
     <div class="media-slot">
