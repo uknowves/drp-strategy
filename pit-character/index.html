@@ -492,11 +492,115 @@ section { padding: 120px 60px; position: relative; }
 .footer-credit { font-size: 12px; color: rgba(255,255,255,0.3); }
 .footer-credit a { color: rgba(255,255,255,0.5); text-decoration: none; }
 
+/* ─── LORE (full-screen parallax storytelling image) ─── */
+.lore-wrap { height: 170vh; position: relative; margin-top: 100px; }
+.lore { height: 100vh; position: sticky; top: 0; overflow: hidden; background: #000; display: flex; align-items: center; }
+.lore .media-slot { position: absolute; inset: 0; border: none; }
+.lore-scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0.9) 100%);
+}
+.lore-text { position: relative; z-index: 2; max-width: 620px; padding: 0 60px; }
+.lore-text .section-sub { max-width: none; color: rgba(255,255,255,0.78); margin-bottom: 0; }
+
+/* ─── PULL QUOTE (signature phrase) ─── */
+.pull-quote {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 3vw, 34px);
+  text-transform: uppercase;
+  color: #FF6B00;
+  border-left: 3px solid #FF6B00;
+  padding-left: 24px;
+  margin: 32px 0 0;
+  max-width: 620px;
+}
+
+/* ─── MANIFESTO (full-width statement block) ─── */
+.manifesto {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+.manifesto .section-label { justify-content: center; }
+.manifesto .section-title { margin-bottom: 20px; }
+.manifesto p {
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ─── COMPARE (two-concept wrap-up) ─── */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+.compare-card {
+  background: #141414;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 40px;
+}
+.compare-card-tag {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  border: 1px solid rgba(255,107,0,0.4);
+  border-radius: 20px;
+  padding: 3px 12px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.compare-card h3 {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 2.6vw, 30px);
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.compare-card-sub {
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+.compare-card ul {
+  list-style: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  line-height: 1.7;
+}
+.compare-card li { position: relative; padding-left: 20px; margin-bottom: 10px; }
+.compare-card li::before {
+  content: '';
+  position: absolute; left: 0; top: 9px;
+  width: 6px; height: 6px;
+  background: #FF6B00;
+  border-radius: 50%;
+}
+.compare-closing {
+  max-width: 720px;
+  margin: 48px auto 0;
+  text-align: center;
+  font-size: clamp(15px, 1.7vw, 18px);
+  line-height: 1.8;
+  color: rgba(255,255,255,0.65);
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   .char-intro { grid-template-columns: 1fr; margin-left: -24px; margin-right: -24px; }
   .char-intro-right { min-height: 60vh; }
   .format-gallery { grid-template-columns: repeat(2, 1fr); }
+  .compare-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   section { padding: 80px 24px; }
@@ -506,6 +610,8 @@ section { padding: 120px 60px; position: relative; }
   .char-intro-left { padding: 40px 24px; }
   .footer { padding: 30px 24px; flex-direction: column; text-align: center; }
   .hero-text-parallax { padding: 0 20px; }
+  .lore-text { padding: 0 24px; }
+  .compare-card { padding: 28px; }
 }
 @media (max-width: 560px) {
   .format-gallery { grid-template-columns: 1fr; }
@@ -652,6 +758,8 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
     <li><a href="#emotions">Эмоции</a></li>
     <li><a href="#finale">Финал</a></li>
     <li><a href="#alt-version">Альтернатива</a></li>
+    <li><a href="#drift-king">Дрифт Кинг</a></li>
+    <li><a href="#compare">Итог</a></li>
   </ul>
   <button class="nav-burger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
     <span></span><span></span><span></span>
@@ -922,18 +1030,20 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
   </div>
 </section>
 
-<!-- КОНЦЕПТ 2 — БЕЗ МАСКИ -->
+<!-- АЛЬТЕРНАТИВНАЯ ВЕРСИЯ КОНЦЕПТА 1 — ПИТ БЕЗ МАСКИ -->
 <section id="alt-version">
+
+  <!-- 01: ПОЧЕМУ БЕЗ МАСКИ + ФОТО -->
   <div class="char-intro reveal">
     <div class="char-intro-left">
-      <p class="char-intro-label">Альтернатива</p>
-      <h2 class="char-intro-title">ПИТ без маски — более открытый образ</h2>
-      <p class="char-intro-text">С маской ПИТ считывается как инсайдер гоночной культуры — дерзкий и с интригой. Но для более широкой аудитории, в том числе детской и семейной, нам был нужен более открытый и дружелюбный вариант образа.</p>
-      <p class="char-intro-text">Так родилась альтернативная версия: тот же силуэт и характер, но без маски — более демократичный образ, расположенный к прямому контакту с гостями любого возраста.</p>
+      <p class="char-intro-label">Альтернатива · Без маски</p>
+      <h2 class="char-intro-title">Тот же герой — с открытым лицом</h2>
+      <p class="char-intro-text">В маске ПИТ считывается как интригующий гоночный инсайдер — но маска же немного дистанцирует его от части аудитории. Поэтому мы проработали альтернативную версию того же персонажа: без маски он становится более открытым, более расположенным к взаимодействию с детской и массовой аудиторией.</p>
+      <p class="char-intro-text">Это тот же ПИТ, та же экипировка и та же история — просто в более демократичном, дружелюбном прочтении.</p>
     </div>
     <div class="char-intro-right">
       <div class="media-slot ratio-portrait">
-        <img src="../alt-version-portrait.png" alt="ПИТ без маски — альтернативная версия">
+        <img src="../alt-version-portrait.png" alt="ПИТ — альтернативная версия без маски">
         <div class="media-slot-placeholder">
           <span class="ms-tag">Фото</span>
           <span class="ms-name">alt-version-portrait.png</span>
@@ -943,42 +1053,220 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
     </div>
   </div>
 
-  <div class="media-slot ratio-wide reveal" style="margin-top: 60px;">
-    <video muted playsinline loop autoplay>
-      <source src="../alt-version-demo.mp4" type="video/mp4">
-    </video>
-    <div class="media-slot-placeholder">
-      <span class="ms-tag">Видео</span>
-      <span class="ms-name">alt-version-demo.mp4</span>
-      <span class="ms-ratio">16:9</span>
-    </div>
-  </div>
-
-  <div class="emotions-top reveal" style="margin-top: 100px;">
-    <div class="format-head" style="margin-bottom: 0;">
-      <div class="section-label" style="margin-bottom: 16px;">Без маски</div>
-      <h3>Эмоции считываются напрямую</h3>
-      <p>Без маски ПИТ становится дружелюбным и располагающим героем: открытое лицо делает эмоции более выразительными и лучше считываются — улыбка, удивление, азарт видны напрямую, без дополнительной расшифровки. Это особенно важно для семейной и детской аудитории парка.</p>
-    </div>
-    <div class="media-slot ratio-landscape">
-      <img src="../alt-version-emotions.png" alt="ПИТ без маски — эмоции">
+  <!-- 02: ВИДЕО-ДЕМОНСТРАЦИЯ -->
+  <div class="format-block reveal" style="margin-top: 100px;">
+    <div class="media-slot ratio-wide">
+      <video muted playsinline loop autoplay>
+        <source src="../alt-version-demo.mp4" type="video/mp4">
+      </video>
       <div class="media-slot-placeholder">
-        <span class="ms-tag">Фото</span>
-        <span class="ms-name">alt-version-emotions.png</span>
-        <span class="ms-ratio">4:3</span>
+        <span class="ms-tag">Видео</span>
+        <span class="ms-name">alt-version-demo.mp4</span>
+        <span class="ms-ratio">16:9</span>
       </div>
     </div>
   </div>
-  <div class="media-slot ratio-wide reveal">
-    <video muted playsinline loop autoplay>
-      <source src="../alt-version-emotions-animated.mp4" type="video/mp4">
-    </video>
-    <div class="media-slot-placeholder">
-      <span class="ms-tag">Видео</span>
-      <span class="ms-name">alt-version-emotions-animated.mp4</span>
-      <span class="ms-ratio">16:9</span>
+
+  <!-- 03: ЭМОЦИИ БЕЗ МАСКИ -->
+  <div class="char-intro reveal" style="margin-top: 100px;">
+    <div class="char-intro-left">
+      <p class="char-intro-label">Открытые эмоции</p>
+      <h2 class="char-intro-title">Дружелюбный и живой — эмоции видно напрямую</h2>
+      <p class="char-intro-text">Без маски этот персонаж становится дружелюбным и открыто выражает разные эмоции — радость, азарт, удивление. Поскольку лицо не скрыто, эти эмоции считываются гораздо лучше и заметнее — что особенно важно для контента, ориентированного на семейную и детскую аудиторию.</p>
+    </div>
+    <div class="char-intro-right">
+      <div class="media-slot ratio-landscape">
+        <img src="../alt-version-emotions.png" alt="ПИТ без маски — эмоции">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">alt-version-emotions.png</span>
+          <span class="ms-ratio">4:3</span>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- 04: ВИДЕО-ДЕМОНСТРАЦИЯ ЭМОЦИЙ -->
+  <div class="format-block reveal" style="margin-top: 100px;">
+    <div class="media-slot ratio-wide">
+      <video muted playsinline loop autoplay>
+        <source src="../alt-version-emotions-animated.mp4" type="video/mp4">
+      </video>
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Видео</span>
+        <span class="ms-name">alt-version-emotions-animated.mp4</span>
+        <span class="ms-ratio">16:9</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- КОНЦЕПТ 2 — ДРИФТ КИНГ (отдельный, самостоятельный персонаж)  -->
+<!-- ============================================================ -->
+<section id="drift-king">
+
+  <!-- 01: ПРЕДЫСТОРИЯ -->
+  <div class="char-intro reveal">
+    <div class="char-intro-left">
+      <p class="char-intro-label">Дрифт Кинг · Предыстория</p>
+      <h2 class="char-intro-title">Молния, которая избавила его от страха</h2>
+      <p class="char-intro-text">До того как стать легендой трассы, он был просто одержим дрифтом — гонял каждый день, использовал любую свободную минуту, чтобы оказаться за рулём. Трасса была не хобби, а состоянием, в котором он жил.</p>
+      <p class="char-intro-text">Однажды во время заезда молния ударила прямо в его машину. С этого момента он стал видеть трассу так, как не видит её никто другой — страх исчез, а на смену ему пришёл дикий, необъяснимый кураж. Именно этот кураж застыл в его лице: он ничего не боится и всегда готов бросить себя в занос.</p>
+    </div>
+    <div class="char-intro-right">
+      <div class="media-slot ratio-portrait">
+        <img src="../drift-king-portrait.png" alt="Дрифт Кинг — новый персонаж DRP">
+        <div class="media-slot-placeholder">
+          <span class="ms-tag">Фото</span>
+          <span class="ms-name">drift-king-portrait.png</span>
+          <span class="ms-ratio">3:4</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02: КАК ОН ВЫГЛЯДИТ -->
+  <div class="reveal" style="margin-top: 100px; max-width: 720px;">
+    <div class="section-label">Как он выглядит</div>
+    <div class="section-title">Дизайн, построенный на кураже</div>
+    <p class="section-sub" style="margin-bottom: 16px;">В основе образа — идея куража: дерзкие глаза, дерзкая улыбка. Шрамы и пластырь на лице — знак того, что он постоянно рискует и часто идёт прямо по грани. Поза — чуть сутулая, наступательная, будто он уже готов сорваться с места.</p>
+    <p class="section-sub" style="margin-bottom: 0;">Есть и вариант персонажа в шлеме — в нём видны только глаза, нацеленные на трассу и ждущие адреналина.</p>
+  </div>
+
+  <!-- 03: ХАРАКТЕР + ДЕМО -->
+  <div class="format-block reveal" style="margin-top: 100px;">
+    <div class="format-head">
+      <div class="format-num">Характер</div>
+      <h3>Не злой — просто одержим адреналином</h3>
+      <p>Он не злодей. Он просто слишком любит скорость и адреналин — смеётся и улыбается в лицо опасности. Уважает тех, кто пробует снова и снова, несмотря на ошибки, и не выносит скучных заездов и скучных кругов. Для него лучший пилот — не тот, кто не ошибается, а тот, кто способен на самое сложное, не стирая улыбку с лица.</p>
+      <div class="pull-quote">«Бойся уехать скучно»</div>
+    </div>
+    <div class="media-slot ratio-wide" style="margin-top: 40px;">
+      <video muted playsinline loop autoplay>
+        <source src="../drift-king-demo.mp4" type="video/mp4">
+      </video>
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Видео</span>
+        <span class="ms-name">drift-king-demo.mp4</span>
+        <span class="ms-ratio">16:9</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04: ЛОР — ПОЧЕМУ ОН СТАЛ МАСКОТОМ (parallax) -->
+<div class="lore-wrap">
+  <div class="lore">
+    <div class="media-slot ratio-hero">
+      <img src="../drift-king-lore.png" alt="Как Дрифт Кинг стал маскотом Drift Racing Park">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">drift-king-lore.png</span>
+        <span class="ms-ratio">16:9, во весь экран</span>
+      </div>
+    </div>
+    <div class="lore-scrim"></div>
+    <div class="lore-text reveal">
+      <div class="section-label">Легенда</div>
+      <div class="section-title">Как он стал маскотом Drift Racing Park</div>
+      <p class="section-sub">Когда открылся Drift Racing Park, его владельцы искали символ трассы. В первую же ночь камера наблюдения зафиксировала странный силуэт, стоявший на стартовой линии. Утром рядом с ним обнаружили идеально вычерченный след дрифта — хотя ночью трасса была закрыта. С тех пор он появляется везде, где слышен визг шин. Говорят: потри его фигурку перед заездом на удачу — и первый поворот пройдёт идеально.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <!-- 05: КОЛЛЕКЦИОННАЯ ИГРУШКА -->
+  <div class="emotions-top reveal">
+    <div class="format-head" style="margin-bottom: 0;">
+      <div class="section-label" style="margin-bottom: 16px;">Коллекционная игрушка</div>
+      <h3>Не просто сувенир</h3>
+      <p>Каждая физическая фигурка — не просто сувенир. На коробке написано: эта фигурка хранит память о тысяче идеальных заносов. Поставь её на панель своего сетапа — и она будет напоминать, что кураж и удовольствие от заезда важнее результата.</p>
+    </div>
+    <div class="media-slot ratio-portrait">
+      <img src="../drift-king-collectible.png" alt="Дрифт Кинг — коллекционная фигурка">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">drift-king-collectible.png</span>
+        <span class="ms-ratio">3:4</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06: МАНИФЕСТ КОМЬЮНИТИ -->
+  <div class="manifesto reveal" style="margin-top: 100px;">
+    <div class="section-label">В сердце комьюнити DRP</div>
+    <div class="section-title">Небольшого роста, но огромный по духу</div>
+    <p>Смельчак, ставший легендой трассы после загадочного ночного заезда. Он живёт между цифровым и реальным миром: появляется на экранах, в анимации, в формате коллекционной игрушки и других аксессуаров и декора. Его миссия — вдохновлять каждого гостя парка не бояться бросить себя в занос куража и адреналина. Он знает главное правило дрифта: управляй хаосом — и получай от этого удовольствие.</p>
+  </div>
+
+  <!-- 07: КУБКИ DRIFT RACING PARK -->
+  <div class="reveal" style="margin-top: 100px;">
+    <div class="section-label" style="text-align: center; justify-content: center;">Кубки Drift Racing Park</div>
+    <div class="media-slot ratio-wide" style="margin-top: 24px;">
+      <img src="../drift-king-trophies.png" alt="Кубки Drift Racing Park">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">drift-king-trophies.png</span>
+        <span class="ms-ratio">16:9</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08: ФИНАЛИЗАЦИЯ КОНЦЕПТА (full-screen) -->
+<div class="lore-wrap" style="height: 100vh;">
+  <div class="lore" style="position: relative;">
+    <div class="media-slot ratio-hero">
+      <img src="../drift-king-finale.png" alt="Дрифт Кинг — финализация концепта">
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Фото</span>
+        <span class="ms-name">drift-king-finale.png</span>
+        <span class="ms-ratio">16:9, во весь экран</span>
+      </div>
+    </div>
+    <div class="lore-scrim"></div>
+    <div class="lore-text reveal">
+      <div class="section-label">Итог концепта</div>
+      <div class="section-title">Кураж, который стал лицом трассы</div>
+      <p class="section-sub">От случайной вспышки молнии до постоянного места в комьюнити DRP — путь показывает, каким может быть маскот без единого слова осторожности: смелым, живым и абсолютно бесстрашным перед скоростью.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ИТОГ: СРАВНЕНИЕ ОБРАЗОВ -->
+<section id="compare" class="closing">
+  <div class="closing-inner reveal" style="max-width: 900px;">
+    <div class="section-label">Итог</div>
+    <div class="section-title">Два концепта — один дух DRP</div>
+    <div class="section-divider"></div>
+    <p>Мы предложили два самостоятельных концепта маскота DRP, а для первого из них — ещё и альтернативную версию без маски. У каждого варианта своя роль и своя аудитория.</p>
+  </div>
+  <div class="compare-grid reveal">
+    <div class="compare-card">
+      <div class="compare-card-tag">Концепт 1</div>
+      <h3>ПИТ</h3>
+      <div class="compare-card-sub">Гоночный инсайдер — в маске, есть версия без маски</div>
+      <ul>
+        <li>В маске — интрига и загадочность, лицо не раскрыто</li>
+        <li>Без маски — более открытый, дружелюбный вариант того же героя</li>
+        <li>Считывается как актуальный стрит-стайл образ</li>
+        <li>Гоночная экипировка моментально считывается</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-card-tag">Концепт 2</div>
+      <h3>Дрифт Кинг</h3>
+      <div class="compare-card-sub">Отдельный персонаж — открытый и дружелюбный, без маски</div>
+      <ul>
+        <li>Эмоции считываются напрямую, без расшифровки</li>
+        <li>Подходит для семейной и детской аудитории</li>
+        <li>Собственная легенда усиливает вовлечённость гостей</li>
+        <li>Универсален для контента, комьюнити и мерча</li>
+      </ul>
+    </div>
+  </div>
+  <p class="compare-closing">Выбирайте концепт, который ближе задачам парка — ПИТ с опциональной открытой версией или отдельного персонажа Дрифт Кинг — или используйте оба сразу для разных форматов коммуникации.</p>
 </section>
 
 <!-- FOOTER -->
