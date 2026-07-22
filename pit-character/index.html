@@ -651,7 +651,20 @@ section { padding: 120px 60px; position: relative; }
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 6px;
   padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
 }
+.compare-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #FF6B00;
+  transition: height 0.4s ease;
+}
+.compare-card:hover { background: rgba(255,107,0,0.08); }
+.compare-card:hover::before { height: 100%; }
 .compare-card-tag {
   font-family: 'Halvar Breit', sans-serif;
   font-weight: 700;
