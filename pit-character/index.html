@@ -298,9 +298,9 @@ section { padding: 120px 60px; position: relative; }
 }
 .media-slot.media-loaded .media-slot-placeholder { opacity: 0; pointer-events: none; }
 #heroMediaSlot .media-slot-placeholder { justify-content: flex-start; padding-top: 64px; }
-#heroMediaSlot.media-slot { border: none; background: #000; }
+#heroMediaSlot.media-slot { border: none; background: #000; position: absolute; inset: 0; width: 100%; height: 100%; }
 #dkHeroMediaSlot .media-slot-placeholder { justify-content: flex-start; padding-top: 64px; }
-#dkHeroMediaSlot.media-slot { border: none; background: #000; }
+#dkHeroMediaSlot.media-slot { border: none; background: #000; position: absolute; inset: 0; width: 100%; height: 100%; }
 .media-slot.ratio-hero { aspect-ratio: 16 / 9; }
 .media-slot.ratio-portrait { aspect-ratio: 3 / 4; }
 .media-slot.ratio-wide { aspect-ratio: 16 / 9; }
@@ -1474,8 +1474,10 @@ function handleDkHeroScroll() {
   const rect = dkHeroWrap.getBoundingClientRect();
   const wrapHeight = dkHeroWrap.offsetHeight;
   const viewH = window.innerHeight;
-  const scrolled = -rect.top;
-  const progress = Math.max(0, Math.min(1, scrolled / (wrapHeight - viewH)));
+  const earlyStart = viewH * 0.15;
+  const scrolled = earlyStart - rect.top;
+  const totalRange = earlyStart + (wrapHeight - viewH);
+  const progress = Math.max(0, Math.min(1, scrolled / totalRange));
 
   if (dkHeroVideo && dkHeroVideo.readyState >= 2 && dkHeroVideo.duration) {
     dkHeroVideo.currentTime = progress * dkHeroVideo.duration;
