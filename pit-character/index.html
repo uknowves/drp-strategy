@@ -530,6 +530,62 @@ section { padding: 120px 60px; position: relative; }
   color: rgba(255,255,255,0.65);
 }
 
+/* ─── INTERLUDE (перебивка между концептами, белая тема) ─── */
+.interlude {
+  background: #f5f3ef;
+  color: #0a0a0a;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.interlude-inner { max-width: 780px; }
+.interlude-eyebrow {
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #FF6B00;
+  margin-bottom: 20px;
+}
+.interlude-title {
+  font-family: 'Korataki', sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 4.5vw, 56px);
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin-bottom: 28px;
+  color: #0a0a0a;
+}
+.interlude-divider { width: 60px; height: 3px; background: #FF6B00; margin: 0 auto 32px; }
+.interlude p {
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.8;
+  color: rgba(10,10,10,0.6);
+  max-width: 620px;
+  margin: 0 auto;
+}
+.interlude-scroll-hint {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(10,10,10,0.35);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.interlude-scroll-hint .hint-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, rgba(255,107,0,0.6), transparent);
+}
+@media (max-width: 768px) {
+  .interlude { padding: 100px 24px; }
+}
+
 /* ─── COMPARE (two-concept wrap-up) ─── */
 .compare-grid {
   display: grid;
@@ -1023,8 +1079,8 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
 <!-- ФИНАЛ -->
 <section id="finale" class="closing">
   <div class="closing-inner reveal">
-    <div class="section-label">Финал</div>
-    <div class="section-title">От статуэтки до трассы — один герой, одна история</div>
+    <div class="section-label">Вывод</div>
+    <div class="section-title">Интерактивный маскот с множеством функций</div>
     <div class="section-divider"></div>
     <p>ПИТ — это не разовый арт для сайта, а актив бренда: узнаваемый в любом масштабе, адаптируемый под любой контекст и готовый расти вместе с DRP — от первой статуэтки на полке до кубка чемпионата у входа в парк.</p>
   </div>
@@ -1097,6 +1153,20 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
         <span class="ms-name">alt-version-emotions-animated.mp4</span>
         <span class="ms-ratio">16:9</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПЕРЕБИВКА: СМЕНА КОНЦЕПТА (белая тема) -->
+<section class="interlude">
+  <div class="interlude-inner reveal">
+    <div class="interlude-eyebrow">Смена концепта</div>
+    <div class="interlude-title">Дальше — другой персонаж.<br>Другое настроение.</div>
+    <div class="interlude-divider"></div>
+    <p>Если ПИТ — это интрига, улица и кураж из-под маски, то дальше начинается совсем другая история: светлее, теплее и с открытым лицом. Знакомьтесь — Дрифт Кинг.</p>
+    <div class="interlude-scroll-hint">
+      <span class="hint-line"></span>
+      <span>Далее</span>
     </div>
   </div>
 </section>
