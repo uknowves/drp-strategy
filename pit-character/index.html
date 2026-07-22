@@ -299,6 +299,8 @@ section { padding: 120px 60px; position: relative; }
 .media-slot.media-loaded .media-slot-placeholder { opacity: 0; pointer-events: none; }
 #heroMediaSlot .media-slot-placeholder { justify-content: flex-start; padding-top: 64px; }
 #heroMediaSlot.media-slot { border: none; background: #000; }
+#dkHeroMediaSlot .media-slot-placeholder { justify-content: flex-start; padding-top: 64px; }
+#dkHeroMediaSlot.media-slot { border: none; background: #000; }
 .media-slot.ratio-hero { aspect-ratio: 16 / 9; }
 .media-slot.ratio-portrait { aspect-ratio: 3 / 4; }
 .media-slot.ratio-wide { aspect-ratio: 16 / 9; }
@@ -1171,6 +1173,34 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
   </div>
 </section>
 
+<!-- ОТКРЫВАЮЩИЙ ЭКРАН КОНЦЕПТА 2 (аналог главного hero, скролл-видео) -->
+<div class="hero-wrap" id="dkHero">
+  <section class="hero">
+    <div class="hero-video-wrap media-slot ratio-hero" id="dkHeroMediaSlot">
+      <video id="dkHeroVideo" muted playsinline preload="auto">
+        <source src="../drift-king-hero.mp4" type="video/mp4">
+      </video>
+      <div class="media-slot-placeholder">
+        <span class="ms-tag">Видео</span>
+        <span class="ms-name">drift-king-hero.mp4</span>
+        <span class="ms-ratio">1920×1080 · 16:9</span>
+      </div>
+      <div class="hero-video-gradient"></div>
+    </div>
+
+    <div class="hero-text-parallax" id="dkHeroText">
+      <div class="hero-text-label" id="dkHeroLabel">Концепт 2</div>
+      <div class="hero-text-title" id="dkHeroTitle">Знакомьтесь — <span>DRIFT KING</span></div>
+      <div class="hero-text-sub" id="dkHeroSub">Дерзкий персонаж, жаждущий адреналина. Ему не терпится попасть на трассу, чтобы смотреть в глаза опасности с улыбкой на лице.</div>
+    </div>
+
+    <div class="hero-scroll-hint" id="dkHeroScrollHint">
+      <span>Scroll</span>
+      <div class="hint-line"></div>
+    </div>
+  </section>
+</div>
+
 <!-- ============================================================ -->
 <!-- КОНЦЕПТ 2 — ДРИФТ КИНГ (отдельный, самостоятельный персонаж)  -->
 <!-- ============================================================ -->
@@ -1416,6 +1446,58 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 handleHeroScroll();
+
+// ─── DRIFT KING HERO SCROLL-DRIVEN VIDEO (концепт 2) ───
+const dkHeroWrap = document.getElementById('dkHero');
+const dkHeroText = document.getElementById('dkHeroText');
+const dkHeroScrollHint = document.getElementById('dkHeroScrollHint');
+const dkHeroLabel = document.getElementById('dkHeroLabel');
+const dkHeroTitle = document.getElementById('dkHeroTitle');
+const dkHeroSub = document.getElementById('dkHeroSub');
+const dkHeroVideo = document.getElementById('dkHeroVideo');
+
+if (dkHeroVideo) {
+  dkHeroVideo.pause();
+  dkHeroVideo.currentTime = 0;
+  dkHeroVideo.preload = 'auto';
+}
+
+function handleDkHeroScroll() {
+  if (!dkHeroWrap) return;
+  const rect = dkHeroWrap.getBoundingClientRect();
+  const wrapHeight = dkHeroWrap.offsetHeight;
+  const viewH = window.innerHeight;
+  const scrolled = -rect.top;
+  const progress = Math.max(0, Math.min(1, scrolled / (wrapHeight - viewH)));
+
+  if (dkHeroVideo && dkHeroVideo.readyState >= 2 && dkHeroVideo.duration) {
+    dkHeroVideo.currentTime = progress * dkHeroVideo.duration;
+  }
+
+  if (progress > 0.3) {
+    dkHeroText.classList.add('visible');
+    dkHeroLabel.classList.add('visible');
+  } else {
+    dkHeroLabel.classList.remove('visible');
+  }
+  if (progress > 0.45) { dkHeroTitle.classList.add('visible'); } else { dkHeroTitle.classList.remove('visible'); }
+  if (progress > 0.6) { dkHeroSub.classList.add('visible'); } else { dkHeroSub.classList.remove('visible'); dkHeroText.classList.remove('visible'); }
+
+  if (dkHeroScrollHint) {
+    dkHeroScrollHint.style.opacity = Math.max(0, 1 - progress * 5);
+  }
+}
+
+let dkHeroScrollScheduled = false;
+window.addEventListener('scroll', () => {
+  if (dkHeroScrollScheduled) return;
+  dkHeroScrollScheduled = true;
+  requestAnimationFrame(() => {
+    handleDkHeroScroll();
+    dkHeroScrollScheduled = false;
+  });
+}, { passive: true });
+handleDkHeroScroll();
 
 // ─── SCROLL REVEAL ───
 const observer = new IntersectionObserver((entries) => {
