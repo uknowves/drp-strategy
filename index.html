@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow">
+<meta name="yandex" content="noindex, nofollow">
 <title>DRP — Коммуникационная стратегия</title>
 <style>
 @font-face {
@@ -3333,6 +3334,63 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
   transition: opacity 0.2s ease;
 }
 .pw-error.show { opacity: 1; }
+
+/* ─── VERSION CHOOSER ─── */
+#ver-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: #0a0a0a;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.ver-btns { display: grid; gap: 12px; }
+.ver-btn {
+  width: 100%;
+  box-sizing: border-box;
+  background: #1a1a1a;
+  color: #fff;
+  border: 1px solid #FF6B00;
+  border-radius: 8px;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-family: 'Halvar Breit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.ver-btn:hover { background: #E2792F; color: #0a0a0a; }
+
+/* ─── NAV VERSION SWITCH ─── */
+.nav-left { display: flex; align-items: center; gap: 24px; }
+.nav-ver {
+  display: flex;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.nav-ver-link {
+  padding: 6px 12px;
+  font-family: 'Halvar Breit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+.nav-ver-link:hover { color: #fff; }
+.nav-ver-link.active { background: #FF6B00; color: #0a0a0a; }
+@media (max-width: 600px) {
+  .nav-left { gap: 14px; }
+  .nav-ver-link { padding: 5px 8px; font-size: 10px; }
+}
 </style>
 </head>
 <body>
@@ -3347,23 +3405,62 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
     <div class="pw-error" id="pw-error"></div>
   </div>
 </div>
+<!-- VERSION CHOOSER -->
+<div id="ver-gate">
+  <div class="pw-box">
+    <div class="pw-logo"><span class="drp">DRP</span><span class="dot">.</span><span class="som">State of Mind</span></div>
+    <div class="pw-sub">Выберите версию</div>
+    <div class="ver-btns">
+      <button type="button" class="ver-btn" data-ver="v1">Версия 1</button>
+      <button type="button" class="ver-btn" data-ver="v2">Версия 2</button>
+    </div>
+  </div>
+</div>
 <script>
 (function(){
   var PW = 'DRP-Drift-2027';
+  var CUR = 'v1';
+  var PAGES = { v1: 'index.html', v2: 'v2.html' };
+  function ss(k, v){
+    try {
+      if (v === undefined) return sessionStorage.getItem(k);
+      sessionStorage.setItem(k, v);
+    } catch (e) { return null; }
+  }
   var root = document.documentElement;
-  root.classList.add('pw-locked');
-  if (document.body) document.body.classList.add('pw-locked');
+  var authed = ss('drp_auth') === '1';
+  var chosen = ss('drp_chosen') === '1';
+  if (!(authed && chosen)) root.classList.add('pw-locked');
   function ready(){
     var gate = document.getElementById('pw-gate');
+    var ver = document.getElementById('ver-gate');
     var input = document.getElementById('pw-input');
     var btn = document.getElementById('pw-btn');
     var err = document.getElementById('pw-error');
-    document.body.classList.add('pw-locked');
+    function unlock(){
+      gate.style.display = 'none';
+      ver.style.display = 'none';
+      root.classList.remove('pw-locked');
+      document.body.classList.remove('pw-locked');
+    }
+    function showChooser(){
+      gate.style.display = 'none';
+      ver.style.display = 'flex';
+      root.classList.add('pw-locked');
+      document.body.classList.add('pw-locked');
+    }
+    function go(v){
+      ss('drp_chosen', '1');
+      if (v === CUR) { unlock(); window.scrollTo(0, 0); }
+      else { window.location.href = PAGES[v]; }
+    }
+    if (authed && chosen) { unlock(); }
+    else if (authed) { showChooser(); }
+    else { document.body.classList.add('pw-locked'); input.focus(); }
     function submit(){
       if (input.value === PW) {
-        gate.style.display = 'none';
-        root.classList.remove('pw-locked');
-        document.body.classList.remove('pw-locked');
+        ss('drp_auth', '1');
+        showChooser();
       } else {
         err.textContent = 'Неверный пароль';
         err.classList.add('show');
@@ -3374,7 +3471,16 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
     btn.addEventListener('click', submit);
     input.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); submit(); } });
     input.addEventListener('input', function(){ err.classList.remove('show'); });
-    input.focus();
+    Array.prototype.forEach.call(document.querySelectorAll('.ver-btn'), function(b){
+      b.addEventListener('click', function(){ go(b.getAttribute('data-ver')); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.nav-ver-link'), function(a){
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        ss('drp_chosen', '1');
+        if (a.getAttribute('data-ver') !== CUR) window.location.href = PAGES[a.getAttribute('data-ver')];
+      });
+    });
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
@@ -3386,7 +3492,13 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
 
 <!-- NAV -->
 <nav class="nav">
-  <div class="nav-logo">DRP</div>
+  <div class="nav-left">
+    <div class="nav-logo">DRP</div>
+    <div class="nav-ver">
+      <a href="index.html" class="nav-ver-link active" data-ver="v1">Версия 1</a>
+      <a href="v2.html" class="nav-ver-link" data-ver="v2">Версия 2</a>
+    </div>
+  </div>
   <ul class="nav-links">
     <li><a href="#goals">Цели</a></li>
     <li><a href="#pillars">Столпы</a></li>
