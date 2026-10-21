@@ -1414,11 +1414,11 @@ html.pw-locked, html.pw-locked body { overflow: hidden !important; }
     ['C5', 'content', 13, 'Регулярная серия на YouTube', 'Выпуски выходят по графику и набирают досмотры — цифры, которые показывают глубину интереса.'],
     ['C6', 'content', 15, 'Банк материалов к заявлению', 'Кадры, ролики и истории, которые понадобятся в день заявления и после него.'],
     ['A1', 'aud', 9, 'Старт регулярных публикаций', 'Instagram, YouTube и Telegram начинают работать в постоянном ритме.', 'T7'],
-    ['A2', 'aud', 10, 'Запуск платного трафика', 'Идёт одновременно с коллаборациями с блогерами и лидерами мнений: проверяем, сколько стоит подписчик и какие темы приводят лучших.'],
+    ['A2', 'aud', 10, 'Запуск платного трафика', 'Идёт одновременно с коллаборациями с лидерами мнений: проверяем, сколько стоит подписчик и какие темы приводят лучших.'],
     ['A3', 'aud', 12, 'Запуск клуба DRP', 'Собираем контакты тех, кто хочет первым узнавать новости и попадать на закрытые события.'],
     ['A4', 'aud', 13, 'Масштабирование работающих механик', 'Усиливаем форматы и каналы с лучшим результатом, отключаем остальное.'],
     ['P1', 'pr', 9, 'Проработка PESO-сети', 'Выстраиваем связку платных, собственных, заработанных и партнёрских медиа. Устанавливаем контакты с редакциями, готовим evergreen-питчи.', 'T7'],
-    ['P2', 'pr', 10, 'Коллаборации с блогерами и лидерами мнений', 'Стартуют одновременно с платным трафиком. Проверяем, кто реально приводит людей.'],
+    ['P2', 'pr', 10, 'Коллаборации с лидерами мнений', 'Стартуют одновременно с платным трафиком. Проверяем, кто реально приводит людей.'],
     ['P3', 'pr', 11, 'Публикации в деловых СМИ', 'Не массовый анонс, а серия публикаций для бизнес-среды: заявляем о себе и собираем медиааргументы для будущих партнёров.'],
     ['P4', 'pr', 12, 'Пресс-кит и PR-сценарии', 'Пресс-кит и сценарии для следующего этапа, в том числе кризисный. Готовим спикеров.'],
     ['P5', 'pr', 14, 'Масштабирование работающих механик', 'Усиливаем PR-форматы и площадки, которые дали лучший результат.'],
@@ -1579,17 +1579,23 @@ html.pw-locked, html.pw-locked body { overflow: hidden !important; }
       E.forEach(e => {
         const a = P[e.a.id];
         const b = e.b.tail ? { x: lerp(P.F.x + 600, W + 40, z), y: P.F.y } : P[e.b.id];
-        const d = curve(a, b);
+        let d = curve(a, b);
+        const bent = !e.b.tail && e.a.lane !== e.b.lane && e.b.col - e.a.col > 1;
+        if (bent) {
+          // ответвление: сначала уходим на свою линию за одну колонку, дальше идём прямо
+          const m = pos({ col: e.a.col + 1, lane: e.b.lane }, z);
+          d = curve(a, m) + ` L${b.x.toFixed(1)},${b.y.toFixed(1)}`;
+        }
         e.base.setAttribute('d', d); e.lit.setAttribute('d', d);
         const startCol = e.a.col;
-        const bStart = !e.b.tail && e.a.lane !== e.b.lane ? Math.max(startCol, e.b.col - 1) : startCol;
+        const bStart = !e.b.tail && e.a.lane !== e.b.lane && !bent ? Math.max(startCol, e.b.col - 1) : startCol;
         const exist = e.b.tail ? clamp((t - LAST + 0.1) / 0.3) : clamp((t - bStart + 0.9) / 0.5);
         const laneV = e.b.lane === 'base' || e.b.lane === 'fin' ? 1 : clamp((t - (LANES[e.b.lane].start - 0.7)) / 0.5);
         e.base.style.opacity = lerp(exist * laneV, 1, z).toFixed(3);
         if (e.b.tail) { e.base.style.opacity = (exist * (1 - z)).toFixed(3); }
         const span = Math.max(0.0001, e.b.col - e.a.col);
         const branch = !e.b.tail && e.a.lane !== e.b.lane;
-        const from = branch ? Math.max(e.a.col, e.b.col - 1) : e.a.col;
+        const from = branch && !bent ? Math.max(e.a.col, e.b.col - 1) : e.a.col;
         let f = e.b.tail ? clamp((t - LAST) / 0.4) : ioCubic(clamp((t - from) / Math.max(0.0001, e.b.col - from)));
         f = Math.max(f, z);
         e.lit.style.strokeDasharray = `${f.toFixed(4)} 1`;
