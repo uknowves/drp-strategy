@@ -996,6 +996,18 @@ html.pw-locked, html.pw-locked body { overflow: hidden !important; }
       initRoadmap();
       initCrisisTip();
       ScrollTrigger.refresh();
+      // пересчёт позиций, если высота страницы поменялась (панель схемы, картинки и т.п.) —
+      // иначе пин роадмапа срабатывает позже и страница «прыгает»
+      let lastH = document.documentElement.scrollHeight, roT = null;
+      const ro = new ResizeObserver(() => {
+        clearTimeout(roT);
+        roT = setTimeout(() => {
+          const h = document.documentElement.scrollHeight;
+          if (Math.abs(h - lastH) > 2) { ScrollTrigger.refresh(); lastH = document.documentElement.scrollHeight; }
+        }, 180);
+      });
+      $$('main > section, main > header, body > section, body > header').forEach(s => ro.observe(s));
+      addEventListener('load', () => { ScrollTrigger.refresh(); lastH = document.documentElement.scrollHeight; });
     });
   }
 
