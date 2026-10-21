@@ -1606,7 +1606,12 @@ html.pw-locked, html.pw-locked body { overflow: hidden !important; }
         } else e.head.style.opacity = 0;
       });
       D.forEach(d => {
-        d.p.setAttribute('d', curve(P[d.a.id], P[d.b.id]));
+        {
+          // пунктир уходит дугой влево от узлов, чтобы не пересекать подписи справа
+          const A = P[d.a.id], B = P[d.b.id], dy = B.y - A.y;
+          const k = Math.abs(dy) * lerp(0.42, 0.22, z) + Math.abs(B.x - A.x) * 0.2;
+          d.p.setAttribute('d', `M${A.x.toFixed(1)},${A.y.toFixed(1)} C${(A.x - k).toFixed(1)},${(A.y + dy * 0.2).toFixed(1)} ${(B.x - k).toFixed(1)},${(B.y - dy * 0.2).toFixed(1)} ${B.x.toFixed(1)},${B.y.toFixed(1)}`);
+        }
         const on = Math.max(clamp((t - d.b.col + 0.4) / 0.4), z);
         d.p.style.opacity = (on * 0.9).toFixed(3);
         d.p.classList.toggle('flow', on > 0.5);
