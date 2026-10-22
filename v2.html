@@ -652,7 +652,7 @@ section {
 }
 .timeline-line {
   position: absolute;
-  top: 50%;
+  top: 6px; /* центр точки (14px) — линия всегда проходит через точки, независимо от высоты подписей */
   left: 30px;
   right: 10px;
   height: 2px;
@@ -713,6 +713,42 @@ section {
   color: rgba(255,255,255,0.35);
   margin-top: 24px;
   white-space: nowrap;
+}
+/* ─── Этап 2 → ссылка на посадочник «Запуск коммуникации» ─── */
+@keyframes rmLaunchFlicker {
+  0%, 100% { color: rgba(255,255,255,0.85); text-shadow: none; }
+  45%, 60% { color: #FF6B00; text-shadow: 0 0 14px rgba(255,107,0,0.45); }
+  52%      { color: rgba(255,140,60,0.75); text-shadow: 0 0 6px rgba(255,107,0,0.25); }
+}
+@keyframes tlDotFlicker {
+  0%, 100% { box-shadow: 0 0 0 2px #FF6B00, 0 0 0 0 rgba(255,107,0,0); opacity: 1; }
+  45%, 60% { box-shadow: 0 0 0 2px #FF6B00, 0 0 0 7px rgba(255,107,0,0.22), 0 0 18px rgba(255,107,0,0.55); opacity: 1; }
+  52%      { opacity: 0.6; }
+}
+.rm-launch-link {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+  animation: rmLaunchFlicker 2.2s ease-in-out infinite;
+}
+.rm-launch-link:hover,
+.rm-launch-link:focus-visible {
+  transform: scale(1.08);
+  animation: none;
+  color: #FF6B00;
+  text-shadow: 0 0 16px rgba(255,107,0,0.5);
+  outline: none;
+}
+.tl-point.is-link { cursor: pointer; }
+.tl-point.is-link .tl-dot { animation: tlDotFlicker 2.2s ease-in-out infinite; }
+.tl-point.is-link:hover .tl-dot { animation: none; transform: scale(1.35); box-shadow: 0 0 0 2px #FF6B00, 0 0 22px rgba(255,107,0,0.6); }
+.tl-dot-link { display: block; text-decoration: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rm-launch-link, .tl-point.is-link .tl-dot { animation: none; }
+  .rm-launch-link { color: #FF6B00; }
 }
 /* Construction row (above timeline) */
 .roadmap-row {
@@ -3819,8 +3855,8 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
           <div class="tl-dot"></div>
           <div class="tl-date">1: ноябрь 2026</div>
         </div>
-        <div class="tl-point" data-stage="2 ЭТАП (3 мес)">
-          <div class="tl-dot"></div>
+        <div class="tl-point is-link" data-stage="2 ЭТАП (3 мес) · открыть →">
+          <a class="tl-dot-link js-launch-link" href="launch/" aria-label="Открыть: Запуск коммуникации"><div class="tl-dot"></div></a>
           <div class="tl-date">2: декабрь 2026 –<br>февраль 2027</div>
         </div>
         <div class="tl-point" data-stage="3 ЭТАП (8 мес)">
@@ -3845,7 +3881,7 @@ html.pw-locked, body.pw-locked { overflow: hidden !important; }
       <div class="roadmap-row-label comm" style="margin-top:40px;">Коммуникация</div>
       <div class="roadmap-row">
         <div class="rm-cell"><h4>Подготовка к запуску коммуникации</h4><p>– согласование стратегии<br>– бюджеты и KPI<br>– подрядчики<br>– контракты<br>– отдел маркетинга</p></div>
-        <div class="rm-cell"><h4>Запуск коммуникации</h4><p>– формирование клуба<br>– снятие скепсиса<br>– освещение проекта<br>– отдел маркетинга</p></div>
+        <div class="rm-cell"><h4><a class="rm-launch-link js-launch-link" href="launch/">Запуск коммуникации</a></h4><p>– формирование клуба<br>– снятие скепсиса<br>– освещение проекта<br>– отдел маркетинга</p></div>
         <div class="rm-cell"><h4>Прогрев к запуску объекта</h4><p>– полномасштабные тесты<br>– демонстрация трека и объекта<br>– команда начинает пользоваться инфраструктурой<br>– продажи B2B и заполнение аренды<br>– с мая 2027 — усиление, за полгода до запуска</p></div>
         <div class="rm-cell"><h4>Запуск работы объекта</h4><p>– обкатываем процессы<br>– тестим рекламу<br>– тестим продукты<br>– тестим мероприятия и ивенты</p></div>
         <div class="rm-cell"><h4>Открытие объекта</h4><p>– ряд событий под официальное открытие<br>– сезон полноценных мероприятий<br>– полномасштабная коммуникация</p></div>
@@ -7591,6 +7627,12 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 handleChallengeScroll();
+
+// ─── Этап 2 → посадочник «Запуск коммуникации» (launch/) ───
+// Пароль уже введён на стратегии — помечаем вход и для launch/, чтобы второй раз не спрашивал (тот же сайт, та же вкладка).
+document.querySelectorAll('.js-launch-link').forEach(a => {
+  a.addEventListener('click', () => { try { sessionStorage.setItem('drp_launch_auth', '1'); } catch (e) {} });
+});
 
 // ─── Timeline stage tooltip ───
 const stageTip = document.createElement('div');
